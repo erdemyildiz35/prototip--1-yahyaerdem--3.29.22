@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 public class Heromovement : MonoBehaviour
 {
 
@@ -24,10 +24,10 @@ public class Heromovement : MonoBehaviour
     [SerializeField] float AttackDamage = 10;
 
     //particles
-    [SerializeField] GameObject Dashparticle;
-    [SerializeField] GameObject JumpParticle;
+   // [SerializeField] GameObject Dashparticle;
+  //  [SerializeField] GameObject JumpParticle;
     [SerializeField] float Stamina = 20;
-    [SerializeField] private GameObject Shuriken;
+   // [SerializeField] private GameObject Shuriken;
     [SerializeField] LayerMask enemyLayer;
 
 
@@ -46,7 +46,7 @@ public class Heromovement : MonoBehaviour
     public bool CanAirAttack = true;
     public bool isSlowMotion = false;
 
-    [SerializeField] Slider AttackTimerSlider;
+   
 
     private float GuardSpeed = 1;//guard anında normal hız ile çarpılıp 0 lanmasını sağlamak için koyulan alan
 
@@ -92,7 +92,7 @@ public class Heromovement : MonoBehaviour
         KeyEvent();
         EventChecker();
 
-        AttackTimerSlider.value = Stamina;
+       
         HeroAnimator.SetBool("Onground", IsGround);
     }
 
@@ -246,19 +246,19 @@ public class Heromovement : MonoBehaviour
 
     void ShurikenAttack()
     {
-        GameObject Shurikenn = Instantiate(Shuriken, AttackPoint.transform.position, Quaternion.identity);
+       // GameObject Shurikenn = Instantiate(Shuriken, AttackPoint.transform.position, Quaternion.identity);
 
         if (MySpeedX > 0)
         {
-            Shurikenn.GetComponent<Rigidbody2D>().velocity = Vector2.right * 8f;
+           // Shurikenn.GetComponent<Rigidbody2D>().velocity = Vector2.right * 8f;
         }
         else if (MySpeedX < 0)
         {
-            Shurikenn.GetComponent<Rigidbody2D>().velocity = Vector2.left * 8f;
+           // Shurikenn.GetComponent<Rigidbody2D>().velocity = Vector2.left * 8f;
         }
-        Shurikenn.GetComponent<Rigidbody2D>().angularVelocity = 2000f;
+        //Shurikenn.GetComponent<Rigidbody2D>().angularVelocity = 2000f;
         ShurikenTimer = 0;
-        Destroy(Shurikenn.gameObject, 3f);
+       // Destroy(Shurikenn.gameObject, 3f);
     }
 
     void Guard()
@@ -381,7 +381,7 @@ public class Heromovement : MonoBehaviour
         if (collision.gameObject.tag == "Jumper")
         {
             rb.velocity = new Vector2(rb.velocity.x, JumpForce * 3f);
-            Instantiate(JumpParticle, transform.position, Quaternion.identity);
+          //  Instantiate(JumpParticle, transform.position, Quaternion.identity);
         }
     }
 
@@ -481,7 +481,7 @@ public class Heromovement : MonoBehaviour
     {
         gameObject.layer = 11;
         Speed += DashForce;
-        HeroAnimator.Play("Dash");
+        HeroAnimator.Play("smrlt");
        
 
         yield return new WaitForSecondsRealtime(.4f);

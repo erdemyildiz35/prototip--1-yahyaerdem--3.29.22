@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour
 {
-    Movement PlayerMovement;
+    AventurerMove PlayerMovement;
     [SerializeField] LayerMask GroundLayer;
 
     void Start()
     {
 
-        PlayerMovement = FindObjectOfType<Movement>();
+        PlayerMovement = FindObjectOfType<AventurerMove>();
 
     }
 
@@ -22,14 +22,14 @@ public class GroundChecker : MonoBehaviour
         if (Physics2D.OverlapCircle(transform.position, .1f, GroundLayer))
         {
 
-            PlayerMovement.Onground = true;
+            PlayerMovement.IsGround = true;
 
 
         }
         else
         {
 
-            PlayerMovement.Onground = false;
+            PlayerMovement.IsGround = false;
         }
 
     }
