@@ -7,8 +7,6 @@ public class AventurerMove : MonoBehaviour
     Animator AnimatorAdventurer;
     Rigidbody2D rb;
 
-
-
     //Başlangıç Boyutu
     Vector3 DefaultLocalScale;
 
@@ -17,8 +15,6 @@ public class AventurerMove : MonoBehaviour
     public bool isAttacking;
     public bool isDash = false;
 
-
-
     //speed
     public float MySpeedX;
     [SerializeField] float Speed;
@@ -26,10 +22,8 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] float SuperSpeed;
     float TempSpeed;
 
-
     //JumpForce
     [SerializeField] float JumpForce = 3f;
-
 
     //attack
     float AttackDamage;
@@ -37,14 +31,11 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] Transform HandAttackPoint;
     Collider2D[] hitEnemies;
 
-
-
     //SwordOrNot
     private bool HandOrSword = false;
 
     //Layermask
     [SerializeField] LayerMask EnemyLayer;
-
 
 
     void Start()
