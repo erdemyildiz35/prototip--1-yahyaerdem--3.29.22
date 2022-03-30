@@ -14,12 +14,13 @@ public class AventurerMove : MonoBehaviour
 
     //Checkerlar
     public bool IsGround;
-    private bool isDash=false;
+    public bool isAttacking;
+    public bool isDash = false;
 
 
 
     //speed
-    float MySpeedX;
+    public float MySpeedX;
     [SerializeField] float Speed;
     [SerializeField] float DashSpeed;
     [SerializeField] float SuperSpeed;
@@ -30,12 +31,19 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] float JumpForce = 3f;
 
 
+    //attack
+    float AttackDamage;
+    [SerializeField] Transform SwordAttackPoint;
+    [SerializeField] Transform HandAttackPoint;
+    Collider2D[] hitEnemies;
 
-    
 
 
     //SwordOrNot
     private bool HandOrSword = false;
+
+    //Layermask
+    [SerializeField] LayerMask EnemyLayer;
 
 
 
@@ -46,195 +54,14 @@ public class AventurerMove : MonoBehaviour
 
         DefaultLocalScale = transform.localScale;
         TempSpeed = Speed;
-
     }
-
 
     void Update()
     {
-
         KeyInputs();
         Movement();
         AnimationControl();
     }
-
-
-    void AnimationControl()
-    {
-        //Animasyon koşuş Kontrolü
-        if (IsGround && Mathf.Abs(MySpeedX) > .1)
-        {
-            AnimatorAdventurer.SetBool("Running", true);
-        }
-        else
-        {
-            AnimatorAdventurer.SetBool("Running", false);
-
-        }
-
-        //düşüş Kontrol
-
-        if (IsGround)
-        {
-            AnimatorAdventurer.SetBool("IsGround", true);
-
-        }
-        else
-        {
-            AnimatorAdventurer.SetBool("IsGround", false);
-
-        }
-
-        //DÜŞÜŞ KONTROLCÜSÜ
-        if (!IsGround && rb.velocity.y < 0)
-        {
-            AnimatorAdventurer.Play("Fall");
-
-        }
-
-      
-
-
-    }
-
-
-    void SwordOnOff()
-    {
-        StartCoroutine(SlowDown(.1f));
-        if (HandOrSword)
-        {
-
-            AnimatorAdventurer.Play("SwordShte");
-            HandOrSword = false;
-        }
-        else
-        {
-            AnimatorAdventurer.Play("SwordDraw");
-            HandOrSword = true;
-        }
-    }
-
-
-
-  
-
-
-
-
-    void KeyInputs()
-    {
-        //speed alan kısım
-        MySpeedX = Input.GetAxis("Horizontal");
-
-
-        //Jump aldığı kesim
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Jump();
-
-
-        }
-
-        //Attack
-
-
-
-        // dash and FastRun
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-
-
-
-            if (HandOrSword)
-            {
-
-                Dash();
-
-            }
-            else
-            {
-                FastRun();   
-
-            }
-
-
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-
-
-            if (!HandOrSword)
-            {
-
-                Speed = TempSpeed;
-                AnimatorAdventurer.SetBool("FastRun", false);
-            }
-
-        }
-
-        //Crouch
-        if (Input.GetKey(KeyCode.LeftControl)&&IsGround)
-        {
-         
-            AnimatorAdventurer.SetBool("Crouch", true);
-            Speed =TempSpeed/2;
-
-            if (Mathf.Abs(MySpeedX) > .1f)
-            {
-                AnimatorAdventurer.SetBool("CrouchWalk", true);
-            }
-            else
-            {
-                AnimatorAdventurer.Play("Crouch");
-                AnimatorAdventurer.SetBool("CrouchWalk", false);
-            }
-
-        }
-        else if(Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            Speed = TempSpeed;
-            AnimatorAdventurer.SetBool("Crouch", false);
-
-        }
-
-
-            //pıçakçekme
-
-            if (Input.GetKeyDown(KeyCode.F))
-        {
-            SwordOnOff();
-        }
-
-
-    }
-
-  void Dash()
-    {
-        if (!isDash)
-        {
-
-            AnimatorAdventurer.Play("smrlt");
-            StartCoroutine(DashIE());
-        }
-        
-
-    }
-
-    void FastRun()
-    {
-
-        Speed = SuperSpeed;
-        AnimatorAdventurer.Play("Run2");
-        AnimatorAdventurer.SetBool("FastRun", true);
-
-    }
-
-    void Jump()
-    {
-        AnimatorAdventurer.Play("Jump");
-    }
-
 
     void Movement()
     {
@@ -250,49 +77,287 @@ public class AventurerMove : MonoBehaviour
         }
     }
 
+    void AnimationControl()
+    {
+        //Animasyon koşuş Kontrolü
+        if (IsGround && Mathf.Abs(MySpeedX) > .1)
+        {
+            AnimatorAdventurer.SetBool("Running", true);
+        }
+        else
+        {
+            AnimatorAdventurer.SetBool("Running", false);
+        }
+
+        //Düşüş Kontrol
+        if (IsGround)
+        {
+            AnimatorAdventurer.SetBool("IsGround", true);
+        }
+        else
+        {
+            AnimatorAdventurer.SetBool("IsGround", false);
+        }
+
+        //Fall Kontrol
+        if (!IsGround && rb.velocity.y < 0 && !isAttacking)
+        {
+            AnimatorAdventurer.Play("Fall");
+        }
+
+        //Crouch Kontrol
+        if (!Input.GetKey(KeyCode.LeftControl) && AnimatorAdventurer.GetBool("Crouch"))
+        {
+            Speed = TempSpeed;
+            AnimatorAdventurer.SetBool("Crouch", false);
+        }
+
+        //Fast Run Kontrol
+        if (!Input.GetKey(KeyCode.LeftShift) && AnimatorAdventurer.GetBool("FastRun"))
+        {
+            if (!HandOrSword)
+            {
+                Speed = TempSpeed;
+                AnimatorAdventurer.SetBool("FastRun", false);
+            }
+        }
+    }
+
+    void KeyInputs()
+    {
+        //Hareket ve hız
+        MySpeedX = Input.GetAxis("Horizontal");
+
+        //Zıplama
+        if (Input.GetKey(KeyCode.Space) && IsGround && !isAttacking)
+        {
+            Jump();
+        }
+
+        //Attack
+        if (Input.GetKeyDown(KeyCode.Z) && !isAttacking)
+        {
+            Attack(KeyCode.Z);
+        }
+
+        if (Input.GetKeyDown(KeyCode.X) && !isAttacking)
+        {
+            Attack(KeyCode.X);
+        }
+
+        //Dash ve FastRun
+        if (Input.GetKey(KeyCode.LeftShift) && IsGround && !isAttacking)
+        {
+            if (HandOrSword)
+            {
+                Dash();
+            }
+            else
+            {
+                FastRun();
+            }
+        }
+
+        //Crouch
+        if (Input.GetKey(KeyCode.LeftControl) && IsGround)
+        {
+            Crouch();
+        }
+
+        //Pıçak Çekme
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SwordOnOff();
+        }
+    }
+
+    void SwordOnOff()
+    {
+        StartCoroutine(SlowDown(.1f));
+
+        if (HandOrSword)
+        {
+            AnimatorAdventurer.Play("SwordShte");
+            AnimatorAdventurer.SetBool("SwordOn", false);
+            HandOrSword = false;
+        }
+        else
+        {
+            AnimatorAdventurer.Play("SwordDraw");
+            AnimatorAdventurer.SetBool("SwordOn", true);
+            HandOrSword = true;
+        }
+    }
+
+    void Crouch()
+    {
+        AnimatorAdventurer.SetBool("Crouch", true);
+        Speed = TempSpeed / 2;
+
+        if (Mathf.Abs(MySpeedX) > .1f)
+        {
+            AnimatorAdventurer.SetBool("CrouchWalk", true);
+        }
+        else
+        {
+            AnimatorAdventurer.Play("Crouch");
+            AnimatorAdventurer.SetBool("CrouchWalk", false);
+        }
+    }
+
+    void Attack(KeyCode key)
+    {
+        TempSpeed = Speed;
+        //havada yumruk animasyonu olmadığı için hata veriyordu o yüzden koşul ekledim
+        if (!HandOrSword && key == KeyCode.X && !IsGround || !IsGround) { }
+        else
+        {
+            Speed *= 0.1f;
+        }
+        if (!HandOrSword && key == KeyCode.X && !IsGround) { }
+        else
+        {
+            isAttacking = true;
+        }
+
+        if (HandOrSword)
+        {
+            if (key == KeyCode.Z)
+            {
+                if (IsGround)
+                {
+                    AnimatorAdventurer.Play("Attack1");
+                    AttackDamage = 10;
+                }
+                else
+                {
+                    AnimatorAdventurer.Play("AirAttack");
+                    AttackDamage = 10;
+                    Debug.Log("AirAttack");
+                }
+            }
+            else if (key == KeyCode.X)
+            {
+                if (IsGround)
+                {
+                    AnimatorAdventurer.Play("Attack2");
+                    AttackDamage = 10;
+                }
+                else
+                {
+                    AnimatorAdventurer.Play("AirAttack2");
+                    AttackDamage = 10;
+                    Debug.Log("AirAttack2");
+                }
+            }
+
+            hitEnemies = Physics2D.OverlapCircleAll(SwordAttackPoint.position, .5f, EnemyLayer);
+        }
+        else if (!HandOrSword)
+        {
+            if (key == KeyCode.Z)
+            {
+                if (IsGround)
+                {
+                    AnimatorAdventurer.Play("Kick");
+                    AttackDamage = 10;
+                }
+                else if (!IsGround)
+                {
+                    AnimatorAdventurer.Play("DropKick");
+                    AttackDamage = 10;
+                    Debug.Log("DropKick");
+                }
+                else if (IsGround && AnimatorAdventurer.GetBool("FastRun") == true)
+                {
+                    AnimatorAdventurer.Play("Slide");
+                    AttackDamage = 10;
+                }
+            }
+            else if (key == KeyCode.X && IsGround)
+            {
+                if (AnimatorAdventurer.GetBool("FastRun") == false)
+                {
+                    AnimatorAdventurer.Play("Punch");
+                    AttackDamage = 10;
+                }
+                else
+                {
+                    AnimatorAdventurer.Play("RunPunch");
+                    AttackDamage = 10;
+                }
+            }
+            hitEnemies = Physics2D.OverlapCircleAll(HandAttackPoint.position, .5f, EnemyLayer);
+        }
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            if (!enemy.GetComponent<Enemy>().isDead)
+            {
+                enemy.GetComponent<Enemy>().TakeDamage(AttackDamage);
+            }
+        }
+    }
+
+    void Dash()
+    {
+        if (!isDash)
+        {
+            AnimatorAdventurer.Play("smrlt");
+            StartCoroutine(DashIE());
+        }
+    }
+
+    void FastRun()
+    {
+        Speed = SuperSpeed;
+        AnimatorAdventurer.Play("Run2");
+        AnimatorAdventurer.SetBool("FastRun", true);
+
+    }
+
+    void Jump()
+    {
+        AnimatorAdventurer.Play("Jump");
+    }
 
 
     void AllertObserver(string message)
     {
-
-
         if (message == "Jump")
         {
-
             rb.velocity = new Vector2(rb.velocity.x, JumpForce);
-
         }
-
-
+        if (message == "AttackEnd")
+        {
+            isAttacking = false;
+            Speed = TempSpeed;
+        }
     }
-
-
-
 
 
     IEnumerator SlowDown(float WaitTime)
     {
         Speed *= .1f;
+
         yield return new WaitForSeconds(WaitTime);
+
         Speed *= 10;
     }
 
     IEnumerator DashIE()
     {
-        
         isDash = true;
-            Speed += DashSpeed;
-        
+        Speed += DashSpeed;
+
         yield return new WaitForSeconds(.3f);
 
         AnimatorAdventurer.SetBool("IsDash", false);
-
         Speed -= DashSpeed;
+
         yield return new WaitForSeconds(.4f);
+
         isDash = false;
-        
-
     }
-
 
 }
