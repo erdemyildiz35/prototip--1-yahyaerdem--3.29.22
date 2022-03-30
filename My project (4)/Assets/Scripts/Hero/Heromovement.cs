@@ -480,7 +480,7 @@ public class Heromovement : MonoBehaviour
     IEnumerator DashIE()
     {
         gameObject.layer = 11;
-        Speed += DashForce;
+       
         HeroAnimator.Play("smrlt");
        
 

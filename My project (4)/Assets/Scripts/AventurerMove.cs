@@ -116,6 +116,11 @@ public class AventurerMove : MonoBehaviour
 
 
 
+  
+
+
+
+
     void KeyInputs()
     {
         //speed alan kısım
@@ -168,12 +173,35 @@ public class AventurerMove : MonoBehaviour
 
         }
 
+        //Crouch
+        if (Input.GetKey(KeyCode.LeftControl)&&IsGround)
+        {
+         
+            AnimatorAdventurer.SetBool("Crouch", true);
+            Speed =TempSpeed/2;
+
+            if (Mathf.Abs(MySpeedX) > .1f)
+            {
+                AnimatorAdventurer.SetBool("CrouchWalk", true);
+            }
+            else
+            {
+                AnimatorAdventurer.Play("Crouch");
+                AnimatorAdventurer.SetBool("CrouchWalk", false);
+            }
+
+        }
+        else if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            Speed = TempSpeed;
+            AnimatorAdventurer.SetBool("Crouch", false);
+
+        }
 
 
+            //pıçakçekme
 
-        //pıçakçekme
-
-        if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
         {
             SwordOnOff();
         }
