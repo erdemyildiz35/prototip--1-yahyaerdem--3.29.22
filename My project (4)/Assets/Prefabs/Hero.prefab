@@ -347,8 +347,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsGround: 0
+  isAttacking: 0
+  isDash: 0
+  isCrouch: 0
   MySpeedX: 0
   Speed: 5
   DashSpeed: 5
   SuperSpeed: 15
   JumpForce: 5
+  SwordAttackPoint: {fileID: 0}
+  HandAttackPoint: {fileID: 0}
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0

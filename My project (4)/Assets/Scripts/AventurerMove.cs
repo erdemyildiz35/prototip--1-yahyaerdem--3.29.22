@@ -6,14 +6,19 @@ public class AventurerMove : MonoBehaviour
 {
     Animator AnimatorAdventurer;
     Rigidbody2D rb;
+    CapsuleCollider2D colider;
+
 
     //Başlangıç Boyutu
     Vector3 DefaultLocalScale;
+    Vector2 crouchSize;
+    Vector2 crouchOffset;
 
     //Checkerlar
     public bool IsGround;
     public bool isAttacking;
     public bool isDash = false;
+    public bool isCrouch = false;
 
     //speed
     public float MySpeedX;
@@ -42,9 +47,18 @@ public class AventurerMove : MonoBehaviour
     {
         AnimatorAdventurer = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        colider = GetComponent<CapsuleCollider2D>();
 
         DefaultLocalScale = transform.localScale;
         TempSpeed = Speed;
+
+
+
+    }
+
+    private void Awake()
+    {
+     
     }
 
     void Update()
@@ -101,6 +115,15 @@ public class AventurerMove : MonoBehaviour
         {
             Speed = TempSpeed;
             AnimatorAdventurer.SetBool("Crouch", false);
+
+            if (isCrouch)
+            {
+                colider.offset = new Vector2(colider.offset.x, colider.offset.y + 0.40f);
+                colider.size = new Vector2(colider.size.x, colider.size.y * 2);
+                isCrouch = false;
+            }
+
+
         }
 
         //Fast Run Kontrol
@@ -110,6 +133,8 @@ public class AventurerMove : MonoBehaviour
             {
                 Speed = TempSpeed;
                 AnimatorAdventurer.SetBool("FastRun", false);
+
+
             }
         }
     }
@@ -120,18 +145,18 @@ public class AventurerMove : MonoBehaviour
         MySpeedX = Input.GetAxis("Horizontal");
 
         //Zıplama
-        if (Input.GetKey(KeyCode.Space) && IsGround && !isAttacking)
+        if (Input.GetKey(KeyCode.Space) && IsGround && !isAttacking && !isCrouch)
         {
             Jump();
         }
 
         //Attack
-        if (Input.GetKeyDown(KeyCode.Z) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.Z) && !isAttacking && !isCrouch)
         {
             Attack(KeyCode.Z);
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.X) && !isAttacking && !isCrouch)
         {
             Attack(KeyCode.X);
         }
@@ -184,6 +209,13 @@ public class AventurerMove : MonoBehaviour
     {
         AnimatorAdventurer.SetBool("Crouch", true);
         Speed = TempSpeed / 2;
+        if (!isCrouch)
+        {
+            colider.size = new Vector2(colider.size.x, colider.size.y / 2);
+            colider.offset = new Vector2(colider.offset.x, colider.offset.y - 0.40f);
+
+            isCrouch = true;
+        }
 
         if (Mathf.Abs(MySpeedX) > .1f)
         {
