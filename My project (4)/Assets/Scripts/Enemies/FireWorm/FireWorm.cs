@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireWorm : MonoBehaviour
 {
 
-    Heromovement Hero;
+    AventurerMove Hero;
 
 
   [SerializeField]  GameObject FireWormBall;//wormun attığı ateşkusmuğu
@@ -19,12 +19,18 @@ public class FireWorm : MonoBehaviour
     Animator animator;
     Rigidbody2D Rb;
 
+    //attack
+    [SerializeField] float attackSıklık = 5;
+    float timer = 0;
+   [SerializeField] int counter=0;
+    bool OnWait = false;
+
     void Start()
     {
         Rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        Hero = FindObjectOfType<Heromovement>();
+        Hero = FindObjectOfType<AventurerMove>();
 
         LocalScale = transform.localScale;
 
@@ -35,8 +41,11 @@ public class FireWorm : MonoBehaviour
     {
         if(GetComponent<Enemy>().isDead)
         {
+
             return;
         }
+
+        timer++;
 
         WormBall();
         if (Hero.transform.position.x - transform.position.x > 0)
@@ -72,7 +81,23 @@ public class FireWorm : MonoBehaviour
             {
                 if (CanAttack)
                 {
-                    animator.Play("Attack");
+
+                    if (counter < 10)
+                    {
+                        animator.Play("Attack1");
+
+                    }else if(!OnWait)
+                    {
+                        animator.Play("idle");
+
+                        StartCoroutine(WaitTimer());
+
+                    }
+                     
+
+                        
+                    
+                  
                 }
             }else if (Vector2.Distance(transform.position, Hero.transform.position) > 15f)
             {
@@ -87,9 +112,9 @@ public class FireWorm : MonoBehaviour
     IEnumerator ThrowBall()
     {
 
-      
+        counter++;
 
-        if (Vector2.Distance(Hero.transform.position, transform.position) < 7f)
+        if (Vector2.Distance(Hero.transform.position, transform.position) < 2f)
         {
 
             StartCoroutine(CloseAttack());
@@ -118,16 +143,33 @@ public class FireWorm : MonoBehaviour
         
               if (Vector2.Distance(Hero.transform.position, transform.position) < 7f)
                 {
-                    Hero.GetComponent<HeroHealth>().TakeDamage(10, 0);
+                    //heroya damage vericez
                 }
+    }
+
+    IEnumerator WaitTimer()
+    {
+        OnWait = true;
+        yield return new WaitForSeconds(4f);
+        counter = 0;
+        OnWait = false;
+
+
+
     }
 
 
      public void AllertObservers(string message)
     {
-        if (message == "Attack" )
+        if (message == "Attack1" )
         {
             StartCoroutine(ThrowBall());
+            
+
         }     
     }
+
+
+
+
 }

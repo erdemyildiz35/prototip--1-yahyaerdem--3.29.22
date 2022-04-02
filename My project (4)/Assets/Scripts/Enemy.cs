@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
     IEnumerator TakeDamageIE(float Damage)
     {
         isTakingDamage = true;
+
         animator.Play("TakeHit");
         Health -= Damage;
         if (Health <= 0)
@@ -70,6 +71,7 @@ public class Enemy : MonoBehaviour
         
     }
 
+   
     void Die()
     {
         if (!isDead)
@@ -85,10 +87,10 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Dying()
     {
-        animator.SetTrigger("Die");
+       animator.Play("Death");
         
-        yield return new WaitForSeconds(2);
-        Destroy(gameObject,4f);
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
