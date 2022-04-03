@@ -353,7 +353,7 @@ public class AventurerMove : MonoBehaviour
         }
         if (message == "AttackEnd")
         {
-            isAttacking = false;
+            StartCoroutine(AttackWaitTime());
             Speed = TempSpeed;
         }
     }
@@ -381,6 +381,13 @@ public class AventurerMove : MonoBehaviour
         yield return new WaitForSeconds(.4f);
 
         isDash = false;
+    }
+    IEnumerator AttackWaitTime()
+    {
+
+
+        yield return new WaitForSeconds(.5f);
+        isAttacking = false;
     }
 
 }
