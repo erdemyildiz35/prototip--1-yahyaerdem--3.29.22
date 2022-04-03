@@ -150,7 +150,7 @@ public class FireWorm : MonoBehaviour
     IEnumerator WaitTimer()
     {
         OnWait = true;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(5f);
         counter = 0;
         OnWait = false;
 

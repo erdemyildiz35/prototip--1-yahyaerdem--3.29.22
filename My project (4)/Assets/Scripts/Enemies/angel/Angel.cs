@@ -10,7 +10,7 @@ public class Angel : MonoBehaviour
 
     Rigidbody2D rbAngel;
     [SerializeField] float Speed = 5f;
-    Heromovement Hero;
+    AventurerMove Hero;
     Animator Anime;
     float AttackTimer = 0f;
     [SerializeField] private GameObject Fireball;
@@ -19,7 +19,7 @@ public class Angel : MonoBehaviour
     void Start()
     {
         rbAngel = GetComponent<Rigidbody2D>();
-        Hero = FindObjectOfType<Heromovement>();
+        Hero = FindObjectOfType<AventurerMove>();
         Anime = GetComponent<Animator>();
     }
 

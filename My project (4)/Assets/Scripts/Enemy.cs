@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using Pathfinding;
@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 animator.Play("TakeHit");
+
                 Health -= Damage;
                 if (Health <= 0)
                 {
@@ -59,16 +60,20 @@ public class Enemy : MonoBehaviour
     IEnumerator TakeDamageIE(float Damage)
     {
         isTakingDamage = true;
+        GetComponent<EnemyAıAdvance>().isTakenDamage = true;
 
         animator.Play("TakeHit");
         Health -= Damage;
         if (Health <= 0)
         {
+            GetComponent<EnemyAıAdvance>().isdead = true;
+
             Die();
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         isTakingDamage = false;
-        
+        GetComponent<EnemyAıAdvance>().isTakenDamage = false;
+
     }
 
    

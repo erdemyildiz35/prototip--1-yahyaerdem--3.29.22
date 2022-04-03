@@ -33,7 +33,10 @@ public class EnemyAıAdvance : MonoBehaviour
     Animator animator;
 
     private bool IsAttack = false;
-    
+
+    public bool isdead = false;
+    public bool isTakenDamage = false;
+
 
     void Start()
     {
@@ -59,7 +62,7 @@ public class EnemyAıAdvance : MonoBehaviour
     private void UpdatePath()
     {
 
-        if(FollowEnabled&&TarGetInDistence() && seeker.IsDone()&&!IsAttack)
+        if(FollowEnabled&&TarGetInDistence() && seeker.IsDone()&&!IsAttack&& !isdead&&!isTakenDamage)
         {
             animator.SetBool("Run", true);
             seeker.StartPath(rb.position, Target.transform.position, OnPathComplete);
@@ -71,7 +74,7 @@ public class EnemyAıAdvance : MonoBehaviour
         }
 
      
-        if (Vector2.Distance(transform.position, Target.transform.position) < 3f)
+        if (Vector2.Distance(transform.position, Target.transform.position) < 3f && !isdead && !isTakenDamage)
         {
             IsAttack = true;
             animator.Play("Attack1");

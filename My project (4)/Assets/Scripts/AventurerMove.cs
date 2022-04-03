@@ -250,12 +250,12 @@ public class AventurerMove : MonoBehaviour
                 if (IsGround)
                 {
                     AnimatorAdventurer.Play("Attack1");
-                    AttackDamage = 10;
+                    AttackDamage = 20;
                 }
                 else
                 {
                     AnimatorAdventurer.Play("AirAttack");
-                    AttackDamage = 10;
+                    AttackDamage = 25;
                     Debug.Log("AirAttack");
                 }
             }
@@ -264,12 +264,12 @@ public class AventurerMove : MonoBehaviour
                 if (IsGround)
                 {
                     AnimatorAdventurer.Play("Attack2");
-                    AttackDamage = 10;
+                    AttackDamage = 25;
                 }
                 else
                 {
                     AnimatorAdventurer.Play("AirAttack2");
-                    AttackDamage = 10;
+                    AttackDamage = 25;
                     Debug.Log("AirAttack2");
                 }
             }
