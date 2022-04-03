@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public bool isDead = false;
     private bool isFlying = false;
     public bool isTakingDamage = false;
+     public EnemyhealthBar healthbar;
 
     private Vector3 Scale;
 
@@ -19,9 +20,14 @@ public class Enemy : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         Scale = transform.localScale;
+        healthbar.SetHealth(Health, MaxHealth);
 
     }
-    
+    private void Update()
+    {
+        
+    }
+
     public void FlipRight()
     {
         transform.localScale = new Vector3(Scale.x, Scale.y, Scale.z);
@@ -36,12 +42,8 @@ public class Enemy : MonoBehaviour
     {
        if(!isDead)
         {
-            if (!isTakingDamage)
-            {
-                StartCoroutine(TakeDamageIE(Damage));
-            }
-            else
-            {
+            
+           
                 animator.Play("TakeHit");
 
                 Health -= Damage;
@@ -49,7 +51,9 @@ public class Enemy : MonoBehaviour
                 {
                     Die();
                 }
-            }
+          
+            healthbar.SetHealth(Health, MaxHealth);
+
         }
       
        
@@ -66,6 +70,7 @@ public class Enemy : MonoBehaviour
         Health -= Damage;
         if (Health <= 0)
         {
+           
             GetComponent<EnemyAıAdvance>().isdead = true;
 
             Die();
