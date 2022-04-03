@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 //using Pathfinding;
 public class Enemy : MonoBehaviour
 {
@@ -12,35 +11,17 @@ public class Enemy : MonoBehaviour
     public bool isDead = false;
     private bool isFlying = false;
     public bool isTakingDamage = false;
-    public HealthBar healthBar;
-    public GameObject HealthBarObject;
-    public int maxHealth = 100;
-    public int currentHealth;
 
     private Vector3 Scale;
 
-
-    private void Awake()
-    {
-        HealthBarObject = Instantiate(Resources.Load("Prefabs/HealthBar")) as GameObject;
-        HealthBarObject.transform.parent = GameObject.Find("EnemyHealthBars").transform;
-        HealthBarObject.transform.localScale = new Vector3(1, 1, 1);
-        healthBar = HealthBarObject.GetComponent<HealthBar>();
-    }
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         Scale = transform.localScale;
-        healthBar.SetMaxHealth(maxHealth);
 
     }
-
-    private void FixedUpdate()
-    {
-        healthBar.transform.position = new Vector2(transform.position.x, transform.position.y + 3.2f);
-    }
-
+    
     public void FlipRight()
     {
         transform.localScale = new Vector3(Scale.x, Scale.y, Scale.z);

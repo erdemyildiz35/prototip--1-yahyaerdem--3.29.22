@@ -51,6 +51,9 @@ public class AventurerMove : MonoBehaviour
 
         DefaultLocalScale = transform.localScale;
         TempSpeed = Speed;
+
+
+
     }
 
     private void Awake()
@@ -379,9 +382,10 @@ public class AventurerMove : MonoBehaviour
 
         isDash = false;
     }
-
     IEnumerator AttackWaitTime()
     {
+
+
         yield return new WaitForSeconds(.5f);
         isAttacking = false;
     }
