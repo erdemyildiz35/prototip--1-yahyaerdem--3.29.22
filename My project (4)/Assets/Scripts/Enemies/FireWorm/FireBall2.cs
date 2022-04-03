@@ -23,12 +23,20 @@ public class FireBall2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       // if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             Rb.bodyType = RigidbodyType2D.Static;
             animator.Play("Explosion");
         }
+
+        if (collision.gameObject.tag == "Ground") {
+
+            Rb.bodyType = RigidbodyType2D.Static;
+            animator.Play("Explosion");
+        }
     }
+
+
 
     void AllertObservers(string message)
     {

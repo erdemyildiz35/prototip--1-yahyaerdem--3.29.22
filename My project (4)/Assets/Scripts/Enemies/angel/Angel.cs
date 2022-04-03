@@ -12,7 +12,7 @@ public class Angel : MonoBehaviour
     [SerializeField] float Speed = 5f;
     AventurerMove Hero;
     Animator Anime;
-    float AttackTimer = 0f;
+   [SerializeField] float AttackTimer = 0f;
     [SerializeField] private GameObject Fireball;
 
     Vector2 Up = new Vector2(0, 2f);
@@ -28,7 +28,7 @@ public class Angel : MonoBehaviour
     {
         AttackTimer += Time.deltaTime;
 
-        if (Vector2.Distance(transform.position, Hero.transform.position) < 12f&&AttackTimer>10f)
+        if (Vector2.Distance(transform.position, Hero.transform.position) < 25f&&AttackTimer>10f)
         {
             Attack();
 
