@@ -19,6 +19,8 @@ public class AventurerMove : MonoBehaviour
     public bool isAttacking;
     public bool isDash = false;
     public bool isCrouch = false;
+    public bool HidePlace = false;
+    public bool Hide = false;
 
     //speed
     public float MySpeedX;
@@ -41,7 +43,8 @@ public class AventurerMove : MonoBehaviour
 
     //Layermask
     [SerializeField] LayerMask EnemyLayer;
-
+    [SerializeField] LayerMask HideLayer;
+    
 
     void Start()
     {
@@ -65,7 +68,42 @@ public class AventurerMove : MonoBehaviour
     {
         KeyInputs();
         Movement();
+        isitOnHidePoints();
         AnimationControl();
+    }
+
+    void isitOnHidePoints()
+    {
+
+        if (Physics2D.OverlapCircle(transform.position, .5f, HideLayer))
+        {
+            HidePlace = true;
+            gameObject.layer =10;
+
+        }
+        else
+        {
+            HidePlace = false;
+            gameObject.layer = 9;
+        }
+
+        if (HidePlace&&isCrouch)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .3f);
+            Hide = true;
+        }
+        else if (!HidePlace)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 255);
+            Hide = false;
+        }else if (!isCrouch)
+        {
+            Hide = false;
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 255);
+        }
+
+
+
     }
 
     void Movement()
@@ -209,6 +247,7 @@ public class AventurerMove : MonoBehaviour
     {
         AnimatorAdventurer.SetBool("Crouch", true);
         Speed = TempSpeed / 2;
+      
         if (!isCrouch)
         {
             colider.size = new Vector2(colider.size.x, colider.size.y / 2);
@@ -389,5 +428,6 @@ public class AventurerMove : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         isAttacking = false;
     }
+   
 
 }

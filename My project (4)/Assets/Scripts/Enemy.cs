@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     private bool isFlying = false;
     public bool isTakingDamage = false;
      public EnemyhealthBar healthbar;
-
+    [SerializeField] GameObject BloodParticle;
     private Vector3 Scale;
 
     // Start is called before the first frame update
@@ -45,8 +45,8 @@ public class Enemy : MonoBehaviour
             
            
                 animator.Play("TakeHit");
-
-                Health -= Damage;
+            Instantiate(BloodParticle, transform.position, Quaternion.identity);
+            Health -= Damage;
                 if (Health <= 0)
                 {
                     Die();
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
     {
         isTakingDamage = true;
         GetComponent<EnemyAıAdvance>().isTakenDamage = true;
-
+        
         animator.Play("TakeHit");
         Health -= Damage;
         if (Health <= 0)

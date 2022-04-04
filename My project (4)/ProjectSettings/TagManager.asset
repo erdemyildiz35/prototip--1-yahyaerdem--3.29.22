@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EnemyTrigger
   - Ground
+  - HidePlace
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Hide
   - Fireball
   - Angel
-  - 
+  - HidePlace
   - 
   - 
   - 

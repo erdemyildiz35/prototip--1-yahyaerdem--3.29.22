@@ -14,7 +14,7 @@ public class DieParticle : MonoBehaviour
     void Update()
     {
 
-        Destroy(this.gameObject, .6f);
+        Destroy(this.gameObject, .9f);
 
     }
 }
