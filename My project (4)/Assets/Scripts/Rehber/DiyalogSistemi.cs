@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class DiyalogSistemi : MonoBehaviour
 {
-    [SerializeField] private Text TextLabel;
-    Heromovement Hero;
+    [SerializeField] private TextMeshProUGUI TextLabel;
+    AventurerMove Hero;
     [SerializeField] private GameObject UIElement;
     [SerializeField] private string[] Text = { "", "", "" };
     private float mesafe = 2.5f;
@@ -15,9 +16,9 @@ public class DiyalogSistemi : MonoBehaviour
         UIElement.SetActive(false);
 
 
-        TextLabel.text = "hello Samurai";
+       
         a = Text.Length;
-        Hero = FindObjectOfType<Heromovement>();
+        Hero = FindObjectOfType<AventurerMove>();
 
     }
     private void Update()
@@ -26,12 +27,12 @@ public class DiyalogSistemi : MonoBehaviour
         if (Vector2.Distance(Hero.transform.position, transform.position) < mesafe)
         {
             UIElement.active = true;
+
+
             
-
-
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                TextLabel.text = (i + 1).ToString() + "-" + Text[i];
+                TextLabel.text =  Text[i];
 
                 i++;
                 if (i == a)
@@ -47,6 +48,10 @@ public class DiyalogSistemi : MonoBehaviour
         {
 
             UIElement.active=false;
+
+            TextLabel.text = "Speak with elf";
+            i = 0;
+
         }
     }
 }
