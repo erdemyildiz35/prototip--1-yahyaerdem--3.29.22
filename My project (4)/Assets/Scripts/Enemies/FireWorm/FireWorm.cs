@@ -8,21 +8,21 @@ public class FireWorm : MonoBehaviour
     AventurerMove Hero;
 
 
-  [SerializeField]  GameObject FireWormBall;//wormun attığı ateşkusmuğu
+    [SerializeField] GameObject FireWormBall;//wormun attığı ateşkusmuğu
 
     [SerializeField] Transform WormPoint;
 
     Vector3 LocalScale;
 
-   [SerializeField] float AttackSpeed = 2f;
-    private bool CanAttack=true;
+    [SerializeField] float AttackSpeed = 2f;
+    private bool CanAttack = true;
     Animator animator;
     Rigidbody2D Rb;
 
     //attack
     [SerializeField] float attackSıklık = 5;
     float timer = 0;
-   [SerializeField] int counter=0;
+    [SerializeField] int counter = 0;
     bool OnWait = false;
 
     void Start()
@@ -36,10 +36,10 @@ public class FireWorm : MonoBehaviour
 
     }
 
- 
+
     void Update()
     {
-        if(GetComponent<Enemy>().isDead)
+        if (GetComponent<Enemy>().isDead)
         {
 
             return;
@@ -55,7 +55,7 @@ public class FireWorm : MonoBehaviour
         else
         {
             FlipLeft();
-        } 
+        }
 
     }
 
@@ -86,20 +86,22 @@ public class FireWorm : MonoBehaviour
                     {
                         animator.Play("Attack1");
 
-                    }else if(!OnWait)
+                    }
+                    else if (!OnWait)
                     {
                         animator.Play("idle");
 
                         StartCoroutine(WaitTimer());
 
                     }
-                     
 
-                        
-                    
-                  
+
+
+
+
                 }
-            }else if (Vector2.Distance(transform.position, Hero.transform.position) > 15f)
+            }
+            else if (Vector2.Distance(transform.position, Hero.transform.position) > 15f)
             {
 
                 Vector2 MovePos = Vector2.MoveTowards(Rb.position, Hero.transform.position, 1.2f * Time.fixedDeltaTime);
@@ -140,11 +142,11 @@ public class FireWorm : MonoBehaviour
     IEnumerator CloseAttack()
     {
         yield return new WaitForSeconds(.3f);
-        
-              if (Vector2.Distance(Hero.transform.position, transform.position) < 7f)
-                {
-                    //heroya damage vericez
-                }
+
+        if (Vector2.Distance(Hero.transform.position, transform.position) < 7f)
+        {
+            //heroya damage vericez
+        }
     }
 
     IEnumerator WaitTimer()
@@ -159,14 +161,14 @@ public class FireWorm : MonoBehaviour
     }
 
 
-     public void AllertObservers(string message)
+    public void AllertObservers(string message)
     {
-        if (message == "Attack1" )
+        if (message == "Attack1")
         {
             StartCoroutine(ThrowBall());
-            
 
-        }     
+
+        }
     }
 
 

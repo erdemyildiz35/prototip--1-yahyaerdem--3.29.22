@@ -7,6 +7,7 @@ public class AventurerMove : MonoBehaviour
     Animator AnimatorAdventurer;
     Rigidbody2D rb;
     CapsuleCollider2D colider;
+    Skills skills;
 
 
     //Başlangıç Boyutu
@@ -44,24 +45,24 @@ public class AventurerMove : MonoBehaviour
     //Layermask
     [SerializeField] LayerMask EnemyLayer;
     [SerializeField] LayerMask HideLayer;
-    
+
 
     void Start()
     {
         AnimatorAdventurer = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         colider = GetComponent<CapsuleCollider2D>();
+        skills = GetComponent<Skills>();
 
         DefaultLocalScale = transform.localScale;
+        Speed += ((skills.agi * Speed) / 50);
+        AnimatorAdventurer.speed += ((skills.agi * AnimatorAdventurer.speed) / 50);
         TempSpeed = Speed;
-
-
-
     }
 
     private void Awake()
     {
-     
+
     }
 
     void Update()
@@ -78,7 +79,7 @@ public class AventurerMove : MonoBehaviour
         if (Physics2D.OverlapCircle(transform.position, .5f, HideLayer))
         {
             HidePlace = true;
-            gameObject.layer =10;
+            gameObject.layer = 10;
 
         }
         else
@@ -87,7 +88,7 @@ public class AventurerMove : MonoBehaviour
             gameObject.layer = 9;
         }
 
-        if (HidePlace&&isCrouch)
+        if (HidePlace && isCrouch)
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .3f);
             Hide = true;
@@ -96,7 +97,8 @@ public class AventurerMove : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 255);
             Hide = false;
-        }else if (!isCrouch)
+        }
+        else if (!isCrouch)
         {
             Hide = false;
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 255);
@@ -125,7 +127,7 @@ public class AventurerMove : MonoBehaviour
         //Animasyon koşuş Kontrolü
         if (IsGround && Mathf.Abs(MySpeedX) > .1)
         {
-            
+
             AnimatorAdventurer.SetBool("Running", true);
         }
         else
@@ -161,8 +163,6 @@ public class AventurerMove : MonoBehaviour
                 colider.size = new Vector2(colider.size.x, colider.size.y * 2);
                 isCrouch = false;
             }
-
-
         }
 
         //Fast Run Kontrol
@@ -248,7 +248,7 @@ public class AventurerMove : MonoBehaviour
     {
         AnimatorAdventurer.SetBool("Crouch", true);
         Speed = TempSpeed / 2;
-      
+
         if (!isCrouch)
         {
             colider.size = new Vector2(colider.size.x, colider.size.y / 2);
@@ -357,7 +357,7 @@ public class AventurerMove : MonoBehaviour
         {
             if (!enemy.GetComponent<Enemy>().isDead)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(AttackDamage);
+                enemy.GetComponent<Enemy>().TakeDamage(AttackDamage + ((AttackDamage * skills.str) / 50));
             }
         }
     }
@@ -382,6 +382,20 @@ public class AventurerMove : MonoBehaviour
     void Jump()
     {
         AnimatorAdventurer.Play("Jump");
+    }
+
+    public void GainExp(int EnemyExp)
+    {
+        //skills.Exp += EnemyExp + levelManager.Level * 5;
+        skills.Exp += EnemyExp;
+        if (skills.Exp >= 100)
+        {
+            skills.PlayerLevel++;
+            skills.skillpoints++;
+            skills.Exp -= 100;
+            //ExpBar.maxValue = skills.PlayerLevel * 30;
+        }
+        //LevelText.text = "Level : " + skills.PlayerLevel;
     }
 
 
@@ -429,6 +443,6 @@ public class AventurerMove : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         isAttacking = false;
     }
-   
+
 
 }
