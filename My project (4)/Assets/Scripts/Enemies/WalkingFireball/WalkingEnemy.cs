@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,6 +73,7 @@ public class WalkingEnemy : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         thissp.color = new Color(255, 0, 0);
         yield return new WaitForSeconds(.5f);
+        //patladığında xp vericek kısım
         Instantiate(BuwBuwpow, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
 

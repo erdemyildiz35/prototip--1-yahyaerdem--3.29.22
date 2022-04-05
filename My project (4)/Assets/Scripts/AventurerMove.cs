@@ -125,6 +125,7 @@ public class AventurerMove : MonoBehaviour
         //Animasyon koşuş Kontrolü
         if (IsGround && Mathf.Abs(MySpeedX) > .1)
         {
+            
             AnimatorAdventurer.SetBool("Running", true);
         }
         else
