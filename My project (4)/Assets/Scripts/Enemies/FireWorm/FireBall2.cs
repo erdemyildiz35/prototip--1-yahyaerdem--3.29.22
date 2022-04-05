@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireBall2 : MonoBehaviour
 {
+    AdventurerHealth adventurer;
     GameObject Hero;
     [SerializeField] float Speed;
     Rigidbody2D Rb;
@@ -19,12 +20,14 @@ public class FireBall2 : MonoBehaviour
         transform.rotation = Quaternion.FromToRotation(Vector3.right, direction);
         Rb.velocity = new Vector2(Target.x, Target.y) * Speed;
         Destroy(this.gameObject, 4f);
+        adventurer = FindObjectOfType<AdventurerHealth>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+            adventurer.TakeDamage(10);
             Rb.bodyType = RigidbodyType2D.Static;
             animator.Play("Explosion");
         }
