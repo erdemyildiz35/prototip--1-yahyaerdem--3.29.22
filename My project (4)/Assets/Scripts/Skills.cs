@@ -7,9 +7,9 @@ using UnityEngine.EventSystems;
 public class Skills : MonoBehaviour
 {
 
-    public int str=1;
-    public float agi=1;
-    public int sta=1;
+    public int str;
+    public float agi;
+    public int sta;
     public int skillpoints;
     public int Exp;
     public int PlayerLevel;

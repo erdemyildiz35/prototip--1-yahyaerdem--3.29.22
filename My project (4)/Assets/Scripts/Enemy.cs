@@ -11,9 +11,11 @@ public class Enemy : MonoBehaviour
     public bool isDead = false;
     private bool isFlying = false;
     public bool isTakingDamage = false;
-     public EnemyhealthBar healthbar;
+    public EnemyhealthBar healthbar;
     [SerializeField] GameObject BloodParticle;
     private Vector3 Scale;
+    public AventurerMove Hero;
+    public string LayerOfThisObject;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +23,12 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         Scale = transform.localScale;
         healthbar.SetHealth(Health, MaxHealth);
+        Hero = FindObjectOfType<AventurerMove>();
 
     }
     private void Update()
     {
-        
+
     }
 
     public void FlipRight()
@@ -40,39 +43,44 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float Damage)
     {
-       if(!isDead)
+        if (!isDead)
         {
-            
-           
-                animator.Play("TakeHit");
+            animator.Play("TakeHit");
             Instantiate(BloodParticle, transform.position, Quaternion.identity);
             Health -= Damage;
-                if (Health <= 0)
+            if (Health <= 0)
+            {   
+                if(LayerOfThisObject == "FireWorm")//FireWorm
                 {
-                    Die();
+                    Debug.Log("Fireworm");
+                    Hero.GetComponent<AventurerMove>().GainExp(10);
                 }
-          
+                else if (LayerOfThisObject == "Zombie")//Zombie
+                {
+                    Hero.GetComponent<AventurerMove>().GainExp(20);
+                }
+                Die();
+            }
+
             healthbar.SetHealth(Health, MaxHealth);
 
         }
-      
-       
+
+
 
     }
 
-   
+
     IEnumerator TakeDamageIE(float Damage)
     {
         isTakingDamage = true;
         GetComponent<EnemyAıAdvance>().isTakenDamage = true;
-        
+
         animator.Play("TakeHit");
         Health -= Damage;
         if (Health <= 0)
         {
-           
             GetComponent<EnemyAıAdvance>().isdead = true;
-
             Die();
         }
         yield return new WaitForSeconds(1);
@@ -81,14 +89,14 @@ public class Enemy : MonoBehaviour
 
     }
 
-   
+
     void Die()
     {
         if (!isDead)
         {
             isDead = true;
             gameObject.layer = 10;
-            if (GetComponent<Rigidbody2D>()) { GetComponent<Rigidbody2D>().isKinematic = false;}
+            if (GetComponent<Rigidbody2D>()) { GetComponent<Rigidbody2D>().isKinematic = false; }
             if (GetComponent<CapsuleCollider2D>()) { GetComponent<CapsuleCollider2D>().isTrigger = false; }
 
             StartCoroutine(Dying());
@@ -97,8 +105,8 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Dying()
     {
-       animator.Play("Death");
-        
+        animator.Play("Death");
+
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
@@ -107,7 +115,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Weapon")
         {
-         // TakeDamage(20);
+            // TakeDamage(20);
         }
         else if (collision.gameObject.tag == "Tornado")
         {
