@@ -456,6 +456,9 @@ public class AventurerMove : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, JumpForce * 1.2f);
 
         }
+
+        
+
     }
 
 

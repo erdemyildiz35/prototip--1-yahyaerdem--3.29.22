@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - HidePlace
   - Fireball
+  - jumper
+  - Gates
   layers:
   - Default
   - TransparentFX
