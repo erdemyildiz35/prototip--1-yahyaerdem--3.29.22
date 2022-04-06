@@ -37,6 +37,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] float DashSpeed;
     [SerializeField] float SuperSpeed;
     float TempSpeed;
+    
 
     //JumpForce
     [SerializeField] float JumpForce = 3f;
@@ -91,6 +92,11 @@ public class AventurerMove : MonoBehaviour
             {
                 StaCalculate();
             }
+        }
+        if (Stamina <= 0)
+        {
+
+
         }
     }
 
@@ -226,9 +232,13 @@ public class AventurerMove : MonoBehaviour
             {
                 Dash();
             }
-            else if (!HandOrSword && Stamina > 0)
+            else if (!HandOrSword  )
             {
                 FastRun();
+            }
+            else
+            {
+                
             }
         }
 
@@ -403,10 +413,20 @@ public class AventurerMove : MonoBehaviour
 
     void FastRun()
     {
+        Debug.Log("Stamina="+Stamina);
         Stamina -= Time.deltaTime * 50;
-        Speed = SuperSpeed;
-        AnimatorAdventurer.Play("Run2");
-        AnimatorAdventurer.SetBool("FastRun", true);
+        if (Stamina > 10)
+        {
+          
+            Speed = SuperSpeed;
+            AnimatorAdventurer.Play("Run2");
+            AnimatorAdventurer.SetBool("FastRun", true);
+
+        }
+        else
+        {
+            
+        }
     }
 
     void Jump()
