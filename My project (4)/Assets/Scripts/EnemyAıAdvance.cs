@@ -33,7 +33,7 @@ public class EnemyAıAdvance : MonoBehaviour
     Animator animator;
     AdventurerHealth adventurerHealth;
     private bool IsAttack = false;
-
+    [SerializeField] Transform AttackPoint;
     public bool isdead = false;
     public bool isTakenDamage = false;
 
@@ -157,7 +157,7 @@ public class EnemyAıAdvance : MonoBehaviour
     private bool TarGetInDistence()
     {
 
-        return Vector2.Distance(transform.position, Target.transform.position) < ActivateDistance;
+        return Vector2.Distance(AttackPoint.position, Target.transform.position) < ActivateDistance;
         
     }
     

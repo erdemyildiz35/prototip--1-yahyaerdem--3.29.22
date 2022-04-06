@@ -29,7 +29,7 @@ public class Devil : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position + (transform.right * Width / 2), Vector2.down, DownSize, GroundLayer);
         
-        if (Physics2D.OverlapCircle(transform.position, 1f, PlayerLayer))
+        if (Physics2D.OverlapCircle(transform.position, 1.9f, PlayerLayer))
         {
 
             Adventurer.TakeDamage(200);
