@@ -445,4 +445,16 @@ public class AventurerMove : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "jumper")
+        {
+
+            AnimatorAdventurer.Play("Jump");
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce * 1.2f);
+
+        }
+    }
+
+
 }

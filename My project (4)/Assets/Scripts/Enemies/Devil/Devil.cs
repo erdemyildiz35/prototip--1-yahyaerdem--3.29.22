@@ -11,14 +11,17 @@ public class Devil : MonoBehaviour
     [SerializeField] LayerMask GroundLayer;
     [SerializeField] LayerMask PlayerLayer;
     [SerializeField] float DownSize=16f;
+    AdventurerHealth Adventurer;
+
+    Animator DevilAnimator;
 
     void Start()
     {
         Width = GetComponent<SpriteRenderer>().bounds.extents.x;
         rb = GetComponent<Rigidbody2D>();
+        Adventurer = FindObjectOfType<AdventurerHealth>();
 
-
-
+        DevilAnimator = GetComponent<Animator>();
     }
 
 
@@ -29,8 +32,8 @@ public class Devil : MonoBehaviour
         if (Physics2D.OverlapCircle(transform.position, 1f, PlayerLayer))
         {
 
-           //eğer hideDeğilsek bizi yakalyacak
-
+            Adventurer.TakeDamage(200);
+            DevilAnimator.Play("Attack");
 
 
         }

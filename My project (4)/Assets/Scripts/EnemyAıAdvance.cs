@@ -31,7 +31,7 @@ public class EnemyAıAdvance : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
     Animator animator;
-
+    AdventurerHealth adventurerHealth;
     private bool IsAttack = false;
 
     public bool isdead = false;
@@ -44,7 +44,7 @@ public class EnemyAıAdvance : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         InvokeRepeating("UpdatePath", 0f, pathUpdateSec);
-
+        adventurerHealth = FindObjectOfType<AdventurerHealth>();
     }
 
 
@@ -77,6 +77,8 @@ public class EnemyAıAdvance : MonoBehaviour
         if (Vector2.Distance(transform.position, Target.transform.position) < 3f && !isdead && !isTakenDamage)
         {
             IsAttack = true;
+
+
             animator.Play("Attack1");
 
         }
@@ -177,7 +179,7 @@ public class EnemyAıAdvance : MonoBehaviour
 
         if(Vector2.Distance(transform.position, Target.transform.position) < 3f)
         {
-
+            adventurerHealth.TakeDamage(15);
            //Playerhealthtan can yakıcaz
 
         }
