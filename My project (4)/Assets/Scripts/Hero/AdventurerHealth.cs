@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class AdventurerHealth : MonoBehaviour
 {
+    public int Heart;
     public float Health;
     public float MaxHealth;
     [SerializeField] Slider healthSlider;
@@ -13,39 +14,40 @@ public class AdventurerHealth : MonoBehaviour
     public Color Highh;
     public Vector3 offset;
     Animator AdventurerAnimator;
+    public List<Image> HeartImage;
 
 
     public bool DamageCanBeTakenBool = true;
 
     void Start()
     {
-       
+
         skills = FindObjectOfType<Skills>();
-        MaxHealth += (skills.sta*MaxHealth)/10;
+        MaxHealth += (skills.sta * MaxHealth) / 10;
         Health = MaxHealth;
         healthSlider.maxValue = MaxHealth;
         HealThBarStatus();
-        healthSlider.gameObject.SetActive(false);
+        //healthSlider.gameObject.SetActive(false);
         AdventurerAnimator = GetComponent<Animator>();
-        
+        Heart = 3;
     }
 
     void HealThBarStatus()
     {
 
-        healthSlider.gameObject.SetActive(Health < MaxHealth);
+        //healthSlider.gameObject.SetActive(Health < MaxHealth);
         healthSlider.value = Health;
         healthSlider.maxValue = MaxHealth;
         healthSlider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, Highh, healthSlider.normalizedValue);
-        
+
 
     }
 
-   
+
     void Update()
     {
-       
-     
+
+
     }
 
     public void TakeDamage(float Damage)
@@ -62,20 +64,35 @@ public class AdventurerHealth : MonoBehaviour
         }
         if (Health <= 0)
         {
-            Die();
-
-
+            if (Heart <= 0)
+            {
+                Die();
+            }
+            AdventurerAnimator.Play("GetUp");
+            Health = MaxHealth;
+            healthSlider.value = Health;
+            Heart--;
+            Hearth();
         }
 
     }
 
+    private void Hearth()
+    {
+        for (int i = 0; i < HeartImage.Count; i++)
+        {
+            HeartImage[i].enabled = false;
+        }
+
+        for (int i = 0; i < Heart; i++)
+        {
+            HeartImage[i].enabled = true;
+        }
+    }
+
     private void Die()
     {
-
-
         StartCoroutine(DieTime());
-
-
     }
     public void Heal(float HealthAmounth)
     {
@@ -99,30 +116,29 @@ public class AdventurerHealth : MonoBehaviour
 
     IEnumerator PlusMinusShowHide()
     {
-        healthSlider.gameObject.SetActive(true);
+        //healthSlider.gameObject.SetActive(true);
         healthSlider.value = Health;
         yield return new WaitForSeconds(5f);
-        healthSlider.gameObject.SetActive(false);
-       
+        //healthSlider.gameObject.SetActive(false);
+
 
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Fireball")
         {
             TakeDamage(15);
-
-
         }
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-     
+
     }
-    
-  
+
+
 
 
     IEnumerator DieTime()
@@ -131,7 +147,7 @@ public class AdventurerHealth : MonoBehaviour
         Time.timeScale = .3f;
 
         AdventurerAnimator.Play("KnockDown");
-     
+
 
         yield return new WaitForSeconds(.6f);
         Time.timeScale = 1f;

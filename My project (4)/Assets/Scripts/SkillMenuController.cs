@@ -12,7 +12,7 @@ public class SkillMenuController : MonoBehaviour
     public Button StrPlus, StrMinus, AgiPlus, AgiMinus, StaPlus, StaMinus, CancelButton, ApplyButton, ContinueButton, MainMenu;
     public Text StatsText, HealthText, PunchDamageText, KickDamageText, AttackSpeedText, LuckText;
     public Skills skills;
-    //public SaveData saveData;
+    public SaveSystem SaveSystem;
 
     private void Awake()
     {
@@ -31,14 +31,7 @@ public class SkillMenuController : MonoBehaviour
         StaPlus = GameObject.Find("Stamina+").GetComponent<Button>();
         StaMinus = GameObject.Find("Stamina-").GetComponent<Button>();
 
-        //StatsText = GameObject.Find("StatsText").GetComponent<Text>();
-        //HealthText = GameObject.Find("HealthText").GetComponent<Text>();
-        //PunchDamageText = GameObject.Find("PunchDamageText").GetComponent<Text>();
-        //KickDamageText = GameObject.Find("KickDamageText").GetComponent<Text>();
-        //AttackSpeedText = GameObject.Find("AttackSpeedText").GetComponent<Text>();
-        //LuckText = GameObject.Find("LuckRatioText").GetComponent<Text>();
-
-        //saveData = GameObject.Find("Main Camera").GetComponent<SaveData>();
+        SaveSystem = GetComponent<SaveSystem>();
 
     }
 
@@ -60,43 +53,8 @@ public class SkillMenuController : MonoBehaviour
         skillBar();
     }
 
-    void ShowStatsTexts()
-    {
-        int Maxhealth = skills.extraHealth + 100;
-
-        StatsText.text = "Stat Points : " + skills.skillpoints;
-        HealthText.text = "Health : " + Maxhealth;
-        PunchDamageText.text = "Punch Damage : " + skills.punchDamage;
-        KickDamageText.text = "Kick Damage : " + skills.kickDamage;
-        AttackSpeedText.text = "Attack Speed : " + skills.agiRatio;
-        LuckText.text = "Luck : " + skills.luckRatio;
-
-        if (skills.skillpoints > TempSkills.skillpoints)
-        {
-            StatsText.text = "Stat Points : " + skills.skillpoints + "<color=#ff0000ff>" + -(skills.skillpoints - TempSkills.skillpoints) + "</color>";
-        }
-
-        if (TempSkills.str > 0)
-        {
-            PunchDamageText.text = "Punch Damage : " + skills.punchDamage + "<color=#00ff00ff>" + "+" + (TempSkills.strRatio) + "</color>";
-            KickDamageText.text = "Kick Damage : " + skills.kickDamage + "<color=#00ff00ff>" + "+" + (TempSkills.strRatio) + "</color>";
-        }
-
-        if (TempSkills.agi > 0)
-        {
-            AttackSpeedText.text = "Attack Speed : " + skills.agiRatio + "<color=#00ff00ff>" + "+" + (TempSkills.agiRatio) + "</color>";
-        }
-
-        if (TempSkills.sta > 0)
-        {
-            HealthText.text = "Health : " + Maxhealth + "<color=#00ff00ff>" + "+" + (TempSkills.extraHealth) + "</color>";
-        }
-    }
-
-
     void skillBar()
     {
-        TempSkills.CalculateStats();
         //ShowStatsTexts();
         MinusButton();
         PlusButton();
@@ -266,7 +224,7 @@ public class SkillMenuController : MonoBehaviour
         skills.skillpoints = TempSkills.skillpoints;
 
         //skills.Gold = saveData.Gold;
-        //saveData.save();
+        SaveSystem.save();
         skillBar();
     }
 

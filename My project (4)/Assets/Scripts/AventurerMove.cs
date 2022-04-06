@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AventurerMove : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class AventurerMove : MonoBehaviour
     Rigidbody2D rb;
     CapsuleCollider2D colider;
     Skills skills;
+    [SerializeField] Slider ExpSlider;
+    public Text LevelText;
 
 
     //Başlangıç Boyutu
@@ -386,16 +389,15 @@ public class AventurerMove : MonoBehaviour
 
     public void GainExp(int EnemyExp)
     {
-        //skills.Exp += EnemyExp + levelManager.Level * 5;
         skills.Exp += EnemyExp;
         if (skills.Exp >= 100)
         {
             skills.PlayerLevel++;
             skills.skillpoints++;
             skills.Exp -= 100;
-            //ExpBar.maxValue = skills.PlayerLevel * 30;
         }
-        //LevelText.text = "Level : " + skills.PlayerLevel;
+        ExpSlider.value = skills.Exp;
+        LevelText.text = "Level : " + skills.PlayerLevel;
     }
 
 
