@@ -15,6 +15,9 @@ public class AdventurerHealth : MonoBehaviour
     Animator AdventurerAnimator;
 
 
+    [SerializeField] LayerMask ObstacleLayer;
+
+
     public bool DamageCanBeTakenBool = true;
 
     void Start()
@@ -44,7 +47,16 @@ public class AdventurerHealth : MonoBehaviour
    
     void Update()
     {
-       
+
+        if (Physics2D.OverlapCircle(transform.position - Vector3.down, .5f, ObstacleLayer))
+        {
+
+
+            Die();
+
+
+        }
+
      
     }
 
@@ -114,6 +126,7 @@ public class AdventurerHealth : MonoBehaviour
 
 
         }
+       
     }
 
 

@@ -219,6 +219,9 @@ MonoBehaviour:
   isDead: 0
   isTakingDamage: 0
   healthbar: {fileID: 519876076}
+  BloodParticle: {fileID: 5134784687839452509, guid: 828e3956aeca6bb469c70be38b68de07, type: 3}
+  Hero: {fileID: 0}
+  LayerOfThisObject: 1
 --- !u!1001 &2665819591042455562
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,6 +229,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4120977989514377652}
     m_Modifications:
+    - target: {fileID: 2665819590057654449, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5044538
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590057654449, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6531
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590057654449, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.6531
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590057654449, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -218.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590057654449, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -162.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590398477624, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -28.034
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590398477624, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.4391
+      objectReference: {fileID: 0}
     - target: {fileID: 2665819590489520107, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -321,6 +352,26 @@ PrefabInstance:
     - target: {fileID: 2665819590543570413, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590570824190, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590570824191, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -6.2882
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590570824191, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -2.096
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590570824191, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.1440964
+      objectReference: {fileID: 0}
+    - target: {fileID: 2665819590570824191, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.0479999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9a274272515c341800cc44cba561d5, type: 3}

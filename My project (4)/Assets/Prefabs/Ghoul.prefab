@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6049110799785932285}
   - component: {fileID: 2898944661883803023}
   - component: {fileID: 5638416433984958008}
+  - component: {fileID: 777001236}
+  - component: {fileID: 777001235}
   m_Layer: 0
   m_Name: Ghoul
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 4678007570904119506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -36.691544, y: 10.092701, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -115,11 +117,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae70f49e1628cd49b64c35af59dbd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 5
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 512
-  BuwBuwpow: {fileID: 0}
+  BuwBuwpow: {fileID: 3159992848649762442, guid: 8b2614a5a4744694f889a6e091596c60, type: 3}
+--- !u!50 &777001236
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678007570904119506}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 15
+  m_LinearDrag: 10
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &777001235
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678007570904119506}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0295887, y: -0.62136173}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.5625, y: 3.75}
+    newSize: {x: 3.5625, y: 3.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7811699, y: 2.5072765}
+  m_EdgeRadius: 0
