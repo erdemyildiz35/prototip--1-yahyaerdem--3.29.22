@@ -416,7 +416,7 @@ public class AventurerMove : MonoBehaviour
 
     public void StaCalculate()
     {
-        Stamina += Time.deltaTime * 30;
+        Stamina += Time.deltaTime * 5;
     }
 
     public void GainExp(int EnemyExp)
@@ -479,7 +479,7 @@ public class AventurerMove : MonoBehaviour
     IEnumerator StaCalculateIE()
     {
         yield return new WaitForSeconds(0.5f);
-        if (!isAttacking && !isDash && !AnimatorAdventurer.GetBool("FastRun") && !adventurerhealth.DamageCanBeTakenBool)
+        if (!isAttacking && !isDash && !AnimatorAdventurer.GetBool("FastRun") && adventurerhealth.DamageCanBeTakenBool)
         {
             canCalculate = true;
         }
