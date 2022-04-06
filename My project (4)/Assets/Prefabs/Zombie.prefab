@@ -34,7 +34,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 9.95, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
-  - {fileID: 586336601133072237}
+  - {fileID: 4194418534008659296}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -214,11 +214,11 @@ MonoBehaviour:
   Health: 100
   isDead: 0
   isTakingDamage: 0
-  healthbar: {fileID: 586336601133072234}
+  healthbar: {fileID: 4194418534008659303}
   BloodParticle: {fileID: 5134784687839452509, guid: 828e3956aeca6bb469c70be38b68de07, type: 3}
   Hero: {fileID: 0}
   LayerOfThisObject: 
---- !u!1001 &3233007027340495500
+--- !u!1001 &2218996589304146049
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -343,15 +343,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
---- !u!224 &586336601133072237 stripped
+--- !u!224 &4194418534008659296 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2665819590543570401, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
-  m_PrefabInstance: {fileID: 3233007027340495500}
+  m_PrefabInstance: {fileID: 2218996589304146049}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &586336601133072234 stripped
+--- !u!114 &4194418534008659303 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2665819590543570406, guid: 9e9a274272515c341800cc44cba561d5, type: 3}
-  m_PrefabInstance: {fileID: 3233007027340495500}
+  m_PrefabInstance: {fileID: 2218996589304146049}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1

@@ -432,6 +432,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff3c58f752a87a439a0966c698cec9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExpSlider: {fileID: 0}
+  LevelText: {fileID: 0}
   IsGround: 0
   isAttacking: 0
   isDash: 0
@@ -500,15 +502,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ebd71bcd3733748816e4a248946cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Heart: 0
   Health: 100
   MaxHealth: 111
   healthSlider: {fileID: 0}
   low: {r: 0.9528302, g: 0.049439307, b: 0.049439307, a: 1}
   Highh: {r: 0.20714569, g: 1, b: 0, a: 1}
   offset: {x: 0, y: 0, z: 0}
-  ObstacleLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  HeartImage: []
   DamageCanBeTakenBool: 1
 --- !u!114 &1333644324
 MonoBehaviour:
@@ -523,21 +524,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   str: 1
-  agi: 1
+  agi: 0
   sta: 1
   skillpoints: 0
   Exp: 0
   PlayerLevel: 0
-  KickUpgrade: 0
-  PunchUpgrade: 0
-  PunchSkill: 0
-  KickSkill: 0
-  Gold: 0
-  BasepunchDamage: 10
-  BasekickDamage: 20
-  punchDamage: 0
-  kickDamage: 0
-  agiRatio: 0
-  extraHealth: 0
-  luckRatio: 0
-  strRatio: 0
