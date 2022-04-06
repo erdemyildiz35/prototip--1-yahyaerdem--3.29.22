@@ -15,13 +15,15 @@ public class AdventurerHealth : MonoBehaviour
     public Vector3 offset;
     Animator AdventurerAnimator;
     public List<Image> HeartImage;
+    int Rand;
+    AventurerMove aventurerMove;
 
 
     public bool DamageCanBeTakenBool = true;
 
     void Start()
     {
-
+        aventurerMove = GetComponent<AventurerMove>();
         skills = FindObjectOfType<Skills>();
         MaxHealth += (skills.sta * MaxHealth) / 10;
         Health = MaxHealth;
@@ -54,13 +56,20 @@ public class AdventurerHealth : MonoBehaviour
     {
         if (DamageCanBeTakenBool)
         {
-
-            Health -= Damage;
+            Rand = Random.Range(0, 100);
+            if (Rand <= (70 + ((70 * skills.agi) / 50)) || !aventurerMove.IsGround)
+            {
+                Health -= Damage;
+            }
+            else
+            {
+                Health -= Damage * 1.2f;
+                AdventurerAnimator.Play("KnockDown");
+                StartCoroutine(damageCanBeTakeen());
+            }
             healthSlider.value = Health;
             StartCoroutine(PlusMinusShowHide());
             healthSlider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, Highh, healthSlider.normalizedValue);
-            AdventurerAnimator.Play("KnockDown");
-            StartCoroutine(damageCanBeTakeen());
         }
         if (Health <= 0)
         {
