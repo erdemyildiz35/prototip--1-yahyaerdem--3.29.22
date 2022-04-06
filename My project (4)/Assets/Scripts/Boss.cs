@@ -136,8 +136,6 @@ public class Boss : MonoBehaviour
 
 
     }
-
-
     private void FlipRight()
     {
         transform.localScale = new Vector3(LocalScale.x, LocalScale.y, LocalScale.z);
@@ -147,6 +145,8 @@ public class Boss : MonoBehaviour
     {
         transform.localScale = new Vector3(-LocalScale.x, LocalScale.y, LocalScale.z);
     }
+
+
 
 
     void Attack()
