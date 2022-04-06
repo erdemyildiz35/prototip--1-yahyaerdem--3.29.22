@@ -10,7 +10,11 @@ public class AventurerMove : MonoBehaviour
     CapsuleCollider2D colider;
     Skills skills;
     [SerializeField] Slider ExpSlider;
+    [SerializeField] Slider StaSlider;
     public Text LevelText;
+    public float Stamina;
+    public float calculatedDamage;
+    public bool canCalculate;
 
 
     //Başlangıç Boyutu
@@ -25,6 +29,7 @@ public class AventurerMove : MonoBehaviour
     public bool isCrouch = false;
     public bool HidePlace = false;
     public bool Hide = false;
+    AdventurerHealth adventurerhealth;
 
     //speed
     public float MySpeedX;
@@ -56,11 +61,14 @@ public class AventurerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         colider = GetComponent<CapsuleCollider2D>();
         skills = GetComponent<Skills>();
+        adventurerhealth = GetComponent<AdventurerHealth>();
 
         DefaultLocalScale = transform.localScale;
         Speed += ((skills.agi * Speed) / 50);
         AnimatorAdventurer.speed += ((skills.agi * AnimatorAdventurer.speed) / 50);
         TempSpeed = Speed;
+        Stamina = 100 + ((float)skills.sta * 10);
+        StaSlider.maxValue = Stamina;
     }
 
     private void Awake()
@@ -74,6 +82,16 @@ public class AventurerMove : MonoBehaviour
         Movement();
         isitOnHidePoints();
         AnimationControl();
+        StaSlider.value = Stamina;
+
+        if (Stamina < 100)
+        {
+            StartCoroutine(StaCalculateIE());
+            if (canCalculate)
+            {
+                StaCalculate();
+            }
+        }
     }
 
     void isitOnHidePoints()
@@ -175,8 +193,6 @@ public class AventurerMove : MonoBehaviour
             {
                 Speed = TempSpeed;
                 AnimatorAdventurer.SetBool("FastRun", false);
-
-
             }
         }
     }
@@ -206,11 +222,11 @@ public class AventurerMove : MonoBehaviour
         //Dash ve FastRun
         if (Input.GetKey(KeyCode.LeftShift) && IsGround && !isAttacking)
         {
-            if (HandOrSword)
+            if (HandOrSword && Stamina > 20)
             {
                 Dash();
             }
-            else
+            else if (!HandOrSword && Stamina > 0)
             {
                 FastRun();
             }
@@ -356,11 +372,21 @@ public class AventurerMove : MonoBehaviour
             hitEnemies = Physics2D.OverlapCircleAll(HandAttackPoint.position, .5f, EnemyLayer);
         }
 
+        calculatedDamage = AttackDamage + ((AttackDamage * skills.str) / 50);
         foreach (Collider2D enemy in hitEnemies)
         {
             if (!enemy.GetComponent<Enemy>().isDead)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(AttackDamage + ((AttackDamage * skills.str) / 50));
+                if (Stamina >= 20)
+                {
+                    enemy.GetComponent<Enemy>().TakeDamage(calculatedDamage);
+                    Stamina -= AttackDamage;
+                }
+                else
+                {
+                    enemy.GetComponent<Enemy>().TakeDamage(calculatedDamage * Stamina / 20);
+                    Stamina = 0;
+                }
             }
         }
     }
@@ -369,6 +395,7 @@ public class AventurerMove : MonoBehaviour
     {
         if (!isDash)
         {
+            Stamina -= 20;
             AnimatorAdventurer.Play("smrlt");
             StartCoroutine(DashIE());
         }
@@ -376,15 +403,20 @@ public class AventurerMove : MonoBehaviour
 
     void FastRun()
     {
+        Stamina -= Time.deltaTime * 50;
         Speed = SuperSpeed;
         AnimatorAdventurer.Play("Run2");
         AnimatorAdventurer.SetBool("FastRun", true);
-
     }
 
     void Jump()
     {
         AnimatorAdventurer.Play("Jump");
+    }
+
+    public void StaCalculate()
+    {
+        Stamina += Time.deltaTime * 30;
     }
 
     public void GainExp(int EnemyExp)
@@ -401,7 +433,7 @@ public class AventurerMove : MonoBehaviour
     }
 
 
-    void AllertObserver(string message)
+    public void AllertObserver(string message)
     {
         if (message == "Jump")
         {
@@ -440,12 +472,22 @@ public class AventurerMove : MonoBehaviour
     }
     IEnumerator AttackWaitTime()
     {
-
-
         yield return new WaitForSeconds(.5f);
         isAttacking = false;
     }
 
+    IEnumerator StaCalculateIE()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (!isAttacking && !isDash && !AnimatorAdventurer.GetBool("FastRun") && !adventurerhealth.DamageCanBeTakenBool)
+        {
+            canCalculate = true;
+        }
+        else
+        {
+            canCalculate = false;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -457,7 +499,7 @@ public class AventurerMove : MonoBehaviour
 
         }
 
-        
+
 
     }
 
