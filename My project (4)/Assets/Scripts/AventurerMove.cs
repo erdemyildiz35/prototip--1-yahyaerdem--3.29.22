@@ -106,29 +106,32 @@ public class AventurerMove : MonoBehaviour
         if (Physics2D.OverlapCircle(transform.position, .5f, HideLayer))
         {
             HidePlace = true;
-            gameObject.layer = 10;
-
+           
         }
         else
         {
             HidePlace = false;
-            gameObject.layer = 9;
+
         }
 
         if (HidePlace && isCrouch)
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .3f);
             Hide = true;
+            gameObject.layer = 10;
+
         }
         else if (!HidePlace)
         {
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 255);
             Hide = false;
+            gameObject.layer = 9;
         }
         else if (!isCrouch)
         {
             Hide = false;
             GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 255);
+            gameObject.layer = 9;
         }
 
 

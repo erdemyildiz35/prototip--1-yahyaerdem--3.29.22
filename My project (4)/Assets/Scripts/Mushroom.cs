@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Mushroom : MonoBehaviour
 {
     AdventurerHealth Adventurer;
+    AventurerMove AdventurerMove;
     Animator animator;
     Rigidbody2D Rb;
     Vector3 LocalScale;
@@ -19,6 +20,7 @@ public class Mushroom : MonoBehaviour
 
     private void Start()
     {
+        AdventurerMove = FindObjectOfType<AventurerMove>();
         Adventurer = FindObjectOfType<AdventurerHealth>();
         Rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -51,7 +53,7 @@ public class Mushroom : MonoBehaviour
     public void DealDamage()
     {
         var vectorToTarget = Adventurer.transform.position - transform.position;
-        vectorToTarget.y = 0;
+        
         var distanceToTarget = vectorToTarget.magnitude;
 
         if (distanceToTarget < HitDistance)
@@ -92,7 +94,7 @@ public class Mushroom : MonoBehaviour
             vectorToTarget.y = 0;
             var distanceToTarget = vectorToTarget.magnitude;
 
-            if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance)
+            if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance&&!AdventurerMove.Hide)
             {
                 Vector2 target = new Vector2(Adventurer.transform.position.x, Rb.position.y);
 
@@ -130,7 +132,7 @@ public class Mushroom : MonoBehaviour
 
         AbleTorun = false;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         AbleTorun = true;
 
     }

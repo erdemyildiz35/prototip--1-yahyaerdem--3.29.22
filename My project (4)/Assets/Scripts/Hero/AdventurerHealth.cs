@@ -104,7 +104,7 @@ public class AdventurerHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         StartCoroutine(DieTime());
     }
