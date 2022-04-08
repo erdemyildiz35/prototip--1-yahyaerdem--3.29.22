@@ -91,7 +91,7 @@ public class Mushroom : MonoBehaviour
         
         {
             var vectorToTarget = Adventurer.transform.position - transform.position;
-            vectorToTarget.y = 0;
+           
             var distanceToTarget = vectorToTarget.magnitude;
 
             if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance&&!AdventurerMove.Hide)
