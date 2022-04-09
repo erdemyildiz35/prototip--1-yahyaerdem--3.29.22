@@ -17,7 +17,7 @@ public class AdventurerHealth : MonoBehaviour
     public List<Image> HeartImage;
     int Rand;
     AventurerMove aventurerMove;
-
+    public LayerMask Obstaclelayer;
 
     public bool DamageCanBeTakenBool = true;
 
@@ -48,6 +48,12 @@ public class AdventurerHealth : MonoBehaviour
 
     void Update()
     {
+        //die Part
+        if (Physics2D.OverlapCircle(transform.position, .5f, Obstaclelayer))
+        {
+            Die();
+
+        }
 
 
     }
