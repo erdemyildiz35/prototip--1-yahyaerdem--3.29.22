@@ -33,11 +33,11 @@ public class AventurerMove : MonoBehaviour
 
     //speed
     public float MySpeedX;
-    [SerializeField] float Speed;
+    [SerializeField] public float Speed;
     [SerializeField] float DashSpeed;
     [SerializeField] float SuperSpeed;
     float TempSpeed;
-    
+
 
     //JumpForce
     [SerializeField] float JumpForce = 3f;
@@ -63,6 +63,8 @@ public class AventurerMove : MonoBehaviour
         colider = GetComponent<CapsuleCollider2D>();
         skills = GetComponent<Skills>();
         adventurerhealth = GetComponent<AdventurerHealth>();
+
+        StaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
 
         DefaultLocalScale = transform.localScale;
         Speed += ((skills.agi * Speed) / 50);
@@ -106,7 +108,7 @@ public class AventurerMove : MonoBehaviour
         if (Physics2D.OverlapCircle(transform.position, .5f, HideLayer))
         {
             HidePlace = true;
-           
+
         }
         else
         {
@@ -235,13 +237,13 @@ public class AventurerMove : MonoBehaviour
             {
                 Dash();
             }
-            else if (!HandOrSword  )
+            else if (!HandOrSword)
             {
                 FastRun();
             }
             else
             {
-                
+
             }
         }
 
@@ -416,11 +418,11 @@ public class AventurerMove : MonoBehaviour
 
     void FastRun()
     {
-        Debug.Log("Stamina="+Stamina);
+        Debug.Log("Stamina=" + Stamina);
         Stamina -= Time.deltaTime * 50;
         if (Stamina > 10)
         {
-          
+
             Speed = SuperSpeed;
             AnimatorAdventurer.Play("Run2");
             AnimatorAdventurer.SetBool("FastRun", true);
@@ -428,7 +430,7 @@ public class AventurerMove : MonoBehaviour
         }
         else
         {
-            
+
         }
     }
 

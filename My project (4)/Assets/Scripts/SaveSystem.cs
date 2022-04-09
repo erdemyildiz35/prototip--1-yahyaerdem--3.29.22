@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SaveSystem : MonoBehaviour
 {
-    Skills skill;
+    public Skills skill;
+    public BlackSmith blackSmith;
     // Start is called before the first frame update
     void Start()
     {
-        skill = GetComponent<Skills>();
+        skill = GameObject.Find("Hero").GetComponent<Skills>();
+        blackSmith = GetComponent<BlackSmith>();
     }
 
     // Update is called once per frame
@@ -25,6 +27,10 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.SetInt("skillpoints", skill.skillpoints);
         PlayerPrefs.SetInt("Exp", skill.Exp);
         PlayerPrefs.SetInt("PlayerLevel", skill.PlayerLevel);
+        PlayerPrefs.SetInt("Gold", skill.Gold);
+        PlayerPrefs.SetInt("SwordUpgradeLevel", blackSmith.SwordUpgradeLevel);
+        PlayerPrefs.SetInt("ArmorUpgradeLevel", blackSmith.ArmorUpgradeLevel);
+
     }
 
     public void Load()
@@ -35,16 +41,21 @@ public class SaveSystem : MonoBehaviour
         skill.skillpoints = PlayerPrefs.GetInt("skillpoints");
         skill.Exp = PlayerPrefs.GetInt("Exp");
         skill.PlayerLevel = PlayerPrefs.GetInt("PlayerLevel");
+        skill.Gold = PlayerPrefs.GetInt("Gold");
+        blackSmith.SwordUpgradeLevel = PlayerPrefs.GetInt("SwordUpgradeLevel");
+        blackSmith.ArmorUpgradeLevel = PlayerPrefs.GetInt("ArmorUpgradeLevel");
     }
 
     public void NewGame()
     {
         skill.str = 0;
         skill.agi = 0;
-        skill.sta= 0;
-        skill.skillpoints= 0;
+        skill.sta = 0;
+        skill.skillpoints = 0;
         skill.Exp = 0;
-        skill.PlayerLevel= 0;
+        skill.PlayerLevel = 0;
+        blackSmith.SwordUpgradeLevel = 0;
+        blackSmith.ArmorUpgradeLevel = 0;
 
         save();
     }

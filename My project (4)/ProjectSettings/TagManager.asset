@@ -10,6 +10,7 @@ TagManager:
   - Fireball
   - jumper
   - Gates
+  - NPC
   layers:
   - Default
   - TransparentFX

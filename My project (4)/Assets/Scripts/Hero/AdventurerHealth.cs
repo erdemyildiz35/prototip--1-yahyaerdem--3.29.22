@@ -25,12 +25,15 @@ public class AdventurerHealth : MonoBehaviour
     {
         aventurerMove = GetComponent<AventurerMove>();
         skills = FindObjectOfType<Skills>();
+        AdventurerAnimator = GetComponent<Animator>();
+
+        healthSlider = GameObject.Find("Health").GetComponent<Slider>();
+
         MaxHealth += (skills.sta * MaxHealth) / 10;
         Health = MaxHealth;
         healthSlider.maxValue = MaxHealth;
         HealThBarStatus();
-        //healthSlider.gameObject.SetActive(false);
-        AdventurerAnimator = GetComponent<Animator>();
+        //healthSlider.gameObject.SetActive(false); 
         Heart = 3;
     }
 

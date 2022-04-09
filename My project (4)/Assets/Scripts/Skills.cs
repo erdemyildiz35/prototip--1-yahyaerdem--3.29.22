@@ -13,6 +13,7 @@ public class Skills : MonoBehaviour
     public int skillpoints;
     public int Exp;
     public int PlayerLevel;
+    public int Gold;
 
     //public int currentStageLevel;
 
