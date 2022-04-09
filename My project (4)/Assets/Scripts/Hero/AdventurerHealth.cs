@@ -60,11 +60,9 @@ public class AdventurerHealth : MonoBehaviour
 
     public void TakeDamage(float Damage)
     {
-        if (aventurerMove.isAttacking)
-        {
+       
             aventurerMove.AllertObserver("AttackEnd");
-        }
-
+        
         if (DamageCanBeTakenBool)
         {
             Rand = Random.Range(0, 100);
