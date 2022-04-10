@@ -14,6 +14,8 @@ public class Skills : MonoBehaviour
     public int Exp;
     public int PlayerLevel;
     public int Gold;
+    public int SwordUpgradeLevel;
+    public int ArmorUpgradeLevel;
 
     //public int currentStageLevel;
 

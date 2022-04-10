@@ -7,15 +7,17 @@ public class BlackSmith : MonoBehaviour
 {
     BoxCollider2D BlackSmithCollider;
     Canvas UpgradeCanvas;
-    Text UpgradeText, ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText;
+    Text UpgradeText, ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText, GoldText, FailText;
     AventurerMove aventurerMove;
     Button ExitButton, SwordUpgradeButton, ArmorUpgradeButton;
     Skills skill;
     Animator animator;
     SaveSystem saveSystem;
+    GameObject UpgradeFail;
     int SwordUpgradePrice, ArmorUpgradePrice;
-    public int SwordUpgradeLevel, ArmorUpgradeLevel;
-    public float TempSpeed;
+    float TempSpeed;
+    bool UpgradeWindowIsOpen;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +26,7 @@ public class BlackSmith : MonoBehaviour
         UpgradeText = GameObject.Find("UpgradeText").GetComponent<Text>();
         UpgradeCanvas = GameObject.Find("UpgradeWindow").GetComponent<Canvas>();
 
-        SwordLevelText = GameObject.Find("SwordLevelText").GetComponent <Text>();
+        SwordLevelText = GameObject.Find("SwordLevelText").GetComponent<Text>();
         SwordUpgradeText = GameObject.Find("SwordUpgradePrice").GetComponent<Text>();
         SwordUpgradeButton = GameObject.Find("SwordUpgradeButton").GetComponent<Button>();
 
@@ -32,14 +34,19 @@ public class BlackSmith : MonoBehaviour
         ArmorUpgradeText = GameObject.Find("ArmorUpgradePrice").GetComponent<Text>();
         ArmorUpgradeButton = GameObject.Find("ArmorUpgradeButton").GetComponent<Button>();
 
+        GoldText = GameObject.Find("GoldText").GetComponent<Text>();
+        FailText = GameObject.Find("FailText").GetComponent<Text>();
+
+        UpgradeFail = GameObject.Find("UpgradeFail");
+
         ExitButton = GameObject.Find("ExitButton").GetComponent<Button>();
 
         skill = GameObject.Find("Hero").GetComponent<Skills>();
         aventurerMove = GameObject.Find("Hero").GetComponent<AventurerMove>();
         animator = GetComponent<Animator>();
-        saveSystem = GetComponent<SaveSystem>();
+        saveSystem = GameObject.Find("Hero").GetComponent<SaveSystem>();
 
-        UpgradeText.enabled = false;
+        UpgradeFail.SetActive(false);
         UpgradeCanvas.enabled = false;
 
         SwordUpgradeButton.onClick.AddListener(SwordUpgrade);
@@ -54,21 +61,21 @@ public class BlackSmith : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E) && UpgradeText.enabled && !UpgradeWindowIsOpen)
+        {
+            UpgradeWindowIsOpen = true;
+            TempSpeed = aventurerMove.Speed;
+            aventurerMove.Speed = 0;
+            UpgradeCanvas.enabled = true;
+        }
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             UpgradeText.enabled = true;
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                TempSpeed = aventurerMove.Speed;
-                aventurerMove.Speed = 0;
-                UpgradeCanvas.enabled = true;
-            }
         }
     }
 
@@ -81,19 +88,19 @@ public class BlackSmith : MonoBehaviour
     }
 
     void UpgradePriceChange()
-    {   
-        if(SwordUpgradeLevel>0)
+    {
+        if (skill.SwordUpgradeLevel > 0)
         {
-            SwordUpgradePrice = (int)(200 * SwordUpgradeLevel * 1.3f);
+            SwordUpgradePrice = (int)(200 * skill.SwordUpgradeLevel * 1.3f);
         }
         else
         {
             SwordUpgradePrice = 200;
         }
 
-        if(ArmorUpgradeLevel>0)
+        if (skill.ArmorUpgradeLevel > 0)
         {
-            ArmorUpgradePrice = (int)(200 * ArmorUpgradeLevel * 1.3f);
+            ArmorUpgradePrice = (int)(200 * skill.ArmorUpgradeLevel * 1.3f);
         }
         else
         {
@@ -103,8 +110,10 @@ public class BlackSmith : MonoBehaviour
         SwordUpgradeText.text = SwordUpgradePrice.ToString() + " Gold";
         ArmorUpgradeText.text = ArmorUpgradePrice.ToString() + " Gold";
 
-        SwordLevelText.text ="Level : "+SwordUpgradeLevel.ToString();
-        ArmorLevelText.text ="Level : "+ArmorUpgradeLevel.ToString();
+        SwordLevelText.text = "Level : " + skill.SwordUpgradeLevel.ToString();
+        ArmorLevelText.text = "Level : " + skill.ArmorUpgradeLevel.ToString();
+
+        GoldText.text = skill.Gold.ToString() + " Gold";
     }
 
     void SwordUpgrade()
@@ -114,9 +123,13 @@ public class BlackSmith : MonoBehaviour
             Debug.Log("girdi");
             animator.Play("IdleToWork");
             skill.Gold -= SwordUpgradePrice;
-            SwordUpgradeLevel++;
+            skill.SwordUpgradeLevel++;
             UpgradePriceChange();
             StartCoroutine(ButtonOnOffIE());
+        }
+        else
+        {
+            StartCoroutine(FailTextIE());
         }
     }
 
@@ -126,9 +139,13 @@ public class BlackSmith : MonoBehaviour
         {
             animator.Play("IdleToWork");
             skill.Gold -= ArmorUpgradePrice;
-            ArmorUpgradeLevel++;
+            skill.ArmorUpgradeLevel++;
             UpgradePriceChange();
             StartCoroutine(ButtonOnOffIE());
+        }
+        else
+        {
+            StartCoroutine(FailTextIE());
         }
     }
 
@@ -145,8 +162,31 @@ public class BlackSmith : MonoBehaviour
         ExitButton.interactable = true;
     }
 
+    IEnumerator FailTextIE()
+    {
+        if (SwordUpgradePrice > skill.Gold)
+        {
+            FailText.text = "Yeterli Altýn Yok";
+        }
+        else if (ArmorUpgradePrice > skill.Gold)
+        {
+            FailText.text = "Yeterli Altýn Yok";
+        }
+        else
+        {
+            FailText.text = "Bir hata oluþtu";
+        }
+
+        UpgradeFail.SetActive(true);
+
+        yield return new WaitForSeconds(1.0f);
+
+        UpgradeFail.SetActive(false);
+    }
+
     void ExitEvent()
     {
+        UpgradeWindowIsOpen = false;
         aventurerMove.Speed = TempSpeed;
         UpgradeCanvas.enabled = false;
         saveSystem.save();

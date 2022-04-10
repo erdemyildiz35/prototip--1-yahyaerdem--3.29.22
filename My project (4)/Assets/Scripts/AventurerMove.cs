@@ -36,7 +36,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] public float Speed;
     [SerializeField] float DashSpeed;
     [SerializeField] float SuperSpeed;
-    float TempSpeed;
+    public float TempSpeed;
 
 
     //JumpForce
@@ -55,6 +55,8 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] LayerMask EnemyLayer;
     [SerializeField] LayerMask HideLayer;
 
+    SaveSystem saveSystem;
+
 
     void Start()
     {
@@ -65,6 +67,9 @@ public class AventurerMove : MonoBehaviour
         adventurerhealth = GetComponent<AdventurerHealth>();
 
         StaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
+        saveSystem = GetComponent<SaveSystem>();
+
+        saveSystem.Load();
 
         DefaultLocalScale = transform.localScale;
         Speed += ((skills.agi * Speed) / 50);
