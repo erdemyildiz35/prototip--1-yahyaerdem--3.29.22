@@ -15,7 +15,7 @@ public class BlackSmith : MonoBehaviour
     SaveSystem saveSystem;
     int SwordUpgradePrice, ArmorUpgradePrice;
     public int SwordUpgradeLevel, ArmorUpgradeLevel;
-    float TempSpeed;
+    public float TempSpeed;
 
     // Start is called before the first frame update
     void Start()
