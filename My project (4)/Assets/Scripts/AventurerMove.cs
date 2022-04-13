@@ -69,7 +69,7 @@ public class AventurerMove : MonoBehaviour
         StaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
         saveSystem = GetComponent<SaveSystem>();
 
-        saveSystem.Load();
+       // saveSystem.Load();
 
         DefaultLocalScale = transform.localScale;
         Speed += ((skills.agi * Speed) / 50);
