@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class BlackSmith : MonoBehaviour
 {
     BoxCollider2D BlackSmithCollider;
-    Canvas UpgradeCanvas;
+    Canvas UpgradeCanvas, UpgradeFailCanvas;
     Text UpgradeText, ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText, GoldText, FailText;
     AventurerMove aventurerMove;
     Button ExitButton, SwordUpgradeButton, ArmorUpgradeButton;
     Skills skill;
     Animator animator;
     SaveSystem saveSystem;
-    GameObject UpgradeFail;
     int SwordUpgradePrice, ArmorUpgradePrice;
     float TempSpeed;
     bool UpgradeWindowIsOpen;
@@ -37,7 +36,7 @@ public class BlackSmith : MonoBehaviour
         GoldText = GameObject.Find("GoldText").GetComponent<Text>();
         FailText = GameObject.Find("FailText").GetComponent<Text>();
 
-        UpgradeFail = GameObject.Find("UpgradeFail");
+        UpgradeFailCanvas = GameObject.Find("UpgradeFail").GetComponent<Canvas>();
 
         ExitButton = GameObject.Find("ExitButton").GetComponent<Button>();
 
@@ -46,7 +45,7 @@ public class BlackSmith : MonoBehaviour
         animator = GetComponent<Animator>();
         saveSystem = GameObject.Find("Hero").GetComponent<SaveSystem>();
 
-        UpgradeFail.SetActive(false);
+        UpgradeFailCanvas.enabled = false;
         UpgradeCanvas.enabled = false;
 
         SwordUpgradeButton.onClick.AddListener(SwordUpgrade);
@@ -177,11 +176,11 @@ public class BlackSmith : MonoBehaviour
             FailText.text = "Bir hata oluþtu";
         }
 
-        UpgradeFail.SetActive(true);
+        UpgradeFailCanvas.enabled = true;
 
         yield return new WaitForSeconds(1.0f);
 
-        UpgradeFail.SetActive(false);
+        UpgradeFailCanvas.enabled = false;
     }
 
     void ExitEvent()

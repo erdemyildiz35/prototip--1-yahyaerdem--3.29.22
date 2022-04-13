@@ -6,9 +6,16 @@ public class SaveSystem : MonoBehaviour
 {
     public Skills skill;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        skill = GameObject.Find("Hero").GetComponent<Skills>();
+        if (GameObject.Find("Hero"))
+        {
+            skill = GameObject.Find("Hero").GetComponent<Skills>();
+        }
+        else
+        {
+            skill = GetComponent<Skills>();
+        }
     }
 
     // Update is called once per frame
@@ -19,6 +26,7 @@ public class SaveSystem : MonoBehaviour
 
     public void save()
     {
+        PlayerPrefs.SetInt("CurrentLevel", skill.CurrentLevel);
         PlayerPrefs.SetInt("str", skill.str);
         PlayerPrefs.SetInt("agi", skill.agi);
         PlayerPrefs.SetInt("sta", skill.sta);
@@ -33,6 +41,8 @@ public class SaveSystem : MonoBehaviour
 
     public void Load()
     {
+        NewGame();
+        skill.CurrentLevel = PlayerPrefs.GetInt("CurrentLevel");
         skill.str = PlayerPrefs.GetInt("str");
         skill.agi = PlayerPrefs.GetInt("agi");
         skill.sta = PlayerPrefs.GetInt("sta");
@@ -46,6 +56,7 @@ public class SaveSystem : MonoBehaviour
 
     public void NewGame()
     {
+        skill.CurrentLevel = 0;
         skill.str = 0;
         skill.agi = 0;
         skill.sta = 0;
