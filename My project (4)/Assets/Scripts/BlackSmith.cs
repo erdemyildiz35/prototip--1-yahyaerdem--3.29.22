@@ -13,6 +13,7 @@ public class BlackSmith : MonoBehaviour
     Skills skill;
     Animator animator;
     SaveSystem saveSystem;
+    Vector3 UpgradeTextOffset;
     int SwordUpgradePrice, ArmorUpgradePrice;
     float TempSpeed;
     bool UpgradeWindowIsOpen;
@@ -47,6 +48,9 @@ public class BlackSmith : MonoBehaviour
 
         UpgradeFailCanvas.enabled = false;
         UpgradeCanvas.enabled = false;
+        UpgradeText.enabled = false;
+
+        UpgradeTextOffset = new Vector3(transform.position.x , transform.position.y);
 
         SwordUpgradeButton.onClick.AddListener(SwordUpgrade);
         ArmorUpgradeButton.onClick.AddListener(ArmorUpgrade);
@@ -67,6 +71,8 @@ public class BlackSmith : MonoBehaviour
             aventurerMove.Speed = 0;
             UpgradeCanvas.enabled = true;
         }
+
+        UpgradeText.transform.position = Camera.main.WorldToScreenPoint(transform.position+UpgradeTextOffset);
 
     }
 
@@ -119,7 +125,6 @@ public class BlackSmith : MonoBehaviour
     {
         if (SwordUpgradePrice <= skill.Gold)
         {
-            Debug.Log("girdi");
             animator.Play("IdleToWork");
             skill.Gold -= SwordUpgradePrice;
             skill.SwordUpgradeLevel++;

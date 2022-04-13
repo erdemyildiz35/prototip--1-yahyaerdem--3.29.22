@@ -1,30 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GateController : MonoBehaviour
 {
-    public CapsuleCollider2D Gate1Collider, Gate2Collider;
-    bool canGate1Event, canGate2Event;
-    [SerializeField] LayerMask GateLayer;
-    public GameObject Hero;
+    public bool IceGate, CastleGate, DesertGate;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        Gate1Collider = GameObject.Find("Gate1").GetComponent<CapsuleCollider2D>();
-        Gate2Collider = GameObject.Find("Gate2").GetComponent<CapsuleCollider2D>();
+        KeyEvent();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision == Gate1Collider)
+        if (collision.tag == "Gates")
         {
-            canGate1Event = true;
+            if (collision.name == "IceGate")
+            {
+                IceGate = true;
+                DesertGate = false;
+                CastleGate = false;
+            }
+            else if (collision.name == "DesertGate")
+            {
+                IceGate = false;
+                DesertGate = true;
+                CastleGate = false;
+            }
+            else if (collision.name == "CastleGate")
+            {
+                IceGate = false;
+                DesertGate = false;
+                CastleGate = true;
+            }
         }
-        else if (collision == Gate2Collider)
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Gates")
         {
-            canGate2Event = true;
+            IceGate = false;
+            DesertGate = false;
+            CastleGate = false;
         }
     }
 
@@ -32,29 +51,27 @@ public class GateController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (canGate1Event)
-            {
-                Gate1Event();
-            }
-
-            else if (canGate2Event)
-            {
-                Gate2Event();
-            }
+            GateSceneLoader();
         }
     }
 
-    public void Gate1Event()
+    void GateSceneLoader()
     {
-        //Gate1 iþlemleri
-
-        canGate1Event = false;
+        if (IceGate)
+        {
+            IceGate = false;
+            SceneManager.LoadScene("Ice");
+        }
+        else if (CastleGate)
+        {
+            CastleGate = false;
+            SceneManager.LoadScene("Castle");
+        }
+        else if (DesertGate)
+        {
+            DesertGate = false;
+            SceneManager.LoadScene("Desert");
+        }
     }
 
-    public void Gate2Event()
-    {
-        //Gate2 iþlemleri
-
-        canGate2Event = false;
-    }
 }
