@@ -5,53 +5,71 @@ using UnityEngine.UI;
 using TMPro;
 public class DiyalogSistemi : MonoBehaviour
 {
+    Canvas DialogCanvas;
     [SerializeField] private TextMeshProUGUI TextLabel;
-    AventurerMove Hero;
+    GameObject TextObject;
     [SerializeField] private GameObject UIElement;
     [SerializeField] private string[] Text = { "", "", "" };
-    private float mesafe = 2.5f;
-    int i = 0, a;
+    bool canSpeak;
+    string TriggerMessage;
+    int i = 0, TextLenght;
+
+
     private void Start()
     {
-        UIElement.SetActive(false);
+        DialogCanvas = GameObject.Find("Dialog").GetComponent<Canvas>();
+        TextObject = GameObject.Find("DialogCanvas");
+        TextLabel = GameObject.Find("DialogText").GetComponent<TextMeshProUGUI>();
 
+        DialogCanvas.enabled = false;
 
-       
-        a = Text.Length;
-        Hero = FindObjectOfType<AventurerMove>();
-
+        TextLenght = Text.Length;
     }
+
     private void Update()
     {
-
-        if (Vector2.Distance(Hero.transform.position, transform.position) < mesafe)
+        if (Input.GetKeyDown(KeyCode.E) && canSpeak)
         {
-            UIElement.active = true;
+            DialogCanvas.enabled = false;
+            Dialog();
+        }
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            canSpeak = true;
+            DialogCanvas.enabled = true;
+            TextLabel.text = TriggerMessage;
+            i = 0;
+        }
+    }
 
-            
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                TextLabel.text =  Text[i];
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            canSpeak = false;
+            DialogCanvas.enabled = false;
+            i = 0;
+        }
+    }
 
-                i++;
-                if (i == a)
-                {
-                    i = 0;
-                }
-            }
+    void Dialog()
+    {
+        DialogCanvas.enabled = true;
 
-
-
+        if (!(i == TextLenght))
+        {
+            TextLabel.text = Text[i];
+            i++;
         }
         else
         {
-
-            UIElement.active=false;
-
-            TextLabel.text = "Speak with elf";
+            canSpeak = false;
             i = 0;
-
+            DialogCanvas.enabled = false;
         }
     }
 }

@@ -19,8 +19,6 @@ public class EnemyhealthBar : MonoBehaviour
         Slider.value = health;
         Slider.maxValue = MaxHealth;
         Slider.fillRect.GetComponentInChildren<Image>().color = Color.Lerp(low, Highh, Slider.normalizedValue);
-
-
     }
 
 

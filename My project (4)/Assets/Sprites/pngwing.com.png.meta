@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 5f63a6e8c4901834ba242eb3eeef7733
+guid: 294497f137058514abf501d7526cf280
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4559744636894287754
-    second: 12_[Dialog]to[Idle]_0
+      213: 8832167503239892954
+    second: pngwing.com_0
   - first:
-      213: -902547451208098068
-    second: 12_[Dialog]to[Idle]_1
+      213: -4853055123583119345
+    second: pngwing.com_1
   - first:
-      213: -2204029582473529374
-    second: 12_[Dialog]to[Idle]_2
+      213: -8761483511772326392
+    second: pngwing.com_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,12 +50,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 12_[Dialog]to[Idle]_0
+      name: pngwing.com_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 129
+        y: 462
+        width: 783
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6786c6b496888b0c0800000000000000
-      internalID: -4559744636894287754
+      spriteID: adfcc53ac89229a70800000000000000
+      internalID: 8832167503239892954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12_[Dialog]to[Idle]_1
+      name: pngwing.com_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
+        x: 130
+        y: 379
+        width: 783
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cee9ec100e18973f0800000000000000
-      internalID: -902547451208098068
+      spriteID: f005073e31c76acb0800000000000000
+      internalID: -4853055123583119345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 12_[Dialog]to[Idle]_2
+      name: pngwing.com_2
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
+        x: 129
+        y: 296
+        width: 786
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e7763ea5c6b961e0800000000000000
-      internalID: -2204029582473529374
+      spriteID: 8065e579a25f86680800000000000000
+      internalID: -8761483511772326392
       vertices: []
       indices: 
       edges: []

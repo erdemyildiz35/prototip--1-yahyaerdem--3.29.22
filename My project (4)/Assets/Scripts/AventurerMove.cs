@@ -149,11 +149,12 @@ public class AventurerMove : MonoBehaviour
     {
         rb.velocity = new Vector2((MySpeedX * Speed), rb.velocity.y);
 
-        if (MySpeedX > 0)
+
+        if (MySpeedX > 0 && Speed > 0)
         {
             transform.localScale = new Vector3(DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
         }
-        else if (MySpeedX < 0)
+        else if (MySpeedX < 0 && Speed > 0)
         {
             transform.localScale = new Vector3(-DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
         }
@@ -162,7 +163,7 @@ public class AventurerMove : MonoBehaviour
     void AnimationControl()
     {
         //Animasyon koşuş Kontrolü
-        if (IsGround && Mathf.Abs(MySpeedX) > .1)
+        if (IsGround && Mathf.Abs(MySpeedX) > .1 && Speed > 0)
         {
 
             AnimatorAdventurer.SetBool("Running", true);
