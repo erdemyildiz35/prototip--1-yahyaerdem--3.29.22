@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BlackSmith : MonoBehaviour
 {
     BoxCollider2D BlackSmithCollider;
-    Canvas UpgradeCanvas, UpgradeFailCanvas;
-    Text UpgradeText, ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText, GoldText, FailText;
+    Canvas UpgradeCanvas, UpgradeFailCanvas, BlacksmithUpgradeCanvas;
+    Text ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText, GoldText, FailText;
     AventurerMove aventurerMove;
     Button ExitButton, SwordUpgradeButton, ArmorUpgradeButton;
     Skills skill;
     Animator animator;
     SaveSystem saveSystem;
-    Vector3 UpgradeTextOffset;
     int SwordUpgradePrice, ArmorUpgradePrice;
     float TempSpeed;
     bool UpgradeWindowIsOpen;
@@ -23,8 +23,8 @@ public class BlackSmith : MonoBehaviour
     void Start()
     {
         BlackSmithCollider = GameObject.Find("blacksmith").GetComponent<BoxCollider2D>();
-        UpgradeText = GameObject.Find("UpgradeText").GetComponent<Text>();
         UpgradeCanvas = GameObject.Find("UpgradeWindow").GetComponent<Canvas>();
+        BlacksmithUpgradeCanvas = GameObject.Find("BlacksmithUpgradeCanvas").GetComponent<Canvas>();
 
         SwordLevelText = GameObject.Find("SwordLevelText").GetComponent<Text>();
         SwordUpgradeText = GameObject.Find("SwordUpgradePrice").GetComponent<Text>();
@@ -48,9 +48,7 @@ public class BlackSmith : MonoBehaviour
 
         UpgradeFailCanvas.enabled = false;
         UpgradeCanvas.enabled = false;
-        UpgradeText.enabled = false;
-
-        UpgradeTextOffset = new Vector3(transform.position.x , transform.position.y);
+        BlacksmithUpgradeCanvas.enabled = false;
 
         SwordUpgradeButton.onClick.AddListener(SwordUpgrade);
         ArmorUpgradeButton.onClick.AddListener(ArmorUpgrade);
@@ -64,23 +62,21 @@ public class BlackSmith : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && UpgradeText.enabled && !UpgradeWindowIsOpen)
+        if (Input.GetKeyDown(KeyCode.E) && BlacksmithUpgradeCanvas.enabled && !UpgradeWindowIsOpen)
         {
+            BlacksmithUpgradeCanvas.enabled = false;
             UpgradeWindowIsOpen = true;
             TempSpeed = aventurerMove.Speed;
             aventurerMove.Speed = 0;
             UpgradeCanvas.enabled = true;
         }
-
-        UpgradeText.transform.position = Camera.main.WorldToScreenPoint(transform.position+UpgradeTextOffset);
-
     }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            UpgradeText.enabled = true;
+            BlacksmithUpgradeCanvas.enabled = true;
         }
     }
 
@@ -88,7 +84,7 @@ public class BlackSmith : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            UpgradeText.enabled = false;
+            BlacksmithUpgradeCanvas.enabled = false;
         }
     }
 
