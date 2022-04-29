@@ -28,7 +28,7 @@ public class Angel : MonoBehaviour
     {
         AttackTimer += Time.deltaTime;
 
-        if (Vector2.Distance(transform.position, Hero.transform.position) < 25f&&AttackTimer>10f)
+        if (Vector2.Distance(transform.position, Hero.transform.position) < 25f&&AttackTimer>2f)
         {
             Attack();
 
