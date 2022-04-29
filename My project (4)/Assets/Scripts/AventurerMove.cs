@@ -29,6 +29,7 @@ public class AventurerMove : MonoBehaviour
     public bool isCrouch = false;
     public bool HidePlace = false;
     public bool Hide = false;
+    public bool DoubleJump = false;
     AdventurerHealth adventurerhealth;
 
     //speed
@@ -69,7 +70,7 @@ public class AventurerMove : MonoBehaviour
         StaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
         saveSystem = GetComponent<SaveSystem>();
 
-       // saveSystem.Load();
+        // saveSystem.Load();
 
         DefaultLocalScale = transform.localScale;
         Speed += ((skills.agi * Speed) / 50);
@@ -104,6 +105,10 @@ public class AventurerMove : MonoBehaviour
         {
 
 
+        }
+        if (IsGround && DoubleJump)
+        {
+            DoubleJump = false;
         }
     }
 
@@ -220,7 +225,7 @@ public class AventurerMove : MonoBehaviour
         MySpeedX = Input.GetAxis("Horizontal");
 
         //Zıplama
-        if (Input.GetKey(KeyCode.Space) && IsGround && !isAttacking && !isCrouch)
+        if (Input.GetKeyDown(KeyCode.Space) && !DoubleJump && !isAttacking && !isCrouch)
         {
             Jump();
         }
@@ -441,7 +446,16 @@ public class AventurerMove : MonoBehaviour
 
     void Jump()
     {
-        AnimatorAdventurer.Play("Jump");
+        if (IsGround)
+        {
+            AnimatorAdventurer.Play("Jump");
+        }
+        else if (rb.velocity.y < 0 && !IsGround)
+        {
+            AnimatorAdventurer.Play("smrlt");
+            AllertObserver("Jump");
+            DoubleJump = true;
+        }
     }
 
     public void StaCalculate()
