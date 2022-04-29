@@ -9,12 +9,14 @@ public class AventurerMove : MonoBehaviour
     Rigidbody2D rb;
     CapsuleCollider2D colider;
     Skills skills;
+    Vector3 Rope;
     [SerializeField] Slider ExpSlider;
     [SerializeField] Slider StaSlider;
     public Text LevelText;
     public float Stamina;
     public float calculatedDamage;
     public bool canCalculate;
+    Image RopeEventImage;
 
 
     //Başlangıç Boyutu
@@ -30,14 +32,18 @@ public class AventurerMove : MonoBehaviour
     public bool HidePlace = false;
     public bool Hide = false;
     public bool DoubleJump = false;
+    public bool canClimb = false;
+    public bool isClimbing = false;
     AdventurerHealth adventurerhealth;
 
     //speed
     public float MySpeedX;
+    public float MySpeedY;
     [SerializeField] public float Speed;
     [SerializeField] float DashSpeed;
     [SerializeField] float SuperSpeed;
     public float TempSpeed;
+    public float TempAnimatorSpeed;
 
 
     //JumpForce
@@ -61,6 +67,7 @@ public class AventurerMove : MonoBehaviour
 
     void Start()
     {
+        RopeEventImage = GameObject.Find("RopeEventImage").GetComponent<Image>();
         AnimatorAdventurer = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         colider = GetComponent<CapsuleCollider2D>();
@@ -75,9 +82,12 @@ public class AventurerMove : MonoBehaviour
         DefaultLocalScale = transform.localScale;
         Speed += ((skills.agi * Speed) / 50);
         AnimatorAdventurer.speed += ((skills.agi * AnimatorAdventurer.speed) / 50);
+        TempAnimatorSpeed = AnimatorAdventurer.speed;
         TempSpeed = Speed;
         Stamina = 100 + ((float)skills.sta * 10);
         StaSlider.maxValue = Stamina;
+
+        RopeEventImage.enabled = false;
     }
 
     private void Awake()
@@ -150,7 +160,6 @@ public class AventurerMove : MonoBehaviour
     {
         rb.velocity = new Vector2((MySpeedX * Speed), rb.velocity.y);
 
-
         if (MySpeedX > 0 && Speed > 0)
         {
             transform.localScale = new Vector3(DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
@@ -169,7 +178,7 @@ public class AventurerMove : MonoBehaviour
 
             AnimatorAdventurer.SetBool("Running", true);
         }
-        else if(IsGround && Mathf.Abs(MySpeedX) > -.1 && Speed > 0)
+        else if (IsGround && Mathf.Abs(MySpeedX) > -.1 && Speed > 0)
         {
             AnimatorAdventurer.SetBool("Running", false);
         }
@@ -184,8 +193,18 @@ public class AventurerMove : MonoBehaviour
             AnimatorAdventurer.SetBool("IsGround", false);
         }
 
+        if (isClimbing)
+        {
+            Climb();
+        }
+        else
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            AnimatorAdventurer.speed = TempAnimatorSpeed;
+        }
+
         //Fall Kontrol
-        if (!IsGround && rb.velocity.y < 0 && !isAttacking)
+        if (!IsGround && rb.velocity.y < 0 && !isAttacking && !isClimbing)
         {
             AnimatorAdventurer.Play("Fall");
         }
@@ -218,7 +237,15 @@ public class AventurerMove : MonoBehaviour
     void KeyInputs()
     {
         //Hareket ve hız
-        MySpeedX = Input.GetAxisRaw("Horizontal");
+        if (!isClimbing)
+        {
+            MySpeedX = Input.GetAxisRaw("Horizontal");
+        }
+        else if (isClimbing)
+        {
+            MySpeedY = Input.GetAxisRaw("Vertical");
+        }
+
 
         //Zıplama
         if (Input.GetKeyDown(KeyCode.Space) && !DoubleJump && !isAttacking && !isCrouch)
@@ -264,6 +291,22 @@ public class AventurerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             SwordOnOff();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (canClimb)
+            {
+                RopeEventImage.enabled = false;
+                isClimbing = true;
+            }
+            else if (isClimbing)
+            {
+                isClimbing = false;
+                AnimatorAdventurer.SetBool("isClimbing", false);
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                AnimatorAdventurer.speed = 1;
+            }
         }
     }
 
@@ -440,6 +483,32 @@ public class AventurerMove : MonoBehaviour
         }
     }
 
+    void Climb()
+    {
+        isClimbing = true;
+        AnimatorAdventurer.SetBool("isClimbing", true);
+        canClimb = false;
+        transform.position = new Vector3(Rope.x - 0.2f, transform.position.y, transform.position.z);
+        AnimatorAdventurer.Play("LadderClimb");
+        AnimatorAdventurer.speed = 0;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        if (MySpeedY > 0)
+        {
+            AnimatorAdventurer.speed = TempAnimatorSpeed;
+            rb.velocity = new Vector2(rb.velocity.x, (MySpeedY * Speed));
+        }
+        else if (MySpeedY < 0 && !IsGround)
+        {
+            AnimatorAdventurer.speed = TempAnimatorSpeed;
+            rb.velocity = new Vector2(rb.velocity.x, (MySpeedY * Speed));
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
+    }
+
     void Jump()
     {
         if (IsGround)
@@ -541,9 +610,27 @@ public class AventurerMove : MonoBehaviour
 
         }
 
-
-
+        if (collision.gameObject.tag == "Rope")
+        {
+            RopeEventImage.enabled = true;
+            canClimb = true;
+            Rope = collision.transform.position;
+            Debug.Log("Rope Trigger");
+        }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Rope" && isClimbing)
+        {
+            RopeEventImage.enabled = false;
+            //transform.position = new Vector3(transform.position.x, transform.position.y + 1.8f, transform.position.z);
+            rb.velocity = new Vector2(rb.velocity.x, 5);
+            canClimb = false;
+            isClimbing = false;
+            AnimatorAdventurer.SetBool("isClimbing", false);
+            Debug.Log("Rope Trigger Exit");
+        }
+    }
 
 }
