@@ -310,7 +310,6 @@ public class AventurerMove : MonoBehaviour
 
     void Attack(KeyCode key)
     {
-        TempSpeed = Speed;
         //havada yumruk animasyonu olmadığı için hata veriyordu o yüzden koşul ekledim
         if (!HandOrSword && key == KeyCode.X && !IsGround || !IsGround) { }
         else
@@ -472,6 +471,8 @@ public class AventurerMove : MonoBehaviour
         }
         if (message == "AttackEnd")
         {
+            Debug.Log("AttackEnd");
+            Debug.Log("Speed = " + TempSpeed);
             StartCoroutine(AttackWaitTime());
             Speed = TempSpeed;
         }

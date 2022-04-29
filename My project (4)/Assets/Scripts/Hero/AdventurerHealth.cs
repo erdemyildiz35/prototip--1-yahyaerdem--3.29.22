@@ -23,7 +23,7 @@ public class AdventurerHealth : MonoBehaviour
 
     void Start()
     {
-        aventurerMove = GetComponent<AventurerMove>();
+        aventurerMove = GameObject.Find("Hero").GetComponent<AventurerMove>();
         skills = FindObjectOfType<Skills>();
         AdventurerAnimator = GetComponent<Animator>();
 
@@ -63,9 +63,9 @@ public class AdventurerHealth : MonoBehaviour
 
     public void TakeDamage(float Damage)
     {
-       
-            aventurerMove.AllertObserver("AttackEnd");
-        
+        Debug.Log("TakeDamage");
+        aventurerMove.AllertObserver("AttackEnd");
+
         if (DamageCanBeTakenBool)
         {
             Rand = Random.Range(0, 100);
@@ -129,7 +129,7 @@ public class AdventurerHealth : MonoBehaviour
         DamageCanBeTakenBool = false;
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         DamageCanBeTakenBool = true;
     }
