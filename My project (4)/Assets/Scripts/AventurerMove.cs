@@ -101,11 +101,7 @@ public class AventurerMove : MonoBehaviour
                 StaCalculate();
             }
         }
-        if (Stamina <= 0)
-        {
 
-
-        }
         if (IsGround && DoubleJump)
         {
             DoubleJump = false;
@@ -173,7 +169,7 @@ public class AventurerMove : MonoBehaviour
 
             AnimatorAdventurer.SetBool("Running", true);
         }
-        else
+        else if(IsGround && Mathf.Abs(MySpeedX) > -.1 && Speed > 0)
         {
             AnimatorAdventurer.SetBool("Running", false);
         }
@@ -222,7 +218,7 @@ public class AventurerMove : MonoBehaviour
     void KeyInputs()
     {
         //Hareket ve hız
-        MySpeedX = Input.GetAxis("Horizontal");
+        MySpeedX = Input.GetAxisRaw("Horizontal");
 
         //Zıplama
         if (Input.GetKeyDown(KeyCode.Space) && !DoubleJump && !isAttacking && !isCrouch)
