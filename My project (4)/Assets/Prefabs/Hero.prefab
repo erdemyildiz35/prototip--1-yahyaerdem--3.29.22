@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584949973}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.35, y: -0.25, z: 0}
+  m_LocalPosition: {x: 1.4799992, y: -0.22999954, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9079227912830365535}
@@ -172,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5771894322136972576}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -0.25, z: 0}
+  m_LocalPosition: {x: 1.13, y: -0.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9079227912830365535}
@@ -445,10 +445,16 @@ MonoBehaviour:
   isCrouch: 0
   HidePlace: 0
   Hide: 0
+  DoubleJump: 0
+  canClimb: 0
+  isClimbing: 0
   MySpeedX: 0
+  MySpeedY: 0
   Speed: 5
   DashSpeed: 2
   SuperSpeed: 15
+  TempSpeed: 0
+  TempAnimatorSpeed: 0
   JumpForce: 7
   SwordAttackPoint: {fileID: 584949974}
   HandAttackPoint: {fileID: 723561423264375053}
@@ -518,6 +524,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Obstaclelayer:
+    serializedVersion: 2
+    m_Bits: 0
   DamageCanBeTakenBool: 1
 --- !u!114 &1333644324
 MonoBehaviour:
@@ -537,6 +546,10 @@ MonoBehaviour:
   skillpoints: 0
   Exp: 0
   PlayerLevel: 0
+  Gold: 0
+  SwordUpgradeLevel: 0
+  ArmorUpgradeLevel: 0
+  CurrentLevel: 0
 --- !u!114 &7375905531091988015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,9 +562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08253b0756cecfb4b8d3466ac318ee38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gate1Collider: {fileID: 0}
-  Gate2Collider: {fileID: 0}
-  GateLayer:
-    serializedVersion: 2
-    m_Bits: 16384
-  Hero: {fileID: 0}
+  IceGate: 0
+  CastleGate: 0
+  DesertGate: 0

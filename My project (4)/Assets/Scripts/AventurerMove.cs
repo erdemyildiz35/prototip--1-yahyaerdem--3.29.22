@@ -158,7 +158,11 @@ public class AventurerMove : MonoBehaviour
 
     void Movement()
     {
+        Debug.Log("myspeedx = " + MySpeedX);
+        Debug.Log("Speed = " + Speed);
+        Debug.Log("rb.velocity.y = " + rb.velocity.y);
         rb.velocity = new Vector2((MySpeedX * Speed), rb.velocity.y);
+       
 
         if (MySpeedX > 0 && Speed > 0)
         {
