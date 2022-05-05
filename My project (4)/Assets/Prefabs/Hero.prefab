@@ -291,7 +291,6 @@ GameObject:
   - component: {fileID: 9079227912830365535}
   - component: {fileID: 9079227912830365532}
   - component: {fileID: 9079227912830365533}
-  - component: {fileID: 1356653117}
   - component: {fileID: 1356653113}
   - component: {fileID: 1356653118}
   - component: {fileID: 1356653114}
@@ -395,32 +394,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1356653117
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9079227912830365530}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 3bfc86c535e1a6c4f8e422fe689d93ef, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.02956891, y: -0.19580537}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.125, y: 2.3125}
-    newSize: {x: 3.125, y: 2.3125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.95661116, y: 1.7184793}
-  m_EdgeRadius: 0
 --- !u!114 &1356653113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff3c58f752a87a439a0966c698cec9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  RopeKeyImage: {fileID: 0}
   ExpSlider: {fileID: 0}
   StaSlider: {fileID: 0}
   LevelText: {fileID: 0}
@@ -448,6 +423,9 @@ MonoBehaviour:
   DoubleJump: 0
   canClimb: 0
   isClimbing: 0
+  FlipRight: 0
+  canWallSlide: 0
+  isWallSlide: 0
   MySpeedX: 0
   MySpeedY: 0
   Speed: 5
@@ -464,6 +442,9 @@ MonoBehaviour:
   HideLayer:
     serializedVersion: 2
     m_Bits: 8192
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!50 &1356653118
 Rigidbody2D:
   serializedVersion: 4

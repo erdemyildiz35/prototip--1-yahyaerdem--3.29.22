@@ -12,6 +12,7 @@ TagManager:
   - Gates
   - NPC
   - Rope
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Angel
   - HidePlace
   - Gates
-  - 
+  - Wall
   - 
   - 
   - 
