@@ -38,6 +38,7 @@ public class AventurerMove : MonoBehaviour
     public bool canWallSlide = false;
     public bool isWallSlide = false;
     public bool WallSlideJump = false;
+    public bool isFalling = false;
     AdventurerHealth adventurerhealth;
 
     //speed
@@ -57,6 +58,8 @@ public class AventurerMove : MonoBehaviour
     float AttackDamage;
     [SerializeField] Transform SwordAttackPoint;
     [SerializeField] Transform HandAttackPoint;
+    [SerializeField] Transform LeftPoint;
+    [SerializeField] Transform RightPoint;
     Collider2D[] hitEnemies;
 
     //SwordOrNot
@@ -83,11 +86,10 @@ public class AventurerMove : MonoBehaviour
 
         if (GameObject.Find("RopeKeyImage"))
         {
-            Debug.Log("Buldu");
             RopeKeyImage = GameObject.Find("RopeKeyImage").GetComponent<Image>();
             RopeKeyImage.enabled = false;
         }
-        
+
         // saveSystem.Load();
 
         DefaultLocalScale = transform.localScale;
@@ -197,6 +199,7 @@ public class AventurerMove : MonoBehaviour
         {
             AnimatorAdventurer.SetBool("IsGround", true);
             WallSlideJump = false;
+            isFalling = false;
         }
         else
         {
@@ -214,8 +217,10 @@ public class AventurerMove : MonoBehaviour
         }
 
         //Fall Kontrol
-        if (!IsGround && rb.velocity.y < 0 && !isAttacking && !isClimbing && !isWallSlide)
+        if (!IsGround && rb.velocity.y < 0.1 && !isAttacking && !isClimbing && !isWallSlide)
         {
+            AnimatorAdventurer.SetBool("isJumping", false);
+            isFalling = true;
             AnimatorAdventurer.Play("Fall");
             WallSlideJump = false;
         }
@@ -244,7 +249,7 @@ public class AventurerMove : MonoBehaviour
             }
         }
 
-        if (Physics2D.OverlapCircle(transform.position, 0.5f, WallLayer) && !IsGround && !WallSlideJump)
+        if (Physics2D.OverlapCircle(transform.position, 0.5f, WallLayer) && !IsGround && !WallSlideJump && isFalling)
         {
             WallSlide();
             isWallSlide = true;
@@ -509,7 +514,7 @@ public class AventurerMove : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(Rope.x + 0.45f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(Rope.x + 0.3f, transform.position.y, transform.position.z);
         }
 
         AnimatorAdventurer.Play("LadderClimb");
@@ -536,14 +541,22 @@ public class AventurerMove : MonoBehaviour
     {
         if (isWallSlide)
         {
-            rb.velocity = new Vector2(rb.velocity.x, -3);
-
+            rb.velocity = new Vector2(0, -3);
             AnimatorAdventurer.Play("WallSlide");
+            if (transform.localScale.x<0)
+            {
+                FlipRight = false;
+            }
+            else if (transform.localScale.x > 0)
+            {
+                FlipRight = true;
+            }
         }
     }
 
     void Jump()
     {
+        AnimatorAdventurer.SetBool("isJumping", true);
         if (IsGround)
         {
             AnimatorAdventurer.Play("Jump");
@@ -591,9 +604,8 @@ public class AventurerMove : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, JumpForce);
             }
-            if (WallSlideJump)
+            else if (WallSlideJump)
             {
-
                 if (FlipRight)
                 {
                     rb.velocity = new Vector2(-5, JumpForce);

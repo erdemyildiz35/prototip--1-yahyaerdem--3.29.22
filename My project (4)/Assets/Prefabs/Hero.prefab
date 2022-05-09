@@ -426,6 +426,8 @@ MonoBehaviour:
   FlipRight: 0
   canWallSlide: 0
   isWallSlide: 0
+  WallSlideJump: 0
+  isFalling: 0
   MySpeedX: 0
   MySpeedY: 0
   Speed: 5
@@ -436,6 +438,8 @@ MonoBehaviour:
   JumpForce: 7
   SwordAttackPoint: {fileID: 584949974}
   HandAttackPoint: {fileID: 723561423264375053}
+  LeftPoint: {fileID: 0}
+  RightPoint: {fileID: 0}
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 256
