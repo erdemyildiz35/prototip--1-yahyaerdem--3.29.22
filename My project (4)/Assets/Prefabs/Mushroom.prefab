@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2.5
-  AttackDistance: 30
+  AttackDistance: 20
   HitDistance: 7
   AttackTimer: 0
 --- !u!114 &554852237
