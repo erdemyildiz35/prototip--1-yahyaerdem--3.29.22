@@ -543,7 +543,7 @@ public class AventurerMove : MonoBehaviour
         {
             rb.velocity = new Vector2(0, -3);
             AnimatorAdventurer.Play("WallSlide");
-            if (transform.localScale.x<0)
+            if (transform.localScale.x < 0)
             {
                 FlipRight = false;
             }
@@ -682,9 +682,9 @@ public class AventurerMove : MonoBehaviour
         if (collision.gameObject.tag == "Rope")
         {
             canClimb = true;
+            RopeKeyImage.transform.position = new Vector3(collision.transform.position.x + 0.2f, collision.transform.position.y, collision.transform.position.z);
             RopeKeyImage.enabled = true;
             Rope = collision.transform.position;
-            Debug.Log("Rope Trigger");
         }
     }
 
