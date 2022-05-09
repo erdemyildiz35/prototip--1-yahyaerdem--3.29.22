@@ -18,6 +18,8 @@ public class Mushroom : MonoBehaviour
 
     private bool AbleTorun=true;
 
+    [SerializeField] LayerMask GroundLayer;
+
     private void Start()
     {
         AdventurerMove = FindObjectOfType<AventurerMove>();
@@ -94,28 +96,35 @@ public class Mushroom : MonoBehaviour
            
             var distanceToTarget = vectorToTarget.magnitude;
 
-            if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance&&!AdventurerMove.Hide)
-            {
-                Vector2 target = new Vector2(Adventurer.transform.position.x, Rb.position.y);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + (transform.right * transform.localScale.x / 2), Vector2.down, 1f, GroundLayer);
 
-                Vector2 MovePos = Vector2.MoveTowards(Rb.position, target, Speed * Time.fixedDeltaTime);
-                Rb.MovePosition(MovePos);
-                animator.SetBool("runing", true);
-            }
-            else if (distanceToTarget < HitDistance)
-            {
-                animator.SetBool("runing", false);
-                Attack();
-                Debug.Log("vurması gerek");
-
-            }
-
-            else
+            if (!hit)
             {
 
+                if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance && !AdventurerMove.Hide)
+                {
+                    Vector2 target = new Vector2(Adventurer.transform.position.x, Rb.position.y);
 
-                animator.SetBool("runing", false);
+                    Vector2 MovePos = Vector2.MoveTowards(Rb.position, target, Speed * Time.fixedDeltaTime);
+                    Rb.MovePosition(MovePos);
+                    animator.SetBool("runing", true);
+                }
+                else if (distanceToTarget < HitDistance)
+                {
+                    animator.SetBool("runing", false);
+                    Attack();
+                    Debug.Log("vurması gerek");
 
+                }
+
+                else
+                {
+
+
+                    animator.SetBool("runing", false);
+
+
+                }
 
             }
         }

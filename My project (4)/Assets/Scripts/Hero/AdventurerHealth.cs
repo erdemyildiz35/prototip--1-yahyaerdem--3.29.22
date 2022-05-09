@@ -19,6 +19,8 @@ public class AdventurerHealth : MonoBehaviour
     AventurerMove aventurerMove;
     public LayerMask Obstaclelayer;
 
+    [SerializeField] GameObject playerBloodParticle;
+
     public bool DamageCanBeTakenBool = true;
 
     void Start()
@@ -65,7 +67,7 @@ public class AdventurerHealth : MonoBehaviour
     {
         Debug.Log("TakeDamage");
         aventurerMove.AllertObserver("AttackEnd");
-
+        Instantiate(playerBloodParticle, transform.position, Quaternion.identity);
         if (DamageCanBeTakenBool)
         {
             Rand = Random.Range(0, 100);
