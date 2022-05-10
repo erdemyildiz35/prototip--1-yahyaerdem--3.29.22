@@ -13,6 +13,7 @@ TagManager:
   - NPC
   - Rope
   - Wall
+  - Dead
   layers:
   - Default
   - TransparentFX

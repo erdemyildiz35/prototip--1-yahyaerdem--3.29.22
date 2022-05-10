@@ -89,7 +89,6 @@ public class AventurerMove : MonoBehaviour
             RopeKeyImage = GameObject.Find("RopeKeyImage").GetComponent<Image>();
             RopeKeyImage.enabled = false;
         }
-
         // saveSystem.Load();
 
         DefaultLocalScale = transform.localScale;

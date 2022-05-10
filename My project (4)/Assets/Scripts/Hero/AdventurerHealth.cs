@@ -153,24 +153,17 @@ public class AdventurerHealth : MonoBehaviour
         {
             TakeDamage(15);
         }
+
+        if (collision.gameObject.tag == "Dead")
+        {
+            Die();
+        }
     }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
-
-
-
 
     IEnumerator DieTime()
     {
-
-        Time.timeScale = .3f;
-
         AdventurerAnimator.Play("KnockDown");
-
+        Time.timeScale = .3f;
 
         yield return new WaitForSeconds(.6f);
         Time.timeScale = 1f;
