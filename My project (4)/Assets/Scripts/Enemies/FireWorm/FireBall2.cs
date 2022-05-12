@@ -37,6 +37,13 @@ public class FireBall2 : MonoBehaviour
             Rb.bodyType = RigidbodyType2D.Static;
             animator.Play("Explosion");
         }
+        if (collision.gameObject.tag == "Wall")
+        {
+
+            Rb.bodyType = RigidbodyType2D.Static;
+            animator.Play("Explosion");
+        }
+
     }
 
 
