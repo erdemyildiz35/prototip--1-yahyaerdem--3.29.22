@@ -6,7 +6,7 @@ public class CeilingTraps : MonoBehaviour
 {
     public GameObject LeftCollider, RightCollider;
     public float smooth = 0.1f;
-    public Quaternion LeftTargetRotation, RightTargetRotation;
+    public Transform LeftTargetRotation, RightTargetRotation;
     public bool Rotating;
     // Start is called before the first frame update
     void Start()
@@ -14,9 +14,11 @@ public class CeilingTraps : MonoBehaviour
         LeftCollider = transform.GetChild(0).gameObject;
         RightCollider = transform.GetChild(1).gameObject;
 
+        LeftTargetRotation = GetComponent<Transform>();
+        RightTargetRotation = GetComponent<Transform>();
 
-        LeftTargetRotation = Quaternion.Euler(0, 0, 0);
-        RightTargetRotation = Quaternion.Euler(0, 0, 0);
+        LeftTargetRotation.localRotation = Quaternion.Euler(0, 0, 0);
+        RightTargetRotation.localRotation = Quaternion.Euler(0, 0, 0);
 
     }
 
@@ -50,8 +52,8 @@ public class CeilingTraps : MonoBehaviour
 
     public void Rotate()
     {
-        LeftCollider.transform.rotation = Quaternion.RotateTowards(LeftCollider.transform.rotation, LeftTargetRotation, smooth * Time.deltaTime);
-        RightCollider.transform.rotation = Quaternion.RotateTowards(RightCollider.transform.rotation, RightTargetRotation, smooth * Time.deltaTime);
+        LeftCollider.transform.rotation = Quaternion.RotateTowards(LeftCollider.transform.rotation, LeftTargetRotation.localRotation, smooth * Time.deltaTime);
+        RightCollider.transform.rotation = Quaternion.RotateTowards(RightCollider.transform.rotation, RightTargetRotation.localRotation, smooth * Time.deltaTime);
     }
 
 }

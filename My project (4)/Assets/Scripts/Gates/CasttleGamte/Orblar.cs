@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+ 
 public class Orblar : MonoBehaviour
 {
 
@@ -17,7 +17,7 @@ public class Orblar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -49,18 +49,26 @@ public class Orblar : MonoBehaviour
 
         }
     }
-
-
+  
+ 
 
     IEnumerator WaitAndDestroy()
     {
+
+
+
         yield return new WaitForSeconds(2f);
 
-        if (Input.GetKey(KeyCode.E))
+
+         if (Input.GetKey(KeyCode.E))
         {
             Castlemanager.orbClear();
             Destroy(this.gameObject);
+
+
         }
+
+
     }
 
 }
