@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class NewPath : MonoBehaviour
 {
@@ -29,23 +30,51 @@ public class NewPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (orbsControl.DestroyedOrbs == 2 && !open)
+        if (orbsControl.DestroyedOrbs == 2 && !open&& SceneManager.GetActiveScene().name == "Dessert")
         {
-            OpenNewPath();
+            DessertNewPath();
+        }
+        if (orbsControl.DestroyedOrbs == 3 && !open && SceneManager.GetActiveScene().name == "Castle")
+        {
+            CastleNewPath();
         }
     }
 
-    void OpenNewPath()
+    void DessertNewPath()
     {
         open = true;
         FollowPlayer.enabled = false;
-        StartCoroutine(NewPathEvent());
+        StartCoroutine(DessertNewPathEvent());
+    }
+    void CastleNewPath()
+    {
+        open = true;
+        FollowPlayer.enabled = false;
+        StartCoroutine(CastleNewPathEvent());
     }
 
-    IEnumerator NewPathEvent()
+    IEnumerator DessertNewPathEvent()
     {
         light2D.enabled = true;
         cameraTransform.position = new Vector3(79f, -19.13f, cameraTransform.position.z);
+        yield return new WaitForSeconds(1f);
+
+        tileMapRenderer.enabled = false;
+        yield return new WaitForSeconds(1f);
+
+        FollowPlayer.SmoothSpeed /= 2;
+        FollowPlayer.enabled = true;
+        yield return new WaitForSeconds(1f);
+
+        FollowPlayer.SmoothSpeed *= 2;
+        light2D.enabled = false;
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator CastleNewPathEvent()
+    {
+        light2D.enabled = true;
+        cameraTransform.position = new Vector3(186.95f, -81.07f, cameraTransform.position.z);
         yield return new WaitForSeconds(1f);
 
         tileMapRenderer.enabled = false;
