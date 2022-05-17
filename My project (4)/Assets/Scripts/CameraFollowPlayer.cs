@@ -6,7 +6,7 @@ public class CameraFollowPlayer : MonoBehaviour
 {
     AventurerMove hero;
 
-    [SerializeField] float SmoothSpeed = .125f;
+    [SerializeField] public float SmoothSpeed = .125f;
     [SerializeField] Vector3 offset;
 
     void Start()

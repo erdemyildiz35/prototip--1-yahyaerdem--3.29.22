@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 5707139625821000172}
   m_Layer: 11
   m_Name: RightCollider
+<<<<<<< HEAD
   m_TagString: Fireball
+=======
+  m_TagString: Dead
+>>>>>>> 2e184c2efbcbd9fdefef52ca931222cebf793627
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftCollider: {fileID: 0}
   RightCollider: {fileID: 0}
-  smooth: 300
+  smooth: 290
   LeftTargetRotation: {fileID: 0}
   RightTargetRotation: {fileID: 0}
   Rotating: 0
@@ -197,7 +201,11 @@ GameObject:
   - component: {fileID: 5707139626405050462}
   m_Layer: 11
   m_Name: LeftCollider
+<<<<<<< HEAD
   m_TagString: Fireball
+=======
+  m_TagString: Dead
+>>>>>>> 2e184c2efbcbd9fdefef52ca931222cebf793627
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
