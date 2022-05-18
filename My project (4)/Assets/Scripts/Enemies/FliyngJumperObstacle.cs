@@ -15,8 +15,12 @@ public class FliyngJumperObstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+       
         
+    }
+    private void FixedUpdate()
+    {
+        Move();
     }
     private void Move()
     {

@@ -60,7 +60,7 @@ public class GateController : MonoBehaviour
         if (IceGate)
         {
             IceGate = false;
-            SceneManager.LoadScene("Ice");
+            SceneManager.LoadScene("Map3");
         }
         else if (CastleGate)
         {
