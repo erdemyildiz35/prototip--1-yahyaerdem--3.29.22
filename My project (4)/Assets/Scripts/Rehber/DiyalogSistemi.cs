@@ -7,6 +7,7 @@ public class DiyalogSistemi : MonoBehaviour
 {
     Canvas DialogCanvas;
     [SerializeField] private TextMeshProUGUI TextLabel;
+    [SerializeField] Image KeyEventImage;
     GameObject TextObject;
     [SerializeField] private GameObject UIElement;
     [SerializeField] private string[] Text = { "", "", "" };
@@ -20,7 +21,8 @@ public class DiyalogSistemi : MonoBehaviour
         DialogCanvas = GameObject.Find("Dialog").GetComponent<Canvas>();
         TextObject = GameObject.Find("DialogCanvas");
         TextLabel = GameObject.Find("DialogText").GetComponent<TextMeshProUGUI>();
-
+        KeyEventImage = GameObject.Find("KeyEventImage").GetComponent<Image>();
+        KeyEventImage.enabled = false;
         DialogCanvas.enabled = false;
 
         TextLenght = Text.Length;
@@ -30,7 +32,7 @@ public class DiyalogSistemi : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && canSpeak)
         {
-            DialogCanvas.enabled = false;
+            KeyEventImage.enabled = false;
             Dialog();
         }
     }
@@ -40,7 +42,7 @@ public class DiyalogSistemi : MonoBehaviour
         if (collision.tag == "Player")
         {
             canSpeak = true;
-            DialogCanvas.enabled = true;
+            KeyEventImage.enabled = true;
             TextLabel.text = TriggerMessage;
             i = 0;
         }
@@ -50,6 +52,7 @@ public class DiyalogSistemi : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            KeyEventImage.enabled = false;
             canSpeak = false;
             DialogCanvas.enabled = false;
             i = 0;
