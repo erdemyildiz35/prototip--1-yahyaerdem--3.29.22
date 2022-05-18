@@ -68,6 +68,7 @@ public class AdventurerHealth : MonoBehaviour
         Debug.Log("TakeDamage");
         aventurerMove.AllertObserver("AttackEnd");
         Instantiate(playerBloodParticle, transform.position, Quaternion.identity);
+        Damage -= (Damage * skills.ArmorUpgradeLevel) / 10;
         if (DamageCanBeTakenBool)
         {
             Rand = Random.Range(0, 100);

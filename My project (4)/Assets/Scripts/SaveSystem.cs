@@ -41,7 +41,6 @@ public class SaveSystem : MonoBehaviour
 
     public void Load()
     {
-        NewGame();
         skill.CurrentLevel = PlayerPrefs.GetInt("CurrentLevel");
         skill.str = PlayerPrefs.GetInt("str");
         skill.agi = PlayerPrefs.GetInt("agi");

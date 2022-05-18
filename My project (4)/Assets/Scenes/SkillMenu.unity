@@ -4306,6 +4306,7 @@ GameObject:
   - component: {fileID: 1589462068}
   - component: {fileID: 1589462070}
   - component: {fileID: 1589462069}
+  - component: {fileID: 1589462071}
   m_Layer: 0
   m_Name: SkillMenuController
   m_TagString: Untagged
@@ -4390,6 +4391,7 @@ MonoBehaviour:
   AttackSpeedText: {fileID: 0}
   LuckText: {fileID: 0}
   skills: {fileID: 0}
+  SaveSystem: {fileID: 0}
 --- !u!114 &1589462070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4408,19 +4410,23 @@ MonoBehaviour:
   skillpoints: 0
   Exp: 0
   PlayerLevel: 0
-  KickUpgrade: 0
-  PunchUpgrade: 0
-  PunchSkill: 0
-  KickSkill: 0
   Gold: 0
-  BasepunchDamage: 10
-  BasekickDamage: 20
-  punchDamage: 0
-  kickDamage: 0
-  agiRatio: 0
-  extraHealth: 0
-  luckRatio: 0
-  strRatio: 0
+  SwordUpgradeLevel: 0
+  ArmorUpgradeLevel: 0
+  CurrentLevel: 0
+--- !u!114 &1589462071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589462067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f96ab187d2d8d48a02b2709e1e203a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skill: {fileID: 0}
 --- !u!1 &1597986689
 GameObject:
   m_ObjectHideFlags: 0
@@ -5861,25 +5867,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94a77f09f791fa48b32cc8eb2b3a110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  str: 1
-  agi: 1
-  sta: 1
+  str: 0
+  agi: 0
+  sta: 0
   skillpoints: 0
   Exp: 0
   PlayerLevel: 0
-  KickUpgrade: 0
-  PunchUpgrade: 0
-  PunchSkill: 0
-  KickSkill: 0
   Gold: 0
-  BasepunchDamage: 10
-  BasekickDamage: 20
-  punchDamage: 0
-  kickDamage: 0
-  agiRatio: 0
-  extraHealth: 0
-  luckRatio: 0
-  strRatio: 0
+  SwordUpgradeLevel: 0
+  ArmorUpgradeLevel: 0
+  CurrentLevel: 0
 --- !u!4 &1992497320
 Transform:
   m_ObjectHideFlags: 0

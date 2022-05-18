@@ -19,23 +19,4 @@ public class Skills : MonoBehaviour
     public int CurrentLevel;
 
     //public int currentStageLevel;
-
-
-    private void Awake()
-    {
-
-    }
-
-    private void Start()
-    {
-
-    }
-
-
-
-
-
-
-
-
 }

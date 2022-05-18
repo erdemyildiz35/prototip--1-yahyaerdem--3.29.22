@@ -89,7 +89,7 @@ public class AventurerMove : MonoBehaviour
             RopeKeyImage = GameObject.Find("RopeKeyImage").GetComponent<Image>();
             RopeKeyImage.enabled = false;
         }
-        // saveSystem.Load();
+        saveSystem.Load();
 
         DefaultLocalScale = transform.localScale;
 
@@ -460,7 +460,8 @@ public class AventurerMove : MonoBehaviour
             hitEnemies = Physics2D.OverlapCircleAll(HandAttackPoint.position, .5f, EnemyLayer);
         }
 
-        calculatedDamage = AttackDamage + ((AttackDamage * skills.str) / 50);
+        calculatedDamage = AttackDamage + ((AttackDamage * skills.str) / 50) + ((AttackDamage*skills.SwordUpgradeLevel)/10);
+
         foreach (Collider2D enemy in hitEnemies)
         {
             if (!enemy.GetComponent<Enemy>().isDead)

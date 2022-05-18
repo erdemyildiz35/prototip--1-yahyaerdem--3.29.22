@@ -38,6 +38,10 @@ public class NewPath : MonoBehaviour
         {
             CastleNewPath();
         }
+        if (orbsControl.DestroyedOrbs == 4 && !open && SceneManager.GetActiveScene().name == "Map3")
+        {
+            Map3NewPath();
+        }
     }
 
     void DessertNewPath()
@@ -46,11 +50,19 @@ public class NewPath : MonoBehaviour
         FollowPlayer.enabled = false;
         StartCoroutine(DessertNewPathEvent());
     }
+
     void CastleNewPath()
     {
         open = true;
         FollowPlayer.enabled = false;
         StartCoroutine(CastleNewPathEvent());
+    }
+
+    void Map3NewPath()
+    {
+        open = true;
+        FollowPlayer.enabled = false;
+        StartCoroutine(Map3NewPathEvent());
     }
 
     IEnumerator DessertNewPathEvent()
@@ -75,6 +87,24 @@ public class NewPath : MonoBehaviour
     {
         light2D.enabled = true;
         cameraTransform.position = new Vector3(186.95f, -81.07f, cameraTransform.position.z);
+        yield return new WaitForSeconds(1f);
+
+        tileMapRenderer.enabled = false;
+        yield return new WaitForSeconds(1f);
+
+        FollowPlayer.SmoothSpeed /= 2;
+        FollowPlayer.enabled = true;
+        yield return new WaitForSeconds(1f);
+
+        FollowPlayer.SmoothSpeed *= 2;
+        light2D.enabled = false;
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator Map3NewPathEvent()
+    {
+        light2D.enabled = true;
+        cameraTransform.position = new Vector3(79f, -23.28f, cameraTransform.position.z);
         yield return new WaitForSeconds(1f);
 
         tileMapRenderer.enabled = false;

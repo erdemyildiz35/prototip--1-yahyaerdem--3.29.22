@@ -34,10 +34,11 @@ public class MainMenu : MonoBehaviour
         NoAds.onClick.AddListener(NoAdsEvent);
 
         saveSystem.Load();
+        LoadGame.interactable = false;
 
-        if (skills.CurrentLevel == 0 )
+        if (skills.Exp > 1 || skills.PlayerLevel > 1)
         {
-            LoadGame.interactable = false;
+            LoadGame.interactable = true;
         }
     }
 

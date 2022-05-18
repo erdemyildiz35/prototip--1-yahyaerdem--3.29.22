@@ -19,7 +19,7 @@ public class Orb : MonoBehaviour
         KeyEventCanvas.enabled = true;
         KeyEventCanvas.transform.position = gameObject.transform.position;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)&& collision.tag == "Player")
         {
             orbsControl.DestroyedOrbs++;
             gameObject.SetActive(false);

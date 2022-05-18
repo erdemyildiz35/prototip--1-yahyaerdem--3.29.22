@@ -7,7 +7,7 @@ using Pathfinding;
 public class EnemyAıAdvance : MonoBehaviour
 {
     [Header("Pathfinding")]
-    [SerializeField] GameObject Target;
+    public GameObject Target;
     [SerializeField] float ActivateDistance = 30f;
     [SerializeField] float pathUpdateSec = .5f;
 
@@ -45,6 +45,8 @@ public class EnemyAıAdvance : MonoBehaviour
         animator = GetComponent<Animator>();
         InvokeRepeating("UpdatePath", 0f, pathUpdateSec);
         adventurerHealth = FindObjectOfType<AdventurerHealth>();
+
+        Target = GameObject.Find("Hero");
     }
 
 

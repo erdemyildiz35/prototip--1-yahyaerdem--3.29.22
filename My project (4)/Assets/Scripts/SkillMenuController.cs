@@ -38,6 +38,7 @@ public class SkillMenuController : MonoBehaviour
     private void Start()
     {
         TempSkills.skillpoints = skills.skillpoints;
+        SaveSystem.Load();
 
         StrPlus.onClick.AddListener(ChangePlusStr);
         StrMinus.onClick.AddListener(ChangeMinusStr);
@@ -50,8 +51,22 @@ public class SkillMenuController : MonoBehaviour
 
         ApplyButton.onClick.AddListener(ChangeSkillValue);
 
+        ContinueButton.onClick.AddListener(ContinueGame);
+        MainMenu.onClick.AddListener(GoMainMenu);
+
         skillBar();
     }
+
+    void ContinueGame()
+    {
+        SceneManager.LoadScene("MainLevel");
+    }
+
+    void GoMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
 
     void skillBar()
     {
@@ -102,8 +117,6 @@ public class SkillMenuController : MonoBehaviour
             ApplyButton.gameObject.GetComponent<Button>().interactable = true;
             CancelButton.gameObject.GetComponent<Button>().interactable = true;
         }
-
-        //if() //Devam etme butonu bu ekrana bölüm sonundan gelindiyse olacak eğer menüden girildiyse o buton çalışmayacak
     }
 
     void MinusButton()
