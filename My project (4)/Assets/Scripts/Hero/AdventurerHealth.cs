@@ -28,6 +28,7 @@ public class AdventurerHealth : MonoBehaviour
     [SerializeField] AudioClip takeDamage; 
     void Start()
     {
+        source = GetComponent<AudioSource>();
         aventurerMove = GameObject.Find("Hero").GetComponent<AventurerMove>();
         skills = FindObjectOfType<Skills>();
         AdventurerAnimator = GetComponent<Animator>();
