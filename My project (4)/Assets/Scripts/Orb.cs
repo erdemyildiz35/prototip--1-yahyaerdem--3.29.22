@@ -6,12 +6,15 @@ public class Orb : MonoBehaviour
 {
     public Canvas KeyEventCanvas;
     public OrbsControl orbsControl;
+    Castlemanage4r manager;
+
     // Start is called before the first frame update
     void Start()
     {
         orbsControl = transform.parent.GetComponent<OrbsControl>();
         KeyEventCanvas = transform.GetChild(0).gameObject.GetComponent<Canvas>();
         KeyEventCanvas.enabled = false;
+        manager = FindObjectOfType<Castlemanage4r>();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -23,6 +26,7 @@ public class Orb : MonoBehaviour
         {
             orbsControl.DestroyedOrbs++;
             gameObject.SetActive(false);
+            manager.orbClear();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

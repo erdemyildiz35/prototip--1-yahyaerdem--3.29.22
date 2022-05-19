@@ -8,7 +8,7 @@ public class Castlemanage4r : MonoBehaviour
 {
     [SerializeField] Canvas ToTheMainGateCanvas;
 
-    int orbs=0;
+ [SerializeField]   int orbs=0;
     void Start()
     {
         
