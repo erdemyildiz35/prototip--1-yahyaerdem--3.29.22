@@ -469,7 +469,7 @@ public class AventurerMove : MonoBehaviour
                 if (Stamina >= 20)
                 {
                     enemy.GetComponent<Enemy>().TakeDamage(calculatedDamage);
-                    Stamina -= AttackDamage;
+                    Stamina -= AttackDamage/2;
                 }
                 else
                 {
@@ -484,7 +484,7 @@ public class AventurerMove : MonoBehaviour
     {
         if (!isDash)
         {
-            Stamina -= 20;
+            Stamina -= 10;
             AnimatorAdventurer.Play("smrlt");
             StartCoroutine(DashIE());
         }
@@ -493,7 +493,7 @@ public class AventurerMove : MonoBehaviour
     void FastRun()
     {
         Debug.Log("Stamina=" + Stamina);
-        Stamina -= Time.deltaTime * 50;
+        Stamina -= Time.deltaTime * 30;
         if (Stamina > 10)
         {
             Speed = SuperSpeed;

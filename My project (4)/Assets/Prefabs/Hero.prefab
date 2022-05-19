@@ -432,8 +432,8 @@ MonoBehaviour:
   MySpeedX: 0
   MySpeedY: 0
   Speed: 5
-  DashSpeed: 2
-  SuperSpeed: 15
+  DashSpeed: 5
+  SuperSpeed: 8
   TempSpeed: 0
   TempAnimatorSpeed: 0
   JumpForce: 7
