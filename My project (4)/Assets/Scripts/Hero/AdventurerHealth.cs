@@ -23,6 +23,9 @@ public class AdventurerHealth : MonoBehaviour
 
     public bool DamageCanBeTakenBool = true;
 
+
+    AudioSource source;
+    [SerializeField] AudioClip takeDamage; 
     void Start()
     {
         aventurerMove = GameObject.Find("Hero").GetComponent<AventurerMove>();
@@ -71,6 +74,7 @@ public class AdventurerHealth : MonoBehaviour
         Damage -= (Damage * skills.ArmorUpgradeLevel) / 10;
         if (DamageCanBeTakenBool)
         {
+            source.PlayOneShot(takeDamage);
             Rand = Random.Range(0, 100);
             if (Rand <= (70 + ((70 * skills.agi) / 50)) || !aventurerMove.IsGround)
             {

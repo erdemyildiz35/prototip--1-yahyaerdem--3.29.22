@@ -73,8 +73,14 @@ public class AventurerMove : MonoBehaviour
     SaveSystem saveSystem;
 
 
+    //soundsSystem
+
+    AudioSource source;
+    [SerializeField] AudioClip attack,  jump;
+
     void Start()
     {
+        source = GetComponent<AudioSource>();
         AnimatorAdventurer = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         colider = GetComponent<CapsuleCollider2D>();
@@ -378,6 +384,8 @@ public class AventurerMove : MonoBehaviour
 
     void Attack(KeyCode key)
     {
+
+        source.PlayOneShot(attack);
         //havada yumruk animasyonu olmadığı için hata veriyordu o yüzden koşul ekledim
         if (!HandOrSword && key == KeyCode.X && !IsGround || !IsGround) { }
         else
@@ -560,6 +568,7 @@ public class AventurerMove : MonoBehaviour
         if (IsGround)
         {
             AnimatorAdventurer.Play("Jump");
+            source.PlayOneShot(jump);
         }
         else if (rb.velocity.y < 0 && !IsGround && !isWallSlide && !DoubleJump)
         {
