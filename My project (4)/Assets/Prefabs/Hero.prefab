@@ -451,6 +451,8 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 32768
+  attack: {fileID: 8300000, guid: e707e9b7944c3af418b4c985fb047729, type: 3}
+  jump: {fileID: 8300000, guid: e707e9b7944c3af418b4c985fb047729, type: 3}
 --- !u!50 &1356653118
 Rigidbody2D:
   serializedVersion: 4
@@ -513,9 +515,10 @@ MonoBehaviour:
   - {fileID: 0}
   Obstaclelayer:
     serializedVersion: 2
-    m_Bits: 0
-  playerBloodParticle: {fileID: 0}
+    m_Bits: 128
+  playerBloodParticle: {fileID: 5134784687839452509, guid: 828e3956aeca6bb469c70be38b68de07, type: 3}
   DamageCanBeTakenBool: 1
+  takeDamage: {fileID: 8300000, guid: 58eedef88fa41114ea2c32d978666d2a, type: 3}
 --- !u!114 &1333644324
 MonoBehaviour:
   m_ObjectHideFlags: 0
