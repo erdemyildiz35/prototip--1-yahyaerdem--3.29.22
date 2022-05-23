@@ -11,6 +11,7 @@ public class LevelGates : MonoBehaviour
     [SerializeField] GameObject Portal;
     [SerializeField] bool isGateActive, isTrigger;
     [SerializeField] Collider2D Collider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class LevelGates : MonoBehaviour
         isTrigger = false;
 
         OrbsCount = Orbs.transform.childCount;
+
     }
 
     // Update is called once per frame

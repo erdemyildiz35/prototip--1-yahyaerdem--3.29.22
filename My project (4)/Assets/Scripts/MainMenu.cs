@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour
     void NewGameEvent()
     {
         saveSystem.NewGame();
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("Tutorial");
     }
 
     void LoadGameEvent()

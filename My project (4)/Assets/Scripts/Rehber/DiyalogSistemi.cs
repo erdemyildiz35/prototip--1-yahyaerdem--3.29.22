@@ -18,7 +18,7 @@ public class DiyalogSistemi : MonoBehaviour
 
     private void Start()
     {
-        DialogCanvas = GameObject.Find("Dialog").GetComponent<Canvas>();
+        DialogCanvas = GameObject.Find("DialogCanvas").GetComponent<Canvas>();
         TextObject = GameObject.Find("DialogCanvas");
         TextLabel = GameObject.Find("DialogText").GetComponent<TextMeshProUGUI>();
         KeyEventImage = GameObject.Find("KeyEventImage").GetComponent<Image>();
