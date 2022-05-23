@@ -30,7 +30,7 @@ public class NewPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (orbsControl.DestroyedOrbs == 2 && !open&& SceneManager.GetActiveScene().name == "Dessert")
+        if (orbsControl.DestroyedOrbs == 2 && !open&& SceneManager.GetActiveScene().name == "Desert")
         {
             DessertNewPath();
         }

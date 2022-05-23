@@ -88,6 +88,7 @@ public class AventurerMove : MonoBehaviour
         adventurerhealth = GetComponent<AdventurerHealth>();
 
         StaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
+        ExpSlider = GameObject.Find("Exp").GetComponent<Slider>();
         saveSystem = GetComponent<SaveSystem>();
 
         if (GameObject.Find("RopeKeyImage"))
@@ -194,7 +195,11 @@ public class AventurerMove : MonoBehaviour
 
             AnimatorAdventurer.SetBool("Running", true);
         }
-        else if (IsGround && Mathf.Abs(MySpeedX) > -.1 && Speed > 0)
+        else if (IsGround && Mathf.Abs(MySpeedX) ==0 && Speed > 0)
+        {
+            AnimatorAdventurer.SetBool("Running", false);
+        }
+        else if(Speed == 0)
         {
             AnimatorAdventurer.SetBool("Running", false);
         }
@@ -203,6 +208,7 @@ public class AventurerMove : MonoBehaviour
         if (IsGround)
         {
             AnimatorAdventurer.SetBool("IsGround", true);
+            AnimatorAdventurer.SetBool("isJumping", false);
             WallSlideJump = false;
             isFalling = false;
         }
@@ -390,7 +396,7 @@ public class AventurerMove : MonoBehaviour
         if (!HandOrSword && key == KeyCode.X && !IsGround || !IsGround) { }
         else
         {
-            Speed *= 0.1f;
+            StartCoroutine(AttacStartWait());
         }
         if (!HandOrSword && key == KeyCode.X && !IsGround) { }
         else
@@ -477,7 +483,7 @@ public class AventurerMove : MonoBehaviour
                 if (Stamina >= 20)
                 {
                     enemy.GetComponent<Enemy>().TakeDamage(calculatedDamage);
-                    Stamina -= AttackDamage/2;
+                    Stamina -= AttackDamage/4;
                 }
                 else
                 {
@@ -633,9 +639,15 @@ public class AventurerMove : MonoBehaviour
             StartCoroutine(AttackWaitTime());
             Speed = TempSpeed;
         }
+
     }
 
 
+    IEnumerator AttacStartWait()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Speed *= 0.1f;
+    }
     IEnumerator SlowDown(float WaitTime)
     {
         Speed *= .1f;

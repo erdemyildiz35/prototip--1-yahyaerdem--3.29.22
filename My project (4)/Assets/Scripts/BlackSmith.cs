@@ -67,7 +67,7 @@ public class BlackSmith : MonoBehaviour
             BlacksmithUpgradeCanvas.enabled = false;
             UpgradeWindowIsOpen = true;
             TempSpeed = aventurerMove.Speed;
-            aventurerMove.Speed = 0;
+            aventurerMove.Speed = 0f;
             UpgradeCanvas.enabled = true;
         }
     }

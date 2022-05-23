@@ -15,6 +15,7 @@ public class Orb : MonoBehaviour
         KeyEventCanvas = transform.GetChild(0).gameObject.GetComponent<Canvas>();
         KeyEventCanvas.enabled = false;
         manager = FindObjectOfType<Castlemanage4r>();
+        KeyEventCanvas.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

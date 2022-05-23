@@ -6,11 +6,13 @@ public class SawTrap : MonoBehaviour
 {
     public GameObject SawCollider;
     public Quaternion target;
-    public float smooth = 100f;
+    public float smooth , TempSmooth;
     public bool active = true;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = gameObject.GetComponent<Animator>();
         SawCollider = transform.GetChild(0).gameObject;
         SawCollider.transform.rotation = Quaternion.Euler(0, 0, 1);
         target = Quaternion.Euler(0, 0, 0);
@@ -48,5 +50,16 @@ public class SawTrap : MonoBehaviour
             SawCollider.transform.rotation = Quaternion.Euler(0, 0, 179);
             active = false;
         }
+        StartCoroutine(Wait());
+    }
+
+    IEnumerator Wait()
+    {
+        TempSmooth = smooth;
+        smooth = 0;
+        animator.speed = 0;
+        yield return new WaitForSeconds(0.3f);
+        animator.speed = 1;
+        smooth = TempSmooth;
     }
 }
