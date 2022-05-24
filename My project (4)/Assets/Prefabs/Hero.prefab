@@ -453,6 +453,13 @@ MonoBehaviour:
     m_Bits: 32768
   attack: {fileID: 8300000, guid: e707e9b7944c3af418b4c985fb047729, type: 3}
   jump: {fileID: 8300000, guid: e707e9b7944c3af418b4c985fb047729, type: 3}
+  SwordOnParticle: {fileID: 3624256295613753960, guid: 3cd35647e9d898e4181cd9d039230d41, type: 3}
+  SwordOffParticle: {fileID: 7303597679521439754, guid: c4d478f5515558848bcb2244c890a853, type: 3}
+  DashParticle: {fileID: 2345224834114253923, guid: 5f6ce61f13b11a74ca170c9ad7f05bc4, type: 3}
+  FastRunParticle: {fileID: 4528203619463458831, guid: 2c09e7d0ef986f7488268fbf58e35c80, type: 3}
+  kickParticle: {fileID: 1513129052979119345, guid: a0f7309cafcf9774f9ec921dacae02e5, type: 3}
+  PunchParticle: {fileID: 6279095766281270034, guid: 4db7c9e75d095d346ac3d2f20607299c, type: 3}
+  SwordParticle: {fileID: 3668120472759632436, guid: d4fe903bc550bc64c9731e0b472a136e, type: 3}
 --- !u!50 &1356653118
 Rigidbody2D:
   serializedVersion: 4

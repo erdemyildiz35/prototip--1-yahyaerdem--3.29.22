@@ -78,6 +78,17 @@ public class AventurerMove : MonoBehaviour
     AudioSource source;
     [SerializeField] AudioClip attack,  jump;
 
+
+    //particle System
+    [SerializeField] GameObject SwordOnParticle;
+    [SerializeField] GameObject SwordOffParticle;
+    [SerializeField] GameObject DashParticle;
+    [SerializeField] GameObject FastRunParticle;
+    [SerializeField] GameObject kickParticle;
+    [SerializeField] GameObject PunchParticle;
+    [SerializeField] GameObject SwordParticle;
+ 
+
     void Start()
     {
         source = GetComponent<AudioSource>();
@@ -307,6 +318,8 @@ public class AventurerMove : MonoBehaviour
             if (HandOrSword && Stamina > 20)
             {
                 Dash();
+                //partikül
+               
             }
             else if (!HandOrSword && Stamina > 0)
             {
@@ -355,12 +368,16 @@ public class AventurerMove : MonoBehaviour
             AnimatorAdventurer.Play("SwordShte");
             AnimatorAdventurer.SetBool("SwordOn", false);
             HandOrSword = false;
+            //Kılıç sokma
+            Instantiate(SwordOffParticle, transform.position, Quaternion.identity);
         }
         else
         {
             AnimatorAdventurer.Play("SwordDraw");
             AnimatorAdventurer.SetBool("SwordOn", true);
             HandOrSword = true;
+            //kılıç çekme
+            Instantiate(SwordOnParticle, transform.position, Quaternion.identity);
         }
     }
 
@@ -412,12 +429,15 @@ public class AventurerMove : MonoBehaviour
                 {
                     AnimatorAdventurer.Play("Attack1");
                     AttackDamage = 20;
+                    //saldırı 
                 }
                 else
                 {
                     AnimatorAdventurer.Play("AirAttack");
                     AttackDamage = 25;
                     Debug.Log("AirAttack");
+                    //Saldırı
+
                 }
             }
             else if (key == KeyCode.X)
@@ -426,12 +446,14 @@ public class AventurerMove : MonoBehaviour
                 {
                     AnimatorAdventurer.Play("Attack2");
                     AttackDamage = 25;
+                    //Saldırı
                 }
                 else
                 {
                     AnimatorAdventurer.Play("AirAttack2");
                     AttackDamage = 25;
                     Debug.Log("AirAttack2");
+                    //Saldırı
                 }
             }
 
@@ -445,12 +467,14 @@ public class AventurerMove : MonoBehaviour
                 {
                     AnimatorAdventurer.Play("Kick");
                     AttackDamage = 10;
+                    //Saldırı -kick
                 }
                 else if (!IsGround)
                 {
                     AnimatorAdventurer.Play("DropKick");
                     AttackDamage = 10;
                     Debug.Log("DropKick");
+                    //Saldırı -kick
                 }
                 else if (IsGround && AnimatorAdventurer.GetBool("FastRun") == true)
                 {
@@ -500,6 +524,7 @@ public class AventurerMove : MonoBehaviour
         {
             Stamina -= 10;
             AnimatorAdventurer.Play("smrlt");
+            Instantiate(DashParticle, transform.position, Quaternion.identity);
             StartCoroutine(DashIE());
         }
     }
@@ -513,6 +538,7 @@ public class AventurerMove : MonoBehaviour
             Speed = SuperSpeed;
             AnimatorAdventurer.Play("Run2");
             AnimatorAdventurer.SetBool("FastRun", true);
+            //tüktükUfakAdımlar
         }
     }
 
@@ -666,10 +692,14 @@ public class AventurerMove : MonoBehaviour
 
         AnimatorAdventurer.SetBool("IsDash", false);
         Speed -= DashSpeed;
+        //dashParticle
+
 
         yield return new WaitForSeconds(.4f);
 
         isDash = false;
+
+
     }
     IEnumerator AttackWaitTime()
     {
