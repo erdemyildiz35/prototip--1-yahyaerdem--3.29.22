@@ -12,7 +12,12 @@ public class Enemy : MonoBehaviour
     private bool isFlying = false;
     public bool isTakingDamage = false;
     public EnemyhealthBar healthbar;
+
+
+
     [SerializeField] GameObject BloodParticle;
+    [SerializeField] GameObject slashParticle;
+
     private Vector3 Scale;
     public AventurerMove Hero;
     public string LayerOfThisObject;
@@ -47,6 +52,7 @@ public class Enemy : MonoBehaviour
         {
             animator.Play("TakeHit");
             Instantiate(BloodParticle, transform.position, Quaternion.identity);
+            Instantiate(slashParticle, transform.position, Quaternion.identity);
             Health -= Damage;
             if (Health <= 0)
             {   
