@@ -733,7 +733,7 @@ public class AventurerMove : MonoBehaviour
         if (collision.gameObject.tag == "Rope")
         {
             canClimb = true;
-            RopeKeyImage.transform.position = new Vector3(collision.transform.position.x + 0.2f, collision.transform.position.y, collision.transform.position.z);
+          //  RopeKeyImage.transform.position = new Vector3(collision.transform.position.x + 0.2f, collision.transform.position.y, collision.transform.position.z);
             RopeKeyImage.enabled = true;
             Rope = collision.transform.position;
         }
