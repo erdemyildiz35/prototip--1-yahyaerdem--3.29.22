@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 //using Pathfinding;
 public class Enemy : MonoBehaviour
 {
@@ -12,11 +13,11 @@ public class Enemy : MonoBehaviour
     private bool isFlying = false;
     public bool isTakingDamage = false;
     public EnemyhealthBar healthbar;
-
-
+    public Skills skills;
 
     [SerializeField] GameObject BloodParticle;
     [SerializeField] GameObject slashParticle;
+    [SerializeField] GameObject ExpParticle;
 
     private Vector3 Scale;
     public AventurerMove Hero;
@@ -29,8 +30,9 @@ public class Enemy : MonoBehaviour
         Scale = transform.localScale;
         healthbar.SetHealth(Health, MaxHealth);
         Hero = FindObjectOfType<AventurerMove>();
-
+        skills = GameObject.Find("Hero").GetComponent<Skills>();
     }
+
     private void Update()
     {
 
@@ -52,19 +54,42 @@ public class Enemy : MonoBehaviour
         {
             animator.Play("TakeHit");
             Instantiate(BloodParticle, transform.position, Quaternion.identity);
-            Instantiate(slashParticle, transform.position, Quaternion.identity);
+            GameObject go = Instantiate(slashParticle, transform.position, Quaternion.identity);
+            go.transform.localScale *= Damage / 25;
             Health -= Damage;
             if (Health <= 0)
             {   
-                if(LayerOfThisObject == "FireWorm")//FireWorm
+                if(gameObject.name == "FireWorm")
                 {
-                    Debug.Log("Fireworm");
-                    Hero.GetComponent<AventurerMove>().GainExp(10);
+                    skills.GainExp(15);
                 }
-                else if (LayerOfThisObject == "Zombie")//Zombie
+                else if (gameObject.name == "Zombie")
                 {
-                    Hero.GetComponent<AventurerMove>().GainExp(20);
+                    skills.GainExp(15);
                 }
+                else if (gameObject.name == "Ghoul")
+                {
+                    skills.GainExp(15);
+                }
+                else if (gameObject.name == "Mushroom")
+                {
+                    skills.GainExp(15);
+                }
+                else if (gameObject.name == "EyePos")
+                {
+                    skills.GainExp(15);
+                }
+                else if (gameObject.name == "boss")
+                {
+                    skills.GainExp(100);
+                }
+                else
+                {
+                    Debug.Log("düşman bulamadı");
+                }
+                skills.Gold += 50;
+                skills.CalculateGold();
+                Instantiate(ExpParticle, transform.position, Quaternion.identity);
                 Die();
             }
 

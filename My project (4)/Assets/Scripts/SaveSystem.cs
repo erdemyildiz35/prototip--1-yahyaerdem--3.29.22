@@ -36,6 +36,9 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.SetInt("Gold", skill.Gold);
         PlayerPrefs.SetInt("SwordUpgradeLevel", skill.SwordUpgradeLevel);
         PlayerPrefs.SetInt("ArmorUpgradeLevel", skill.ArmorUpgradeLevel);
+        PlayerPrefs.SetInt("ÝceComplete", skill.IceComplete);
+        PlayerPrefs.SetInt("DesertComplete", skill.DesertComplete);
+        PlayerPrefs.SetInt("CastleComplete", skill.CastleComplete);
 
     }
 
@@ -51,6 +54,10 @@ public class SaveSystem : MonoBehaviour
         skill.Gold = PlayerPrefs.GetInt("Gold");
         skill.SwordUpgradeLevel = PlayerPrefs.GetInt("SwordUpgradeLevel");
         skill.ArmorUpgradeLevel = PlayerPrefs.GetInt("ArmorUpgradeLevel");
+        skill.IceComplete = PlayerPrefs.GetInt("IceComplete");
+        skill.DesertComplete = PlayerPrefs.GetInt("DesertComplete");
+        skill.CastleComplete = PlayerPrefs.GetInt("CastleComplete");
+
     }
 
     public void NewGame()
@@ -64,6 +71,9 @@ public class SaveSystem : MonoBehaviour
         skill.PlayerLevel = 0;
         skill.SwordUpgradeLevel = 0;
         skill.ArmorUpgradeLevel = 0;
+        skill.IceComplete = 0;
+        skill.DesertComplete = 0;
+        skill.CastleComplete = 0;
 
         save();
     }

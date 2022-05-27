@@ -11,6 +11,7 @@ public class LevelGates : MonoBehaviour
     [SerializeField] GameObject Portal;
     [SerializeField] bool isGateActive, isTrigger;
     [SerializeField] Collider2D Collider;
+    Skills skills;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class LevelGates : MonoBehaviour
         orbsControl = GameObject.Find("Orbs").GetComponent<OrbsControl>();
         Orbs = GameObject.Find("Orbs");
         Collider = gameObject.GetComponent<Collider2D>();
+        skills = GameObject.Find("Hero").GetComponent<Skills>();
 
         Portal = GameObject.Find("Portal");
 
@@ -26,7 +28,6 @@ public class LevelGates : MonoBehaviour
         isTrigger = false;
 
         OrbsCount = Orbs.transform.childCount;
-
     }
 
     // Update is called once per frame
@@ -39,7 +40,6 @@ public class LevelGates : MonoBehaviour
         KeyEvent();
     }
 
-
     public void GateActive()
     {
         if (OrbsCount == orbsControl.DestroyedOrbs)
@@ -49,15 +49,32 @@ public class LevelGates : MonoBehaviour
             Portal.SetActive(true);
         }
     }
+
     void KeyEvent()
     {
         if (Input.GetKeyDown(KeyCode.E) && isTrigger)
         {
+            LevelChecker();
             Debug.Log("keyevent");
             SceneManager.LoadScene("MainLevel");
         }
     }
 
+    void LevelChecker()
+    {
+        if(SceneManager.GetActiveScene().name == "Desert")
+        {
+            skills.DesertComplete = 1;
+        }
+        else if (SceneManager.GetActiveScene().name == "Castle")
+        {
+            skills.CastleComplete = 1;
+        }
+        else if (SceneManager.GetActiveScene().name == "Map3")
+        {
+            skills.IceComplete = 1;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

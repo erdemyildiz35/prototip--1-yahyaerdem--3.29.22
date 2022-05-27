@@ -623,20 +623,6 @@ public class AventurerMove : MonoBehaviour
         Stamina += Time.deltaTime * 5;
     }
 
-    public void GainExp(int EnemyExp)
-    {
-        skills.Exp += EnemyExp;
-        if (skills.Exp >= 100)
-        {
-            skills.PlayerLevel++;
-            skills.skillpoints++;
-            skills.Exp -= 100;
-        }
-        ExpSlider.value = skills.Exp;
-        LevelText.text = "Level : " + skills.PlayerLevel;
-    }
-
-
     public void AllertObserver(string message)
     {
         if (message == "Jump")

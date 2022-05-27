@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class DiyalogSistemi : MonoBehaviour
 {
-   [SerializeField] Canvas DialogCanvas;
+    [SerializeField] Canvas DialogCanvas;
     [SerializeField] private TextMeshProUGUI TextLabel;
     [SerializeField] Image KeyEventImage;
     GameObject TextObject;
@@ -18,9 +18,11 @@ public class DiyalogSistemi : MonoBehaviour
 
     private void Start()
     {
-       
-        
-       
+        if (GameObject.Find("DialogCanvas"))
+        {
+            DialogCanvas = GameObject.Find("Dialog").GetComponent<Canvas>();
+        }
+
         KeyEventImage = GameObject.Find("KeyEventImage").GetComponent<Image>();
         KeyEventImage.enabled = false;
         DialogCanvas.enabled = false;

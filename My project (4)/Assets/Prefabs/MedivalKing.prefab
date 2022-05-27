@@ -703,6 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45713cf768accfb4d8d7cdaf575dbc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogCanvas: {fileID: 0}
   TextLabel: {fileID: 19915029}
   KeyEventImage: {fileID: 0}
   UIElement: {fileID: 1089363222}

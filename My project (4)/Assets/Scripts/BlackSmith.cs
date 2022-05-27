@@ -131,6 +131,7 @@ public class BlackSmith : MonoBehaviour
         {
             StartCoroutine(FailTextIE());
         }
+        skill.CalculateGold();
     }
 
     void ArmorUpgrade()
@@ -147,6 +148,7 @@ public class BlackSmith : MonoBehaviour
         {
             StartCoroutine(FailTextIE());
         }
+        skill.CalculateGold();
     }
 
     IEnumerator ButtonOnOffIE()
