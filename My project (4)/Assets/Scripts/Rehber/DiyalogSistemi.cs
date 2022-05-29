@@ -18,12 +18,12 @@ public class DiyalogSistemi : MonoBehaviour
 
     private void Start()
     {
-        if (GameObject.Find("DialogCanvas"))
+     /*  if (GameObject.Find("DialogCanvas"))
         {
             DialogCanvas = GameObject.Find("Dialog").GetComponent<Canvas>();
         }
 
-        KeyEventImage = GameObject.Find("KeyEventImage").GetComponent<Image>();
+        KeyEventImage = GameObject.Find("KeyEventImage").GetComponent<Image>(); */
         KeyEventImage.enabled = false;
         DialogCanvas.enabled = false;
 
