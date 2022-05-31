@@ -1,18 +1,55 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GatesManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+   
+
+    public bool iswizardDestryed = false;
+   
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+ 
     void Update()
     {
+    
         
     }
+
+    public void MainScenePass()
+    {
+
+        SceneManager.LoadScene("MainLevel");
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+          
+
+            if (Input.GetKeyDown(KeyCode.E)&&iswizardDestryed)
+            {
+                MainScenePass();
+
+
+            }
+
+        }
+        else
+        {
+           
+
+        }
+    }
+
 }

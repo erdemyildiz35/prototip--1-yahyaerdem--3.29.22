@@ -39,6 +39,7 @@ public class AventurerMove : MonoBehaviour
     public bool isWallSlide = false;
     public bool WallSlideJump = false;
     public bool isFalling = false;
+    public bool isOnRope = false;
     AdventurerHealth adventurerhealth;
 
     //speed
@@ -347,7 +348,11 @@ public class AventurerMove : MonoBehaviour
         {
             if (canClimb)
             {
-                isClimbing = true;
+                if (isOnRope)
+                {
+                    isClimbing = true;
+                }
+             
             }
             else if (isClimbing)
             {
@@ -706,6 +711,19 @@ public class AventurerMove : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag == "Rope")
+        {
+            canClimb = true;
+            //  RopeKeyImage.transform.position = new Vector3(collision.transform.position.x + 0.2f, collision.transform.position.y, collision.transform.position.z);
+            RopeKeyImage.enabled = true;
+            Rope = collision.transform.position;
+            isOnRope = true;
+        }
+
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "jumper")
@@ -716,13 +734,6 @@ public class AventurerMove : MonoBehaviour
 
         }
 
-        if (collision.gameObject.tag == "Rope")
-        {
-            canClimb = true;
-          //  RopeKeyImage.transform.position = new Vector3(collision.transform.position.x + 0.2f, collision.transform.position.y, collision.transform.position.z);
-            RopeKeyImage.enabled = true;
-            Rope = collision.transform.position;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

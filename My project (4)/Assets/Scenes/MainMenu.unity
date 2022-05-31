@@ -7134,6 +7134,12 @@ MonoBehaviour:
   SwordUpgradeLevel: 0
   ArmorUpgradeLevel: 0
   CurrentLevel: 0
+  ExpSlider: {fileID: 0}
+  LevelText: {fileID: 0}
+  GoldText: {fileID: 0}
+  IceComplete: 0
+  CastleComplete: 0
+  DesertComplete: 0
 --- !u!114 &1738296759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7811,3 +7817,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986082225}
   m_CullTransparentMesh: 1
+--- !u!1001 &2114193890
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -49.20203
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -99.56234
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.912626
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411671, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411673, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_Name
+      value: PostPr
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191096849993411673, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c396f0458f9fd9f4181a62537ad3625a, type: 3}
