@@ -12,17 +12,16 @@ public class SaveSystem : MonoBehaviour
         {
             skill = GameObject.Find("Hero").GetComponent<Skills>();
         }
+        else if(GameObject.Find("SkillMenuController"))
+        {
+            skill = GameObject.Find("SkillMenuController").GetComponent<Skills>();
+        }
         else
         {
             skill = GetComponent<Skills>();
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void save()
     {

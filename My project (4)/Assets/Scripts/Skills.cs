@@ -19,18 +19,23 @@ public class Skills : MonoBehaviour
     public int ArmorUpgradeLevel;
     public int CurrentLevel;
     public Slider ExpSlider;
-    public TextMeshProUGUI LevelText,GoldText;
+    public TextMeshProUGUI LevelText, GoldText;
     public int IceComplete, CastleComplete, DesertComplete;
+    public bool GenelCanvas = false;
 
     //public int currentStageLevel;
 
     private void Start()
     {
-        ExpSlider = GameObject.Find("Exp").GetComponent<Slider>();
-        LevelText = GameObject.Find("LevelText").GetComponent<TextMeshProUGUI>();
-        GoldText = GameObject.Find("MainGoldText").GetComponent<TextMeshProUGUI>();
-        GainExp(0);
-        CalculateGold();
+        if (GameObject.Find("GenelCanvas"))
+        {
+            GenelCanvas = true;
+            ExpSlider = GameObject.Find("Exp").GetComponent<Slider>();
+            LevelText = GameObject.Find("LevelText").GetComponent<TextMeshProUGUI>();
+            GoldText = GameObject.Find("MainGoldText").GetComponent<TextMeshProUGUI>();
+            GainExp(0);
+            CalculateGold();
+        }   
     }
 
     public void GainExp(int exp)
@@ -42,6 +47,7 @@ public class Skills : MonoBehaviour
             skillpoints++;
             Exp -= 100;
         }
+
         ExpSlider.value = Exp;
         LevelText.text = "Level : " + PlayerLevel;
     }

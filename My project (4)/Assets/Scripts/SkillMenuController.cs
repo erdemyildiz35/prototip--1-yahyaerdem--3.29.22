@@ -32,7 +32,6 @@ public class SkillMenuController : MonoBehaviour
         StaMinus = GameObject.Find("Stamina-").GetComponent<Button>();
 
         SaveSystem = GetComponent<SaveSystem>();
-
     }
 
     private void Start()

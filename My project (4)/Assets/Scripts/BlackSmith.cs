@@ -8,7 +8,8 @@ public class BlackSmith : MonoBehaviour
 {
     BoxCollider2D BlackSmithCollider;
     Canvas UpgradeCanvas, UpgradeFailCanvas, BlacksmithUpgradeCanvas;
-    Text ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText, GoldText, FailText;
+    TextMeshProUGUI GoldText;
+    Text ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText, FailText;
     AventurerMove aventurerMove;
     Button ExitButton, SwordUpgradeButton, ArmorUpgradeButton;
     Skills skill;
@@ -34,7 +35,7 @@ public class BlackSmith : MonoBehaviour
         ArmorUpgradeText = GameObject.Find("ArmorUpgradePrice").GetComponent<Text>();
         ArmorUpgradeButton = GameObject.Find("ArmorUpgradeButton").GetComponent<Button>();
 
-        GoldText = GameObject.Find("GoldText").GetComponent<Text>();
+        GoldText = GameObject.Find("GoldText").GetComponent<TextMeshProUGUI>();
         FailText = GameObject.Find("FailText").GetComponent<Text>();
 
         UpgradeFailCanvas = GameObject.Find("UpgradeFail").GetComponent<Canvas>();

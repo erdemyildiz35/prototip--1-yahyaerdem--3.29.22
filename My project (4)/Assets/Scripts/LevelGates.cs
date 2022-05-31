@@ -12,6 +12,7 @@ public class LevelGates : MonoBehaviour
     [SerializeField] bool isGateActive, isTrigger;
     [SerializeField] Collider2D Collider;
     Skills skills;
+    SaveSystem saveSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class LevelGates : MonoBehaviour
         Orbs = GameObject.Find("Orbs");
         Collider = gameObject.GetComponent<Collider2D>();
         skills = GameObject.Find("Hero").GetComponent<Skills>();
+        saveSystem = GameObject.Find("Hero").GetComponent<SaveSystem>();
 
         Portal = GameObject.Find("Portal");
 
@@ -55,8 +57,8 @@ public class LevelGates : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && isTrigger)
         {
             LevelChecker();
-            Debug.Log("keyevent");
-            SceneManager.LoadScene("MainLevel");
+            saveSystem.save();
+            StartCoroutine(GoMainLevel());
         }
     }
 
@@ -77,6 +79,12 @@ public class LevelGates : MonoBehaviour
             skills.IceComplete = 1;
             PlayerPrefs.SetFloat("Map3", 1);
         }
+    }
+
+    IEnumerator GoMainLevel()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("MainLevel");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -303,14 +303,14 @@ public class AventurerMove : MonoBehaviour
         }
 
         //Attack
-        if (Input.GetKeyDown(KeyCode.Z) && !isAttacking && !isCrouch)
+        if (Input.GetMouseButtonDown(0) && !isAttacking && !isCrouch)
         {
-            Attack(KeyCode.Z);
+            Attack(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && !isAttacking && !isCrouch)
+        if (Input.GetMouseButtonDown(1) && !isAttacking && !isCrouch)
         {
-            Attack(KeyCode.X);
+            Attack(1);
         }
 
         //Dash ve FastRun
@@ -410,17 +410,17 @@ public class AventurerMove : MonoBehaviour
         }
     }
 
-    void Attack(KeyCode key)
+    void Attack(int key)
     {
 
         source.PlayOneShot(attack);
         //havada yumruk animasyonu olmadığı için hata veriyordu o yüzden koşul ekledim
-        if (!HandOrSword && key == KeyCode.X && !IsGround || !IsGround) { }
+        if (!HandOrSword && key == 1 && !IsGround || !IsGround) { }
         else
         {
             StartCoroutine(AttacStartWait());
         }
-        if (!HandOrSword && key == KeyCode.X && !IsGround) { }
+        if (!HandOrSword && key == 1 && !IsGround) { }
         else
         {
             isAttacking = true;
@@ -428,7 +428,7 @@ public class AventurerMove : MonoBehaviour
 
         if (HandOrSword)
         {
-            if (key == KeyCode.Z)
+            if (key == 0)
             {
                 if (IsGround)
                 {
@@ -445,7 +445,7 @@ public class AventurerMove : MonoBehaviour
 
                 }
             }
-            else if (key == KeyCode.X)
+            else if (key == 1)
             {
                 if (IsGround)
                 {
@@ -466,7 +466,7 @@ public class AventurerMove : MonoBehaviour
         }
         else if (!HandOrSword)
         {
-            if (key == KeyCode.Z)
+            if (key == 0)
             {
                 if (IsGround)
                 {
@@ -487,7 +487,7 @@ public class AventurerMove : MonoBehaviour
                     AttackDamage = 10;
                 }
             }
-            else if (key == KeyCode.X && IsGround)
+            else if (key == 1 && IsGround)
             {
                 if (AnimatorAdventurer.GetBool("FastRun") == false)
                 {
