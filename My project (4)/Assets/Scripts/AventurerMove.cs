@@ -730,11 +730,11 @@ public class AventurerMove : MonoBehaviour
         if (collision.gameObject.tag == "Rope")
         {
             RopeKeyImage.enabled = false;
+            canClimb = false;
             if (isClimbing)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 5);
-                RopeKeyImage.enabled = false;
-                canClimb = false;
+                RopeKeyImage.enabled = false;    
                 isClimbing = false;
                 AnimatorAdventurer.SetBool("isClimbing", false);
                 Debug.Log("Rope Trigger Exit");
