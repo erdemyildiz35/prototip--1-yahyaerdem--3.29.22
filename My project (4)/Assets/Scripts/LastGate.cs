@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LastGate : MonoBehaviour
 {
@@ -22,16 +23,15 @@ public class LastGate : MonoBehaviour
         isGateActive = false;
         isTrigger = false;
 
-        GateActive();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         if (!isGateActive)
         {
             GateActive();
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    { 
         KeyEvent();
     }
 
@@ -48,7 +48,7 @@ public class LastGate : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && isTrigger)
         {
-            NextUpdate.enabled = true;
+            SceneManager.LoadScene("finalStage");
             //new scene load
         }
     }
@@ -57,6 +57,7 @@ public class LastGate : MonoBehaviour
         if (!isTrigger && isGateActive)
         {
             isTrigger = true;
+            NextUpdate.enabled = true;
         }
     }
 

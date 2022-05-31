@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public bool isTakingDamage = false;
     public EnemyhealthBar healthbar;
     public Skills skills;
+    public bool TakingDamage = false;
 
     [SerializeField] GameObject BloodParticle;
     [SerializeField] GameObject slashParticle;
@@ -52,6 +53,7 @@ public class Enemy : MonoBehaviour
     {
         if (!isDead)
         {
+            TakingDamage = true;
             animator.Play("TakeHit");
             Instantiate(BloodParticle, transform.position, Quaternion.identity);
             GameObject go = Instantiate(slashParticle, transform.position, Quaternion.identity);
@@ -98,9 +100,14 @@ public class Enemy : MonoBehaviour
         }
 
 
-
+        StartCoroutine(TakingDamageIE());
     }
 
+    IEnumerator TakingDamageIE()
+    {
+        yield return new WaitForSeconds(0.3f);
+        TakingDamage = false;
+    }
 
     IEnumerator TakeDamageIE(float Damage)
     {

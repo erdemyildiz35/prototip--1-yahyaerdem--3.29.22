@@ -36,10 +36,16 @@ public class EnemyAıAdvance : MonoBehaviour
     [SerializeField] Transform AttackPoint;
     public bool isdead = false;
     public bool isTakenDamage = false;
+    public Enemy enemy;
 
 
     void Start()
     {
+        if (gameObject.GetComponent<Enemy>())
+        {
+            enemy = GetComponent<Enemy>();
+        }
+
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -53,7 +59,7 @@ public class EnemyAıAdvance : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (TarGetInDistence()&& FollowEnabled)
+        if (TarGetInDistence() && FollowEnabled)
         {
 
             PathFollow();
@@ -64,7 +70,7 @@ public class EnemyAıAdvance : MonoBehaviour
     private void UpdatePath()
     {
 
-        if(FollowEnabled&&TarGetInDistence() && seeker.IsDone()&&!IsAttack&& !isdead&&!isTakenDamage)
+        if (FollowEnabled && TarGetInDistence() && seeker.IsDone() && !IsAttack && !isdead && !isTakenDamage)
         {
             animator.SetBool("Run", true);
             seeker.StartPath(rb.position, Target.transform.position, OnPathComplete);
@@ -75,7 +81,7 @@ public class EnemyAıAdvance : MonoBehaviour
             animator.SetBool("Run", false);
         }
 
-     
+
         if (Vector2.Distance(transform.position, Target.transform.position) < 3f && !isdead && !isTakenDamage)
         {
             IsAttack = true;
@@ -84,9 +90,9 @@ public class EnemyAıAdvance : MonoBehaviour
             animator.Play("Attack1");
 
         }
-        else 
+        else
         {
-            
+
             IsAttack = false;
         }
     }
@@ -103,7 +109,7 @@ public class EnemyAıAdvance : MonoBehaviour
 
         //pathbiterse
 
-        if(CurrentWaypoint>= path.vectorPath.Count)
+        if (CurrentWaypoint >= path.vectorPath.Count)
         {
 
             return;
@@ -113,11 +119,11 @@ public class EnemyAıAdvance : MonoBehaviour
 
 
         Vector2 direction = ((Vector2)path.vectorPath[CurrentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * Speed * Time.deltaTime;
+        Vector2 force = direction * Speed * Time.deltaTime * 100;
 
         //Jump
 
-        if(JumpEnabled&&İsGrounded)
+        if (JumpEnabled && İsGrounded)
         {
             if (direction.y > JumpNodeHeightRequirement)
             {
@@ -141,9 +147,10 @@ public class EnemyAıAdvance : MonoBehaviour
 
             if (rb.velocity.x > .05f)
             {
-                transform.localScale = new Vector3( Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
-            }else if (rb.velocity.x < -.05f)
+            }
+            else if (rb.velocity.x < -.05f)
             {
 
                 transform.localScale = new Vector3(-1f * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -155,14 +162,14 @@ public class EnemyAıAdvance : MonoBehaviour
 
     }
 
-   
+
     private bool TarGetInDistence()
     {
 
         return Vector2.Distance(AttackPoint.position, Target.transform.position) < ActivateDistance;
-        
+
     }
-    
+
     private void OnPathComplete(Path p)
     {
         if (!p.error)
@@ -178,15 +185,10 @@ public class EnemyAıAdvance : MonoBehaviour
 
     public void Attack()
     {
-
-        if(Vector2.Distance(transform.position, Target.transform.position) < 3f)
+        if (Vector2.Distance(transform.position, Target.transform.position) < 3f && !enemy.TakingDamage)
         {
             adventurerHealth.TakeDamage(15);
-           //Playerhealthtan can yakıcaz
-
+            //Playerhealthtan can yakıcaz
         }
-
     }
-
-
 }

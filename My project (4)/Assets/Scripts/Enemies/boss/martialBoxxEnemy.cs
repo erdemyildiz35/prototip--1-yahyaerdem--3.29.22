@@ -50,8 +50,6 @@ public class martialBoxxEnemy : MonoBehaviour
             Vector2 MovePos = Vector2.MoveTowards(Rb.position, target, Speed * Time.fixedDeltaTime);
             Rb.MovePosition(MovePos);
             Anime.SetBool("Running", true);
-
-
         }
         else
         {
@@ -80,9 +78,6 @@ public class martialBoxxEnemy : MonoBehaviour
             CanRun = true;
         }
 
-       
-        
-
     }
 
     void StandartAttacks()
@@ -104,7 +99,6 @@ public class martialBoxxEnemy : MonoBehaviour
             Anime.Play("SpecialAttack");
         CanAttack = false;
          }
-
      }
 
     private void FlipRight()
@@ -119,9 +113,6 @@ public class martialBoxxEnemy : MonoBehaviour
 
     IEnumerator AttackWaitTime()
     {
-
-
-
         yield return new WaitForSeconds(1.8f);
         CanAttack = true;
     }
@@ -146,10 +137,7 @@ public class martialBoxxEnemy : MonoBehaviour
                     Adventurer.TakeDamage(10);
                     StartCoroutine(AttackWaitTime());
                 }
-
             }
-          
-
         }
 
 
@@ -158,20 +146,8 @@ public class martialBoxxEnemy : MonoBehaviour
 
             if ((Vector2.Distance(Adventurer.transform.position, AttackPoint.transform.position) <= SaldırıMenzili))
             {
-
-
                 Adventurer.TakeDamage(7);
-
-
             }
-
-
-
-
         }
-
-
-
     }
-
 }

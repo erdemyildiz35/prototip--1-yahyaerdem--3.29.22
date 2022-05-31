@@ -132,7 +132,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 5
@@ -211,6 +211,7 @@ MonoBehaviour:
   AttackPoint: {fileID: 5530393196373166086}
   isdead: 0
   isTakenDamage: 0
+  enemy: {fileID: 0}
 --- !u!95 &3233007028143596717
 Animator:
   serializedVersion: 3
@@ -248,6 +249,7 @@ MonoBehaviour:
   isTakingDamage: 0
   healthbar: {fileID: 4194418534008659303}
   skills: {fileID: 0}
+  TakingDamage: 0
   BloodParticle: {fileID: 5134784687839452509, guid: 828e3956aeca6bb469c70be38b68de07, type: 3}
   slashParticle: {fileID: 3668120472759632436, guid: d4fe903bc550bc64c9731e0b472a136e, type: 3}
   ExpParticle: {fileID: 459033524906542380, guid: c72858061aca43a478471cd880f1e261, type: 3}
