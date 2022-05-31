@@ -65,14 +65,17 @@ public class LevelGates : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "Desert")
         {
             skills.DesertComplete = 1;
+            PlayerPrefs.SetFloat("Desert", 1);
         }
         else if (SceneManager.GetActiveScene().name == "Castle")
         {
             skills.CastleComplete = 1;
+            PlayerPrefs.SetFloat("Castle", 1);
         }
         else if (SceneManager.GetActiveScene().name == "Map3")
         {
             skills.IceComplete = 1;
+            PlayerPrefs.SetFloat("Map3", 1);
         }
     }
 

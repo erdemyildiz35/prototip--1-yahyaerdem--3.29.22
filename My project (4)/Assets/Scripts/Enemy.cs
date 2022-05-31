@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     private Vector3 Scale;
     public AventurerMove Hero;
     public string LayerOfThisObject;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +85,12 @@ public class Enemy : MonoBehaviour
                 else if (gameObject.name == "boss")
                 {
                     skills.GainExp(100);
+                }else if (gameObject.name== "evil Wizard")
+                {
+                    skills.GainExp(150);
+                    GatesManager Manager = FindObjectOfType<GatesManager>();
+                    Manager.iswizardDestryed = true;
+
                 }
                 else
                 {
