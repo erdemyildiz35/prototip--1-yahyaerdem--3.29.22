@@ -11,6 +11,10 @@ public class EnemyAıAdvance : MonoBehaviour
     [SerializeField] float ActivateDistance = 30f;
     [SerializeField] float pathUpdateSec = .5f;
 
+    [Header("Sound system")]
+    private AudioSource ZombieSource;
+    [SerializeField] AudioClip ZombieAttackSound;
+
 
 
     [Header("Physics")]
@@ -38,7 +42,11 @@ public class EnemyAıAdvance : MonoBehaviour
     public bool isTakenDamage = false;
     public Enemy enemy;
 
+    private void Awake()
+    {
 
+        ZombieSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
         if (gameObject.GetComponent<Enemy>())
@@ -88,6 +96,7 @@ public class EnemyAıAdvance : MonoBehaviour
 
 
             animator.Play("Attack1");
+            ZombieSource.PlayOneShot(ZombieAttackSound);
 
         }
         else

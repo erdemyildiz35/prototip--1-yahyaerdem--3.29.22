@@ -315,7 +315,7 @@ Transform:
   m_GameObject: {fileID: 9079227912830365530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.6051126, y: 1.1452271, z: -6.791973}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.93, y: 0.93, z: 0.93}
   m_Children:
   - {fileID: 2143158141}
   - {fileID: 584949974}
@@ -430,6 +430,7 @@ MonoBehaviour:
   isWallSlide: 0
   WallSlideJump: 0
   isFalling: 0
+  isOnRope: 0
   MySpeedX: 0
   MySpeedY: 0
   Speed: 5
@@ -451,8 +452,10 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 32768
-  attack: {fileID: 8300000, guid: e707e9b7944c3af418b4c985fb047729, type: 3}
-  jump: {fileID: 8300000, guid: e707e9b7944c3af418b4c985fb047729, type: 3}
+  attack: {fileID: 8300000, guid: 701a9c3354e44474f871c22d7e9c700b, type: 3}
+  jump: {fileID: 8300000, guid: d2a37cf284f550f479122178559c9ddd, type: 3}
+  punch: {fileID: 8300000, guid: 378fb1fb034a9874197796c31d590e9e, type: 3}
+  dash: {fileID: 8300000, guid: 8fbc94fe547eed24993a5e27260e6b68, type: 3}
   SwordOnParticle: {fileID: 3624256295613753960, guid: 3cd35647e9d898e4181cd9d039230d41, type: 3}
   SwordOffParticle: {fileID: 7303597679521439754, guid: c4d478f5515558848bcb2244c890a853, type: 3}
   DashParticle: {fileID: 2345224834114253923, guid: 5f6ce61f13b11a74ca170c9ad7f05bc4, type: 3}
@@ -525,7 +528,7 @@ MonoBehaviour:
     m_Bits: 128
   playerBloodParticle: {fileID: 5134784687839452509, guid: 828e3956aeca6bb469c70be38b68de07, type: 3}
   DamageCanBeTakenBool: 1
-  takeDamage: {fileID: 8300000, guid: 58eedef88fa41114ea2c32d978666d2a, type: 3}
+  takeDamage: {fileID: 8300000, guid: b26f8db701f2e9d4383132be7faab1ac, type: 3}
 --- !u!114 &1333644324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +551,13 @@ MonoBehaviour:
   SwordUpgradeLevel: 0
   ArmorUpgradeLevel: 0
   CurrentLevel: 0
+  ExpSlider: {fileID: 0}
+  LevelText: {fileID: 0}
+  GoldText: {fileID: 0}
+  IceComplete: 0
+  CastleComplete: 0
+  DesertComplete: 0
+  GenelCanvas: 0
 --- !u!114 &7375905531091988015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +565,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9079227912830365530}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08253b0756cecfb4b8d3466ac318ee38, type: 3}
   m_Name: 
@@ -586,15 +596,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9b9dbee4dea09b546a9ad6c8d7eded32, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0ada19c1aadd2d14ca2bd5eca001f8c6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.16
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

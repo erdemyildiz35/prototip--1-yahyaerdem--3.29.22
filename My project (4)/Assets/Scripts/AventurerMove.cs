@@ -77,7 +77,7 @@ public class AventurerMove : MonoBehaviour
     //soundsSystem
 
     AudioSource source;
-    [SerializeField] AudioClip attack,  jump;
+    [SerializeField] AudioClip attack,  jump,punch,dash;
 
 
     //particle System
@@ -413,7 +413,7 @@ public class AventurerMove : MonoBehaviour
     void Attack(int key)
     {
 
-        source.PlayOneShot(attack);
+       
         //havada yumruk animasyonu olmadığı için hata veriyordu o yüzden koşul ekledim
         if (!HandOrSword && key == 1 && !IsGround || !IsGround) { }
         else
@@ -435,12 +435,14 @@ public class AventurerMove : MonoBehaviour
                     AnimatorAdventurer.Play("Attack1");
                     AttackDamage = 20;
                     //saldırı 
+                    source.PlayOneShot(attack);
                 }
                 else
                 {
                     AnimatorAdventurer.Play("AirAttack");
                     AttackDamage = 25;
                     Debug.Log("AirAttack");
+                    source.PlayOneShot(attack);
                     //Saldırı
 
                 }
@@ -451,6 +453,7 @@ public class AventurerMove : MonoBehaviour
                 {
                     AnimatorAdventurer.Play("Attack2");
                     AttackDamage = 25;
+                    source.PlayOneShot(attack);
                     //Saldırı
                 }
                 else
@@ -458,6 +461,7 @@ public class AventurerMove : MonoBehaviour
                     AnimatorAdventurer.Play("AirAttack2");
                     AttackDamage = 25;
                     Debug.Log("AirAttack2");
+                    source.PlayOneShot(attack);
                     //Saldırı
                 }
             }
@@ -472,6 +476,7 @@ public class AventurerMove : MonoBehaviour
                 {
                     AnimatorAdventurer.Play("Kick");
                     AttackDamage = 10;
+                    source.PlayOneShot(punch);
                     //Saldırı -kick
                 }
                 else if (!IsGround)
@@ -479,6 +484,7 @@ public class AventurerMove : MonoBehaviour
                     AnimatorAdventurer.Play("DropKick");
                     AttackDamage = 10;
                     Debug.Log("DropKick");
+                    source.PlayOneShot(punch);
                     //Saldırı -kick
                 }
                 else if (IsGround && AnimatorAdventurer.GetBool("FastRun") == true)
@@ -684,7 +690,7 @@ public class AventurerMove : MonoBehaviour
         AnimatorAdventurer.SetBool("IsDash", false);
         Speed -= DashSpeed;
         //dashParticle
-
+        source.PlayOneShot(dash);
 
         yield return new WaitForSeconds(.4f);
 

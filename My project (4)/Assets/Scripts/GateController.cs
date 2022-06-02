@@ -34,6 +34,8 @@ public class GateController : MonoBehaviour
                 DesertGate = false;
                 CastleGate = true;
             }
+
+
         }
     }
 

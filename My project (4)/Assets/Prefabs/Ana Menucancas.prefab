@@ -814,7 +814,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1092553642640028697}
         m_TargetAssemblyTypeName: GameMenu, Assembly-CSharp
-        m_MethodName: quitt
+        m_MethodName: Mainmenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
