@@ -11,13 +11,12 @@ public class Orb : MonoBehaviour
     public bool KeyPress = false, CoroutineEnd = true;
     public float IncreaseControl;
     public GameObject Blood;
-    private AudioSource orbsSource;
-    [SerializeField] AudioClip BlowUp;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        orbsSource = GetComponent<AudioSource>();
+     
         orbsControl = transform.parent.GetComponent<OrbsControl>();
         KeyEventCanvas = transform.GetChild(0).gameObject.GetComponent<Canvas>();
         KeyEventCanvas.enabled = false;
@@ -58,7 +57,7 @@ public class Orb : MonoBehaviour
     {
         while (KeyPress)
         {
-            orbsSource.PlayOneShot(BlowUp);
+           
             Debug.Log("Coroutin");
             gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.05f, gameObject.transform.localScale.y + 0.05f, 0);
             IncreaseControl += 0.05f;
