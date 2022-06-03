@@ -35,10 +35,6 @@ public class Enemy : MonoBehaviour
         skills = GameObject.Find("Hero").GetComponent<Skills>();
     }
 
-    private void Update()
-    {
-
-    }
 
     public void FlipRight()
     {
@@ -162,7 +158,7 @@ public class Enemy : MonoBehaviour
         {
             // TakeDamage(20);
         }
-        else if (collision.gameObject.tag == "Tornado")
+        else if (collision.gameObject.tag == "Fireball")
         {
             TakeDamage(20);
         }

@@ -58777,6 +58777,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a33494bab47bfe40ac66c8705e1c8b8, type: 3}
+--- !u!1 &1810592578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 762995315, guid: 3a33494bab47bfe40ac66c8705e1c8b8, type: 3}
+  m_PrefabInstance: {fileID: 1810592577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1810592579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810592578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 335b76891eb7ae44ba0edc52279d719b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keydown: 0
 --- !u!1 &1898953606
 GameObject:
   m_ObjectHideFlags: 0
@@ -58789,7 +58807,7 @@ GameObject:
   - component: {fileID: 1898953608}
   m_Layer: 0
   m_Name: MainGate
-  m_TagString: Untagged
+  m_TagString: Gates
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59639,22 +59657,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4614132792115149850, guid: f8b5a8a62ff90634db41b5901c077acb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6243225568412789353, guid: f8b5a8a62ff90634db41b5901c077acb, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 3.899994
-      objectReference: {fileID: 0}
-    - target: {fileID: 6243225568412789353, guid: f8b5a8a62ff90634db41b5901c077acb, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -116.100006
-      objectReference: {fileID: 0}
-    - target: {fileID: 8115282779546997882, guid: f8b5a8a62ff90634db41b5901c077acb, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8115282779546997882, guid: f8b5a8a62ff90634db41b5901c077acb, type: 3}
-      propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

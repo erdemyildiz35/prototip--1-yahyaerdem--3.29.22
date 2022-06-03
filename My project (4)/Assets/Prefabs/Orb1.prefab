@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 4792659645739332042}
   m_Layer: 0
   m_Name: Orb1
-  m_TagString: Untagged
+  m_TagString: Orb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,7 +325,9 @@ MonoBehaviour:
   CoroutineEnd: 1
   IncreaseControl: 0
   Blood: {fileID: 0}
-  BlowUp: {fileID: 8300000, guid: a202e60814730624ebdf2588bc92a2a2, type: 3}
+  EventButton: {fileID: 0}
+  EventButtonImage: {fileID: 0}
+  Buttonevent: {fileID: 0}
 --- !u!82 &4792659645739332042
 AudioSource:
   m_ObjectHideFlags: 0

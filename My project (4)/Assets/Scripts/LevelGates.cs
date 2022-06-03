@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelGates : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class LevelGates : MonoBehaviour
     [SerializeField] Collider2D Collider;
     Skills skills;
     SaveSystem saveSystem;
+    public ButtonEvent Buttonevent;
+    public Button EventButton;
+    public Image EventButtonImage;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,9 @@ public class LevelGates : MonoBehaviour
         Collider = gameObject.GetComponent<Collider2D>();
         skills = GameObject.Find("Hero").GetComponent<Skills>();
         saveSystem = GameObject.Find("Hero").GetComponent<SaveSystem>();
+        Buttonevent = GameObject.Find("EventKey").GetComponent<ButtonEvent>();
+        EventButton = GameObject.Find("EventKey").GetComponent<Button>();
+        EventButtonImage = GameObject.Find("EventKey").GetComponent<Image>();
 
         Portal = GameObject.Find("Portal");
 
@@ -30,6 +37,7 @@ public class LevelGates : MonoBehaviour
         isTrigger = false;
 
         OrbsCount = Orbs.transform.childCount;
+
     }
 
     // Update is called once per frame
@@ -54,7 +62,7 @@ public class LevelGates : MonoBehaviour
 
     void KeyEvent()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isTrigger)
+        if (Buttonevent.keydown && isTrigger)
         {
             LevelChecker();
             saveSystem.save();
@@ -89,6 +97,8 @@ public class LevelGates : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        EventButton.enabled = true;
+        EventButtonImage.enabled = true;
         if (!isTrigger && isGateActive)
         {
             isTrigger = true;
@@ -97,6 +107,8 @@ public class LevelGates : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        EventButton.enabled = false;
+        EventButtonImage.enabled = false;
         isTrigger = false;
     }
 }

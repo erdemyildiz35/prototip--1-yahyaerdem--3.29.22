@@ -30,7 +30,7 @@ public class martialBoxxEnemy : MonoBehaviour
     }
 
    
-    void Update()
+    void FixedUpdate()
     {
         if (Adventurer.transform.position.x - transform.position.x > 0)
         {

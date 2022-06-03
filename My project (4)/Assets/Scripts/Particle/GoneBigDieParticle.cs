@@ -13,9 +13,9 @@ public class GoneBigDieParticle : MonoBehaviour
     }
 
     
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(Vector2.up*Speed / 1000);
+        transform.Translate(Vector2.up*Speed / 200);
         StartCoroutine(Splash());
 
     }

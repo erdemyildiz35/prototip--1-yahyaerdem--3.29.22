@@ -410,6 +410,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   RopeKeyImage: {fileID: 0}
+  SwordImage: {fileID: 0}
+  PunchImage: {fileID: 0}
   ExpSlider: {fileID: 0}
   StaSlider: {fileID: 0}
   LevelText: {fileID: 0}
@@ -431,6 +433,7 @@ MonoBehaviour:
   WallSlideJump: 0
   isFalling: 0
   isOnRope: 0
+  joystick: {fileID: 0}
   MySpeedX: 0
   MySpeedY: 0
   Speed: 5

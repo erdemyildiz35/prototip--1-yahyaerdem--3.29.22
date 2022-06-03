@@ -25,7 +25,7 @@ public class Devil : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position + (transform.right * Width / 2), Vector2.down, DownSize, GroundLayer);
         

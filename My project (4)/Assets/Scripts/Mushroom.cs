@@ -32,7 +32,7 @@ public class Mushroom : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         AttackTimer += Time.deltaTime*5;
 

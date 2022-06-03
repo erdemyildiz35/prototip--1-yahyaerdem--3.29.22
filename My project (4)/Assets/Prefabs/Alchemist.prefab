@@ -136,7 +136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 156.42775, y: -95.28521}
+  m_AnchoredPosition: {x: 3.899994, y: -116.100006}
   m_SizeDelta: {x: -937, y: -514}
   m_Pivot: {x: 0.5374858, y: 0.63848954}
 --- !u!222 &4336025880858693650
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 2496434335872229903}
   m_Layer: 0
   m_Name: Alchemist
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,7 +501,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.070082664, y: -0.54509354}
@@ -529,3 +529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c55113797986d7428512498608fa9d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GoSkillMenu: {fileID: 0}
+  isTrigger: 0
+  Buttonevent: {fileID: 0}

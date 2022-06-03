@@ -1,40 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Orb : MonoBehaviour
 {
     public Canvas KeyEventCanvas;
     public OrbsControl orbsControl;
-    Castlemanage4r manager;
     Vector3 TempScale;
     public bool KeyPress = false, CoroutineEnd = true;
     public float IncreaseControl;
     public GameObject Blood;
+    public ButtonEvent Buttonevent;
+
     
 
     // Start is called before the first frame update
     void Start()
     {
-     
+        Buttonevent = GameObject.Find("EventKey").GetComponent<ButtonEvent>();
         orbsControl = transform.parent.GetComponent<OrbsControl>();
         KeyEventCanvas = transform.GetChild(0).gameObject.GetComponent<Canvas>();
         KeyEventCanvas.enabled = false;
-        manager = FindObjectOfType<Castlemanage4r>();
         KeyEventCanvas.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
         TempScale = gameObject.transform.localScale;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(!KeyEventCanvas.enabled)
-        {
-            KeyEventCanvas.enabled = true;
-            KeyEventCanvas.transform.position = gameObject.transform.position;
-        }
+
         if (collision.tag == "Player")
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Buttonevent.keydown)
             {
                 if(!KeyPress)
                 {

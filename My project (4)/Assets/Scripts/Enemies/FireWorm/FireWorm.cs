@@ -37,7 +37,7 @@ public class FireWorm : MonoBehaviour
     }
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (GetComponent<Enemy>().isDead)
         {
@@ -94,19 +94,7 @@ public class FireWorm : MonoBehaviour
                         StartCoroutine(WaitTimer());
 
                     }
-
-
-
-
-
                 }
-            }
-            else if (Vector2.Distance(transform.position, Hero.transform.position) > 15f)
-            {
-
-                Vector2 MovePos = Vector2.MoveTowards(Rb.position, Hero.transform.position, 1.2f * Time.fixedDeltaTime);
-                Rb.MovePosition(MovePos);
-                animator.SetBool("runing", true);
             }
         }
     }

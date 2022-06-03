@@ -18,11 +18,14 @@ public class BlackSmith : MonoBehaviour
     int SwordUpgradePrice, ArmorUpgradePrice;
     float TempSpeed;
     bool UpgradeWindowIsOpen;
+    public ButtonEvent Buttonevent;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Buttonevent = GameObject.Find("EventKey").GetComponent<ButtonEvent>();
+
         BlackSmithCollider = GameObject.Find("blacksmith").GetComponent<BoxCollider2D>();
         UpgradeCanvas = GameObject.Find("UpgradeWindow").GetComponent<Canvas>();
         BlacksmithUpgradeCanvas = GameObject.Find("BlacksmithUpgradeCanvas").GetComponent<Canvas>();
@@ -63,7 +66,7 @@ public class BlackSmith : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && BlacksmithUpgradeCanvas.enabled && !UpgradeWindowIsOpen)
+        if (Buttonevent.keydown && BlacksmithUpgradeCanvas.enabled && !UpgradeWindowIsOpen)
         {
             BlacksmithUpgradeCanvas.enabled = false;
             UpgradeWindowIsOpen = true;

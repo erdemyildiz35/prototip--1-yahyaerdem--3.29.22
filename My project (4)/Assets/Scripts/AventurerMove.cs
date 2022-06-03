@@ -9,7 +9,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     CapsuleCollider2D colider;
     Skills skills;
-    public Image RopeKeyImage;
+    public Image RopeKeyImage,SwordImage,PunchImage;
     Vector3 Rope;
     [SerializeField] Slider ExpSlider;
     [SerializeField] Slider StaSlider;
@@ -41,6 +41,7 @@ public class AventurerMove : MonoBehaviour
     public bool isFalling = false;
     public bool isOnRope = false;
     AdventurerHealth adventurerhealth;
+    public FixedJoystick joystick;
 
     //speed
     public float MySpeedX;
@@ -72,12 +73,14 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] LayerMask WallLayer;
 
     SaveSystem saveSystem;
+    Button Attack1Button, Attack2Button, HandorSwordButton, EventKey, FastRunButton;
+    Image EventKeyImage;
 
 
     //soundsSystem
 
     AudioSource source;
-    [SerializeField] AudioClip attack,  jump,punch,dash;
+    [SerializeField] AudioClip attack, jump, punch, dash;
 
 
     //particle System
@@ -88,7 +91,8 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] GameObject kickParticle;
     [SerializeField] GameObject PunchParticle;
     [SerializeField] GameObject SwordParticle;
- 
+    public ButtonEvent Buttonevent;
+
 
     void Start()
     {
@@ -102,6 +106,25 @@ public class AventurerMove : MonoBehaviour
         StaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
         ExpSlider = GameObject.Find("Exp").GetComponent<Slider>();
         saveSystem = GetComponent<SaveSystem>();
+
+        Attack1Button = GameObject.Find("Attack1Button").GetComponent<Button>();
+        Attack2Button = GameObject.Find("Attack2Button").GetComponent<Button>();
+        HandorSwordButton = GameObject.Find("HandorSwordButton").GetComponent<Button>();
+        EventKey = GameObject.Find("EventKey").GetComponent<Button>();
+        EventKeyImage = GameObject.Find("EventKey").GetComponent<Image>();
+        
+        EventKey.enabled = false;
+        EventKeyImage.enabled = false;
+
+        FastRunButton = GameObject.Find("FastRunButton").GetComponent<Button>();
+        Buttonevent = GameObject.Find("FastRunButton").GetComponent<ButtonEvent>();
+
+        SwordImage = GameObject.Find("SwordImage").GetComponent<Image>();
+        PunchImage = GameObject.Find("PunchImage").GetComponent<Image>();
+        SwordImage.enabled = false;
+        PunchImage.enabled = true;
+
+        joystick = GameObject.Find("FixedJoystickGO").GetComponent<FixedJoystick>();
 
         if (GameObject.Find("RopeKeyImage"))
         {
@@ -121,11 +144,16 @@ public class AventurerMove : MonoBehaviour
         Stamina = 100 + ((float)skills.sta * 10);
         StaSlider.maxValue = Stamina;
 
+        Attack1Button.onClick.AddListener(delegate { KeyInputs("Attack1"); });
+        Attack2Button.onClick.AddListener(delegate { KeyInputs("Attack2"); });
+        HandorSwordButton.onClick.AddListener(delegate { KeyInputs("HandorSword"); });
+        EventKey.onClick.AddListener(delegate { KeyInputs("EventKey"); });
     }
 
     void Update()
     {
-        KeyInputs();
+        //KeyInputs();
+        joystickHorizontal();
         Movement();
         isitOnHidePoints();
         AnimationControl();
@@ -143,6 +171,29 @@ public class AventurerMove : MonoBehaviour
         if (IsGround && DoubleJump)
         {
             DoubleJump = false;
+        }
+    }
+
+    void joystickHorizontal()
+    {
+        //Hareket ve hız
+        if (!isClimbing)
+        {
+            MySpeedX = joystick.Horizontal;
+            MySpeedY = joystick.Vertical;
+            if (joystick.Vertical > 0.75)
+            {
+                KeyInputs("Jump");
+            }
+            if (joystick.Vertical < -0.75)
+            {
+                KeyInputs("Crouch");
+            }
+
+        }
+        else if (isClimbing)
+        {
+            MySpeedY = joystick.Vertical;
         }
     }
 
@@ -181,9 +232,13 @@ public class AventurerMove : MonoBehaviour
 
     void Movement()
     {
-        if (!isWallSlide && !WallSlideJump)
+        if (!isWallSlide && !WallSlideJump && Mathf.Abs(MySpeedX) > 0.1f)
         {
             rb.velocity = new Vector2((MySpeedX * Speed), rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
 
 
@@ -207,11 +262,11 @@ public class AventurerMove : MonoBehaviour
 
             AnimatorAdventurer.SetBool("Running", true);
         }
-        else if (IsGround && Mathf.Abs(MySpeedX) ==0 && Speed > 0)
+        else if (IsGround && Mathf.Abs(MySpeedX) == 0 && Speed > 0)
         {
             AnimatorAdventurer.SetBool("Running", false);
         }
-        else if(Speed == 0)
+        else if (Speed == 0)
         {
             AnimatorAdventurer.SetBool("Running", false);
         }
@@ -249,7 +304,7 @@ public class AventurerMove : MonoBehaviour
         }
 
         //Crouch Kontrol
-        if (!Input.GetKey(KeyCode.LeftControl) && AnimatorAdventurer.GetBool("Crouch"))
+        if (MySpeedY>-0.75f && AnimatorAdventurer.GetBool("Crouch"))
         {
             Speed = TempSpeed;
             AnimatorAdventurer.SetBool("Crouch", false);
@@ -263,7 +318,7 @@ public class AventurerMove : MonoBehaviour
         }
 
         //Fast Run Kontrol
-        if (!Input.GetKey(KeyCode.LeftShift) && AnimatorAdventurer.GetBool("FastRun"))
+        if (!Buttonevent.keydown && AnimatorAdventurer.GetBool("FastRun"))
         {
             if (!HandOrSword)
             {
@@ -283,68 +338,52 @@ public class AventurerMove : MonoBehaviour
         }
     }
 
-    void KeyInputs()
+    void KeyInputs(string doEvent)
     {
-        //Hareket ve hız
-        if (!isClimbing)
-        {
-            MySpeedX = Input.GetAxisRaw("Horizontal");
-        }
-        else if (isClimbing)
-        {
-            MySpeedY = Input.GetAxisRaw("Vertical");
-        }
-
-
-        //Zıplama
-        if (Input.GetKeyDown(KeyCode.Space) && !isAttacking && !isCrouch)
-        {
-            Jump();
-        }
-
         //Attack
-        if (Input.GetMouseButtonDown(0) && !isAttacking && !isCrouch)
+        if (doEvent == "Attack1" && !isAttacking && !isCrouch)
         {
             Attack(0);
         }
 
-        if (Input.GetMouseButtonDown(1) && !isAttacking && !isCrouch)
+        if (doEvent == "Attack2" && !isAttacking && !isCrouch)
         {
             Attack(1);
         }
 
+        //Zıplama
+        if (doEvent == "Jump" && !isAttacking && !isCrouch)
+        {
+            Jump();
+        }
+
         //Dash ve FastRun
-        if (Input.GetKey(KeyCode.LeftShift) && IsGround && !isAttacking)
+        if (doEvent == "FastRun" && IsGround && !isAttacking)
         {
             if (HandOrSword && Stamina > 20)
             {
                 Dash();
-                //partikül
-               
+
             }
-            else if (!HandOrSword && Stamina > 0)
+            else if (!HandOrSword && Stamina > 5)
             {
                 FastRun();
-            }
-            else
-            {
-
             }
         }
 
         //Crouch
-        if (Input.GetKey(KeyCode.LeftControl) && IsGround)
+        if (doEvent == "Crouch" && IsGround)
         {
             Crouch();
         }
 
         //Pıçak Çekme
-        if (Input.GetKeyDown(KeyCode.F))
+        if (doEvent == "HandorSword")
         {
             SwordOnOff();
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (doEvent == "EventKey")
         {
             if (canClimb)
             {
@@ -352,7 +391,7 @@ public class AventurerMove : MonoBehaviour
                 {
                     isClimbing = true;
                 }
-             
+
             }
             else if (isClimbing)
             {
@@ -370,6 +409,8 @@ public class AventurerMove : MonoBehaviour
 
         if (HandOrSword)
         {
+            SwordImage.enabled = false;
+            PunchImage.enabled = true;
             AnimatorAdventurer.Play("SwordShte");
             AnimatorAdventurer.SetBool("SwordOn", false);
             HandOrSword = false;
@@ -378,6 +419,8 @@ public class AventurerMove : MonoBehaviour
         }
         else
         {
+            SwordImage.enabled = true;
+            PunchImage.enabled = false;
             AnimatorAdventurer.Play("SwordDraw");
             AnimatorAdventurer.SetBool("SwordOn", true);
             HandOrSword = true;
@@ -413,7 +456,7 @@ public class AventurerMove : MonoBehaviour
     void Attack(int key)
     {
 
-       
+
         //havada yumruk animasyonu olmadığı için hata veriyordu o yüzden koşul ekledim
         if (!HandOrSword && key == 1 && !IsGround || !IsGround) { }
         else
@@ -441,7 +484,6 @@ public class AventurerMove : MonoBehaviour
                 {
                     AnimatorAdventurer.Play("AirAttack");
                     AttackDamage = 25;
-                    Debug.Log("AirAttack");
                     source.PlayOneShot(attack);
                     //Saldırı
 
@@ -460,7 +502,6 @@ public class AventurerMove : MonoBehaviour
                 {
                     AnimatorAdventurer.Play("AirAttack2");
                     AttackDamage = 25;
-                    Debug.Log("AirAttack2");
                     source.PlayOneShot(attack);
                     //Saldırı
                 }
@@ -483,7 +524,6 @@ public class AventurerMove : MonoBehaviour
                 {
                     AnimatorAdventurer.Play("DropKick");
                     AttackDamage = 10;
-                    Debug.Log("DropKick");
                     source.PlayOneShot(punch);
                     //Saldırı -kick
                 }
@@ -509,7 +549,7 @@ public class AventurerMove : MonoBehaviour
             hitEnemies = Physics2D.OverlapCircleAll(HandAttackPoint.position, .5f, EnemyLayer);
         }
 
-        calculatedDamage = AttackDamage + ((AttackDamage * skills.str) / 50) + ((AttackDamage*skills.SwordUpgradeLevel)/10);
+        calculatedDamage = AttackDamage + ((AttackDamage * skills.str) / 50) + ((AttackDamage * skills.SwordUpgradeLevel) / 10);
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -518,7 +558,7 @@ public class AventurerMove : MonoBehaviour
                 if (Stamina >= 20)
                 {
                     enemy.GetComponent<Enemy>().TakeDamage(calculatedDamage);
-                    Stamina -= AttackDamage/4;
+                    Stamina -= AttackDamage / 4;
                 }
                 else
                 {
@@ -542,7 +582,6 @@ public class AventurerMove : MonoBehaviour
 
     void FastRun()
     {
-        Debug.Log("Stamina=" + Stamina);
         Stamina -= Time.deltaTime * 30;
         if (Stamina > 10)
         {
@@ -572,12 +611,12 @@ public class AventurerMove : MonoBehaviour
         AnimatorAdventurer.speed = 0;
         rb.bodyType = RigidbodyType2D.Kinematic;
 
-        if (MySpeedY > 0)
+        if (MySpeedY > 0.1)
         {
             AnimatorAdventurer.speed = TempAnimatorSpeed;
             rb.velocity = new Vector2(rb.velocity.x, (MySpeedY * Speed));
         }
-        else if (MySpeedY < 0 && !IsGround)
+        else if (MySpeedY < -0.1 && !IsGround)
         {
             AnimatorAdventurer.speed = TempAnimatorSpeed;
             rb.velocity = new Vector2(rb.velocity.x, (MySpeedY * Speed));
@@ -615,7 +654,6 @@ public class AventurerMove : MonoBehaviour
         }
         else if (rb.velocity.y < 0 && !IsGround && !isWallSlide && !DoubleJump)
         {
-            Debug.Log("DoubleJump");
             AnimatorAdventurer.Play("smrlt");
             AllertObserver("Jump");
             DoubleJump = true;
@@ -657,8 +695,6 @@ public class AventurerMove : MonoBehaviour
 
         if (message == "AttackEnd")
         {
-            Debug.Log("AttackEnd");
-            Debug.Log("Speed = " + TempSpeed);
             StartCoroutine(AttackWaitTime());
             Speed = TempSpeed;
         }
@@ -719,12 +755,17 @@ public class AventurerMove : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if(collision.gameObject.tag=="NPC"|| collision.gameObject.tag == "Rope" || collision.gameObject.tag == "Orb")
+        {
+            EventKey.enabled = true;
+            EventKeyImage.enabled = true;
+        }
 
         if (collision.gameObject.tag == "Rope")
         {
             canClimb = true;
-            //  RopeKeyImage.transform.position = new Vector3(collision.transform.position.x + 0.2f, collision.transform.position.y, collision.transform.position.z);
-            RopeKeyImage.enabled = true;
+            //RopeKeyImage.transform.position = new Vector3(collision.transform.position.x + 0.2f, collision.transform.position.y, collision.transform.position.z);
+            //RopeKeyImage.enabled = true;
             Rope = collision.transform.position;
             isOnRope = true;
         }
@@ -744,17 +785,21 @@ public class AventurerMove : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "Rope" || collision.gameObject.tag == "Orb" || collision.gameObject.tag == "Gates" || collision.gameObject.tag == "Dialog")
+        {
+            EventKey.enabled = false;
+            EventKeyImage.enabled = false;
+        }
         if (collision.gameObject.tag == "Rope")
         {
-            RopeKeyImage.enabled = false;
+            //RopeKeyImage.enabled = false;
             canClimb = false;
             if (isClimbing)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 5);
-                RopeKeyImage.enabled = false;    
+                //RopeKeyImage.enabled = false;
                 isClimbing = false;
                 AnimatorAdventurer.SetBool("isClimbing", false);
-                Debug.Log("Rope Trigger Exit");
             }
         }
     }
