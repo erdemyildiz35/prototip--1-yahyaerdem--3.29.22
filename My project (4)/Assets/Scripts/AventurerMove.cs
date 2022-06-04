@@ -9,7 +9,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     CapsuleCollider2D colider;
     Skills skills;
-    public Image RopeKeyImage,SwordImage,PunchImage;
+    public Image RopeKeyImage, SwordImage, PunchImage;
     Vector3 Rope;
     [SerializeField] Slider ExpSlider;
     [SerializeField] Slider StaSlider;
@@ -91,7 +91,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] GameObject kickParticle;
     [SerializeField] GameObject PunchParticle;
     [SerializeField] GameObject SwordParticle;
-    public ButtonEvent Buttonevent;
+    public ButtonEvent FastRunButtonevent;
 
 
     void Start()
@@ -112,12 +112,12 @@ public class AventurerMove : MonoBehaviour
         HandorSwordButton = GameObject.Find("HandorSwordButton").GetComponent<Button>();
         EventKey = GameObject.Find("EventKey").GetComponent<Button>();
         EventKeyImage = GameObject.Find("EventKey").GetComponent<Image>();
-        
+
         EventKey.enabled = false;
         EventKeyImage.enabled = false;
 
         FastRunButton = GameObject.Find("FastRunButton").GetComponent<Button>();
-        Buttonevent = GameObject.Find("FastRunButton").GetComponent<ButtonEvent>();
+        FastRunButtonevent = GameObject.Find("FastRunButton").GetComponent<ButtonEvent>();
 
         SwordImage = GameObject.Find("SwordImage").GetComponent<Image>();
         PunchImage = GameObject.Find("PunchImage").GetComponent<Image>();
@@ -147,6 +147,7 @@ public class AventurerMove : MonoBehaviour
         Attack1Button.onClick.AddListener(delegate { KeyInputs("Attack1"); });
         Attack2Button.onClick.AddListener(delegate { KeyInputs("Attack2"); });
         HandorSwordButton.onClick.AddListener(delegate { KeyInputs("HandorSword"); });
+        //FastRunButton.onClick.AddListener(delegate { KeyInputs("FastRun"); });
         EventKey.onClick.AddListener(delegate { KeyInputs("EventKey"); });
     }
 
@@ -171,6 +172,18 @@ public class AventurerMove : MonoBehaviour
         if (IsGround && DoubleJump)
         {
             DoubleJump = false;
+        }
+
+        if (FastRunButtonevent.keydown && IsGround && !isAttacking)
+        {
+            if (HandOrSword && Stamina > 20)
+            {
+                Dash();
+            }
+            else if (!HandOrSword && Stamina > 5)
+            {
+                FastRun();
+            }
         }
     }
 
@@ -304,7 +317,7 @@ public class AventurerMove : MonoBehaviour
         }
 
         //Crouch Kontrol
-        if (MySpeedY>-0.75f && AnimatorAdventurer.GetBool("Crouch"))
+        if (MySpeedY > -0.75f && AnimatorAdventurer.GetBool("Crouch"))
         {
             Speed = TempSpeed;
             AnimatorAdventurer.SetBool("Crouch", false);
@@ -318,7 +331,7 @@ public class AventurerMove : MonoBehaviour
         }
 
         //Fast Run Kontrol
-        if (!Buttonevent.keydown && AnimatorAdventurer.GetBool("FastRun"))
+        if (!FastRunButtonevent.keydown && AnimatorAdventurer.GetBool("FastRun"))
         {
             if (!HandOrSword)
             {
@@ -358,18 +371,7 @@ public class AventurerMove : MonoBehaviour
         }
 
         //Dash ve FastRun
-        if (doEvent == "FastRun" && IsGround && !isAttacking)
-        {
-            if (HandOrSword && Stamina > 20)
-            {
-                Dash();
 
-            }
-            else if (!HandOrSword && Stamina > 5)
-            {
-                FastRun();
-            }
-        }
 
         //Crouch
         if (doEvent == "Crouch" && IsGround)
@@ -755,7 +757,7 @@ public class AventurerMove : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="NPC"|| collision.gameObject.tag == "Rope" || collision.gameObject.tag == "Orb")
+        if (collision.gameObject.tag == "NPC" || collision.gameObject.tag == "Rope" || collision.gameObject.tag == "Orb" || collision.gameObject.tag == "Gates" || collision.gameObject.tag == "Dialog")
         {
             EventKey.enabled = true;
             EventKeyImage.enabled = true;

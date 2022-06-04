@@ -90,20 +90,25 @@ public class EnemyAıAdvance : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, Target.transform.position) < 3f && !isdead && !isTakenDamage)
+        if (Vector2.Distance(transform.position, Target.transform.position) < 3f && !isdead && !isTakenDamage && !IsAttack)
         {
             IsAttack = true;
-
-
-            animator.Play("Attack1");
-            ZombieSource.PlayOneShot(ZombieAttackSound);
-
+            StartCoroutine(AttackStart());
         }
         else
         {
-
             IsAttack = false;
         }
+    }
+    IEnumerator AttackStart()
+    {
+        var rand = Random.Range(0.5f, 2.5f);
+
+        yield return new WaitForSeconds(rand);
+
+        animator.Play("Attack1");
+        ZombieSource.PlayOneShot(ZombieAttackSound);
+        IsAttack = false;
     }
 
     private void PathFollow()

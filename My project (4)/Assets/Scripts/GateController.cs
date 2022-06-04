@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GateController : MonoBehaviour
 {
     public bool IceGate, CastleGate, DesertGate;
+    public Button EventButton;
 
-    private void Update()
+
+    private void Start()
     {
-        KeyEvent();
+        EventButton = GameObject.Find("EventKey").GetComponent<Button>();
+        EventButton.onClick.AddListener(delegate { GateSceneLoader(); }) ;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,8 +38,6 @@ public class GateController : MonoBehaviour
                 DesertGate = false;
                 CastleGate = true;
             }
-
-
         }
     }
 
@@ -46,14 +48,6 @@ public class GateController : MonoBehaviour
             IceGate = false;
             DesertGate = false;
             CastleGate = false;
-        }
-    }
-
-    public void KeyEvent()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            GateSceneLoader();
         }
     }
 

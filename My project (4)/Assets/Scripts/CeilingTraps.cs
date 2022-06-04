@@ -8,6 +8,7 @@ public class CeilingTraps : MonoBehaviour
     public float smooth = 0.1f;
     public Transform LeftTargetRotation, RightTargetRotation;
     public bool Rotating;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,13 @@ public class CeilingTraps : MonoBehaviour
         LeftTargetRotation.localRotation = Quaternion.Euler(0, 0, 0);
         RightTargetRotation.localRotation = Quaternion.Euler(0, 0, 0);
 
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(Rotating)
+        if (Rotating)
         {
             Rotate();
         }
@@ -38,9 +40,9 @@ public class CeilingTraps : MonoBehaviour
             Rotating = true;
         }
 
-        if(message == "RotateEnd")
+        if (message == "RotateEnd")
         {
-            Rotating = false;
+            StartCoroutine(Wait());
         }
 
         if (message == "Closed")
@@ -48,6 +50,15 @@ public class CeilingTraps : MonoBehaviour
             LeftCollider.transform.rotation = Quaternion.Euler(0, 0, -90);
             RightCollider.transform.rotation = Quaternion.Euler(0, 0, 90);
         }
+    }
+
+    IEnumerator Wait()
+    {
+        animator.speed = 0;
+        var rand = Random.Range(0.5f, 2.0f);
+        yield return new WaitForSeconds(rand);
+        animator.speed = 1;
+        Rotating = false;
     }
 
     public void Rotate()

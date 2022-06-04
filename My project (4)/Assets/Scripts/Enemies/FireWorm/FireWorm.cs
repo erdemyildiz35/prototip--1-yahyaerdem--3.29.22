@@ -14,7 +14,7 @@ public class FireWorm : MonoBehaviour
 
     Vector3 LocalScale;
 
-    [SerializeField] float AttackSpeed = 2f;
+    [SerializeField] float AttackSpeed = 3f;
     private bool CanAttack = true;
     Animator animator;
     Rigidbody2D Rb;
@@ -33,7 +33,6 @@ public class FireWorm : MonoBehaviour
         Hero = FindObjectOfType<AventurerMove>();
 
         LocalScale = transform.localScale;
-
     }
 
 
@@ -41,13 +40,12 @@ public class FireWorm : MonoBehaviour
     {
         if (GetComponent<Enemy>().isDead)
         {
-
             return;
         }
 
         timer++;
-
         WormBall();
+
         if (Hero.transform.position.x - transform.position.x > 0)
         {
             FlipRight();
@@ -56,7 +54,6 @@ public class FireWorm : MonoBehaviour
         {
             FlipLeft();
         }
-
     }
 
 
@@ -70,29 +67,22 @@ public class FireWorm : MonoBehaviour
         transform.localScale = new Vector3(-LocalScale.x, LocalScale.y, LocalScale.z);
     }
 
-
     void WormBall()
     {
         if (Vector2.Distance(transform.position, Hero.transform.position) <= 25f)
         {
-
-
             if (Vector2.Distance(transform.position, Hero.transform.position) <= 15f)
             {
                 if (CanAttack)
                 {
-
                     if (counter < 10)
                     {
                         animator.Play("Attack1");
-
                     }
                     else if (!OnWait)
                     {
                         animator.Play("idle");
-
                         StartCoroutine(WaitTimer());
-
                     }
                 }
             }
@@ -101,31 +91,21 @@ public class FireWorm : MonoBehaviour
 
     IEnumerator ThrowBall()
     {
-
         counter++;
 
         if (Vector2.Distance(Hero.transform.position, transform.position) < 2f)
         {
-
             StartCoroutine(CloseAttack());
-
-
         }
         else
         {
-
             Instantiate(FireWormBall, WormPoint.transform.position, Quaternion.identity);
-
 
             yield return new WaitForSeconds(AttackSpeed);
 
             CanAttack = true;
         }
-
-
-
     }
-
 
     IEnumerator CloseAttack()
     {
@@ -143,9 +123,6 @@ public class FireWorm : MonoBehaviour
         yield return new WaitForSeconds(5f);
         counter = 0;
         OnWait = false;
-
-
-
     }
 
 
@@ -154,12 +131,6 @@ public class FireWorm : MonoBehaviour
         if (message == "Attack1")
         {
             StartCoroutine(ThrowBall());
-
-
         }
     }
-
-
-
-
 }
