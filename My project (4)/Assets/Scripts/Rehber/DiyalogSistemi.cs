@@ -14,33 +14,44 @@ public class DiyalogSistemi : MonoBehaviour
     bool canSpeak;
     string TriggerMessage;
     int i = 0, TextLenght;
+    Button EventKey;
 
 
     private void Start()
     {
-      /* if (GameObject.Find("DialogCanvas"))
-        {
-            DialogCanvas = GameObject.Find("Dialog").GetComponent<Canvas>();
-           
-        }
-       if(GameObject.Find("KeyEventImage"))
-        {
-            KeyEventImage = GameObject.Find("KeyEventImage").GetComponent<Image>();
-            
-        }
-      */
+        /* if (GameObject.Find("DialogCanvas"))
+          {
+              DialogCanvas = GameObject.Find("Dialog").GetComponent<Canvas>();
+
+          }
+         if(GameObject.Find("KeyEventImage"))
+          {
+              KeyEventImage = GameObject.Find("KeyEventImage").GetComponent<Image>();
+
+          }
+        */
+        EventKey = GameObject.Find("EventKey").GetComponent<Button>();
         TextLenght = Text.Length;
         DialogCanvas.enabled = false;
         KeyEventImage.enabled = false;
+        EventKey.onClick.AddListener(delegate { KeyInputs("EventKey"); });
     }
 
-    private void Update()
+   
+
+    void KeyInputs(string doEvent)
     {
-        if (Input.GetKeyDown(KeyCode.E) && canSpeak)
+        if(doEvent == "EventKey")
         {
-            KeyEventImage.enabled = false;
-            Dialog();
+            if(canSpeak)
+            {
+                Dialog();
+
+            }
+
+
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

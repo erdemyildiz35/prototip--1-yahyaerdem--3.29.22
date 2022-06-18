@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class AventurerMove : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class AventurerMove : MonoBehaviour
     public float calculatedDamage;
     public bool canCalculate;
 
+
+    [Header("ParticleSistemi")]
+    public ParticleSystem Dust;
+    public ParticleSystem Jump_Particle;
 
     //Başlangıç Boyutu
     Vector3 DefaultLocalScale;
@@ -73,9 +78,10 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] LayerMask WallLayer;
 
     SaveSystem saveSystem;
-    Button Attack1Button, Attack2Button, HandorSwordButton, EventKey, FastRunButton;
+    Button Attack1Button, Attack2Button, HandorSwordButton, EventKey, FastRunButton,JumpButton,CrouchButton;
     Image EventKeyImage;
-
+    public ButtonEvent FastRunButtonevent;
+    public ButtonEvent CrouchButtonEvent;
 
     //soundsSystem
 
@@ -91,8 +97,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] GameObject kickParticle;
     [SerializeField] GameObject PunchParticle;
     [SerializeField] GameObject SwordParticle;
-    public ButtonEvent FastRunButtonevent;
-
+ 
 
     void Start()
     {
@@ -109,6 +114,9 @@ public class AventurerMove : MonoBehaviour
 
         Attack1Button = GameObject.Find("Attack1Button").GetComponent<Button>();
         Attack2Button = GameObject.Find("Attack2Button").GetComponent<Button>();
+        JumpButton = GameObject.Find("JumpButton").GetComponent<Button>();
+        CrouchButton = GameObject.Find("Crouchbutton").GetComponent<Button>();
+
         HandorSwordButton = GameObject.Find("HandorSwordButton").GetComponent<Button>();
         EventKey = GameObject.Find("EventKey").GetComponent<Button>();
         EventKeyImage = GameObject.Find("EventKey").GetComponent<Image>();
@@ -118,6 +126,10 @@ public class AventurerMove : MonoBehaviour
 
         FastRunButton = GameObject.Find("FastRunButton").GetComponent<Button>();
         FastRunButtonevent = GameObject.Find("FastRunButton").GetComponent<ButtonEvent>();
+
+        CrouchButton = GameObject.Find("Crouchbutton").GetComponent<Button>();
+        CrouchButtonEvent = GameObject.Find("Crouchbutton").GetComponent<ButtonEvent>();
+
 
         SwordImage = GameObject.Find("SwordImage").GetComponent<Image>();
         PunchImage = GameObject.Find("PunchImage").GetComponent<Image>();
@@ -143,6 +155,11 @@ public class AventurerMove : MonoBehaviour
 
         Stamina = 100 + ((float)skills.sta * 10);
         StaSlider.maxValue = Stamina;
+
+        JumpButton.onClick.AddListener(delegate { KeyInputs("Jump"); });
+        //CrouchButton.onClick.AddListener(delegate { KeyInputs("Crouch"); });
+
+       
 
         Attack1Button.onClick.AddListener(delegate { KeyInputs("Attack1"); });
         Attack2Button.onClick.AddListener(delegate { KeyInputs("Attack2"); });
@@ -185,6 +202,12 @@ public class AventurerMove : MonoBehaviour
                 FastRun();
             }
         }
+
+        if (CrouchButtonEvent.keydown && IsGround && !isAttacking)
+        {
+
+            Crouch();
+        }
     }
 
     void joystickHorizontal()
@@ -194,6 +217,8 @@ public class AventurerMove : MonoBehaviour
         {
             MySpeedX = joystick.Horizontal;
             MySpeedY = joystick.Vertical;
+          
+           /* 
             if (joystick.Vertical > 0.75)
             {
                 KeyInputs("Jump");
@@ -202,12 +227,15 @@ public class AventurerMove : MonoBehaviour
             {
                 KeyInputs("Crouch");
             }
-
+           */
         }
         else if (isClimbing)
         {
             MySpeedY = joystick.Vertical;
         }
+
+
+       
     }
 
     void isitOnHidePoints()
@@ -274,6 +302,8 @@ public class AventurerMove : MonoBehaviour
         {
 
             AnimatorAdventurer.SetBool("Running", true);
+
+          
         }
         else if (IsGround && Mathf.Abs(MySpeedX) == 0 && Speed > 0)
         {
@@ -317,7 +347,7 @@ public class AventurerMove : MonoBehaviour
         }
 
         //Crouch Kontrol
-        if (MySpeedY > -0.75f && AnimatorAdventurer.GetBool("Crouch"))
+        if (!CrouchButtonEvent.keydown && AnimatorAdventurer.GetBool("Crouch"))
         {
             Speed = TempSpeed;
             AnimatorAdventurer.SetBool("Crouch", false);
@@ -591,6 +621,7 @@ public class AventurerMove : MonoBehaviour
             AnimatorAdventurer.Play("Run2");
             AnimatorAdventurer.SetBool("FastRun", true);
             //tüktükUfakAdımlar
+            RunDustPlay();//Dust particlenin harekete geçmesini sağlayan fonksiyon
         }
     }
 
@@ -653,12 +684,15 @@ public class AventurerMove : MonoBehaviour
         {
             AnimatorAdventurer.Play("Jump");
             source.PlayOneShot(jump);
+            RunJumpParticle();
         }
         else if (rb.velocity.y < 0 && !IsGround && !isWallSlide && !DoubleJump)
         {
             AnimatorAdventurer.Play("smrlt");
             AllertObserver("Jump");
             DoubleJump = true;
+            source.PlayOneShot(jump);
+            RunJumpParticle();
         }
         else if (isWallSlide)
         {
@@ -754,6 +788,17 @@ public class AventurerMove : MonoBehaviour
             canCalculate = false;
         }
     }
+
+
+    private void RunDustPlay()
+    {
+        Dust.Play();
+    }
+    private void RunJumpParticle()
+    {
+        Jump_Particle.Play();
+    }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
