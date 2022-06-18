@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3.92
-  "Sald\u0131r\u0131Menzili": 4
+  "Sald\u0131r\u0131Menzili": 2
   farketmemenzili: 15
   AttackPoint: {fileID: 3114490348313356035}
   attacCounter: 0

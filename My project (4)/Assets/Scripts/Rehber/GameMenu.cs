@@ -26,6 +26,7 @@ public class GameMenu : MonoBehaviour
 
     public void Mainmenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
 
 

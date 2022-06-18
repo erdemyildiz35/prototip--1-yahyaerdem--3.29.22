@@ -10,6 +10,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     CapsuleCollider2D colider;
     Skills skills;
+    SpriteRenderer AdventurerSprite;
     public Image RopeKeyImage, SwordImage, PunchImage;
     Vector3 Rope;
     [SerializeField] Slider ExpSlider;
@@ -156,6 +157,8 @@ public class AventurerMove : MonoBehaviour
         Stamina = 100 + ((float)skills.sta * 10);
         StaSlider.maxValue = Stamina;
 
+        AdventurerSprite = GetComponent<SpriteRenderer>();
+
         JumpButton.onClick.AddListener(delegate { KeyInputs("Jump"); });
         //CrouchButton.onClick.AddListener(delegate { KeyInputs("Crouch"); });
 
@@ -273,24 +276,26 @@ public class AventurerMove : MonoBehaviour
 
     void Movement()
     {
-        if (!isWallSlide && !WallSlideJump && Mathf.Abs(MySpeedX) > 0.1f)
+        if (!isWallSlide && !WallSlideJump)
         {
             rb.velocity = new Vector2((MySpeedX * Speed), rb.velocity.y);
         }
-        else
+        /*else
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
-        }
+        }*/
 
 
         if (MySpeedX > 0 && Speed > 0 && !isWallSlide)
         {
-            transform.localScale = new Vector3(DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
+            //transform.localScale = new Vector3(DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
+            AdventurerSprite.flipX = false;
             FlipRight = true;
         }
         else if (MySpeedX < 0 && Speed > 0 && !isWallSlide)
         {
-            transform.localScale = new Vector3(-DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
+            //transform.localScale = new Vector3(-DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
+            AdventurerSprite.flipX = true;
             FlipRight = false;
         }
     }
@@ -664,7 +669,7 @@ public class AventurerMove : MonoBehaviour
     {
         if (isWallSlide)
         {
-            rb.velocity = new Vector2(0, -3);
+            rb.velocity = new Vector2(rb.velocity.x, -3);
             AnimatorAdventurer.Play("WallSlide");
             if (transform.localScale.x < 0)
             {
@@ -699,6 +704,8 @@ public class AventurerMove : MonoBehaviour
             WallSlideJump = true;
             transform.localScale = new Vector3(-transform.localScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
             AnimatorAdventurer.Play("smrlt");
+            source.PlayOneShot(jump);
+            RunJumpParticle();
             AllertObserver("Jump");
         }
     }
@@ -718,6 +725,7 @@ public class AventurerMove : MonoBehaviour
             }
             else if (WallSlideJump)
             {
+                Debug.Log("Wallslide jump");
                 if (FlipRight)
                 {
                     rb.velocity = new Vector2(-5, JumpForce);
@@ -824,7 +832,7 @@ public class AventurerMove : MonoBehaviour
         {
 
             AnimatorAdventurer.Play("Jump");
-            rb.velocity = new Vector2(rb.velocity.x, JumpForce * 3.2f);
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce * 5f);
 
         }
 

@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 7344215234436358032}
   - component: {fileID: 3586047135203170958}
   - component: {fileID: 62344103729835946}
+  - component: {fileID: 5725386361646765977}
   m_Layer: 8
   m_Name: FireWorm
   m_TagString: Untagged
@@ -147,7 +148,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8836316681476223649}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -220,11 +221,28 @@ MonoBehaviour:
   isTakingDamage: 0
   healthbar: {fileID: 519876076}
   skills: {fileID: 0}
+  TakingDamage: 0
   BloodParticle: {fileID: 5134784687839452509, guid: 828e3956aeca6bb469c70be38b68de07, type: 3}
   slashParticle: {fileID: 3668120472759632436, guid: d4fe903bc550bc64c9731e0b472a136e, type: 3}
   ExpParticle: {fileID: 459033524906542380, guid: c72858061aca43a478471cd880f1e261, type: 3}
   Hero: {fileID: 0}
   LayerOfThisObject: 1
+--- !u!70 &5725386361646765977
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836316681476223649}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.39013433, y: 0.13195255}
+  m_Size: {x: 1.9634221, y: 1.8376853}
+  m_Direction: 1
 --- !u!1001 &2665819591042455562
 PrefabInstance:
   m_ObjectHideFlags: 0
