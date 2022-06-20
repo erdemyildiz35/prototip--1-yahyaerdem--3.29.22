@@ -19,7 +19,7 @@ public class GroundChecker : MonoBehaviour
     {
        
 
-        if (Physics2D.OverlapCircle(transform.position, .1f, GroundLayer))
+        if (Physics2D.OverlapCircle(transform.position, .16f, GroundLayer))
         {
 
             PlayerMovement.IsGround = true;

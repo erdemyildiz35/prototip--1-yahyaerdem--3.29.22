@@ -16,6 +16,7 @@ TagManager:
   - Dead
   - Orb
   - Dialog
+  - NpcTurn
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - HidePlace
   - Gates
   - Wall
-  - 
+  - NpcTurn
   - 
   - 
   - 

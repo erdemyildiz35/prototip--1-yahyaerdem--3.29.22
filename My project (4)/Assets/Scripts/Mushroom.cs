@@ -101,7 +101,7 @@ public class Mushroom : MonoBehaviour
             if (!hit)
             {
 
-                if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance && !AdventurerMove.Hide)
+                if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance && !AdventurerMove.Hide && Mathf.Abs(transform.position.y - Adventurer.transform.position.y) <= 4)
                 {
                     Vector2 target = new Vector2(Adventurer.transform.position.x, Rb.position.y);
 
@@ -109,7 +109,7 @@ public class Mushroom : MonoBehaviour
                     Rb.MovePosition(MovePos);
                     animator.SetBool("runing", true);
                 }
-                else if (distanceToTarget < HitDistance)
+                else if (distanceToTarget < HitDistance && Mathf.Abs(transform.position.y - Adventurer.transform.position.y) >= 1)
                 {
                     animator.SetBool("runing", false);
                     Attack();

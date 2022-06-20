@@ -35,7 +35,7 @@ public class BossMovement : MonoBehaviour
         MovePlayer = Vector2.MoveTowards(transform.position, Hero.transform.position, Speed * Time.fixedDeltaTime);
         AttackTimer += Time.fixedDeltaTime;
 
-        if (Physics2D.OverlapCircle(transform.position, 15f, PlaYerLayer))
+        if (Physics2D.OverlapCircle(transform.position, 15f, PlaYerLayer) && Mathf.Abs(transform.position.y - Hero.transform.position.y) >= 4)
         {
             fireBallBody.MovePosition(MovePlayer);
 
