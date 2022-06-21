@@ -79,7 +79,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] LayerMask WallLayer;
 
     SaveSystem saveSystem;
-    Button Attack1Button, Attack2Button, HandorSwordButton, EventKey, FastRunButton,JumpButton,CrouchButton;
+    Button Attack1Button, Attack2Button, HandorSwordButton, EventKey, FastRunButton, JumpButton, CrouchButton;
     Image EventKeyImage;
     public ButtonEvent FastRunButtonevent;
     public ButtonEvent CrouchButtonEvent;
@@ -98,7 +98,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] GameObject kickParticle;
     [SerializeField] GameObject PunchParticle;
     [SerializeField] GameObject SwordParticle;
- 
+
 
     void Start()
     {
@@ -162,7 +162,7 @@ public class AventurerMove : MonoBehaviour
         JumpButton.onClick.AddListener(delegate { KeyInputs("Jump"); });
         //CrouchButton.onClick.AddListener(delegate { KeyInputs("Crouch"); });
 
-       
+
 
         Attack1Button.onClick.AddListener(delegate { KeyInputs("Attack1"); });
         Attack2Button.onClick.AddListener(delegate { KeyInputs("Attack2"); });
@@ -220,17 +220,17 @@ public class AventurerMove : MonoBehaviour
         {
             MySpeedX = joystick.Horizontal;
             MySpeedY = joystick.Vertical;
-          
-           /* 
-            if (joystick.Vertical > 0.75)
-            {
-                KeyInputs("Jump");
-            }
-            if (joystick.Vertical < -0.75)
-            {
-                KeyInputs("Crouch");
-            }
-           */
+
+            /* 
+             if (joystick.Vertical > 0.75)
+             {
+                 KeyInputs("Jump");
+             }
+             if (joystick.Vertical < -0.75)
+             {
+                 KeyInputs("Crouch");
+             }
+            */
         }
         else if (isClimbing)
         {
@@ -238,7 +238,7 @@ public class AventurerMove : MonoBehaviour
         }
 
 
-       
+
     }
 
     void isitOnHidePoints()
@@ -286,17 +286,21 @@ public class AventurerMove : MonoBehaviour
         }*/
 
 
-        if (MySpeedX > 0 && Speed > 0 && !isWallSlide)
+        if (MySpeedX > 0 && Speed > 0 && !isWallSlide && !WallSlideJump)
         {
             //transform.localScale = new Vector3(DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
             AdventurerSprite.flipX = false;
             FlipRight = true;
         }
-        else if (MySpeedX < 0 && Speed > 0 && !isWallSlide)
+        else if (MySpeedX < 0 && Speed > 0 && !isWallSlide && !WallSlideJump)
         {
             //transform.localScale = new Vector3(-DefaultLocalScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
             AdventurerSprite.flipX = true;
             FlipRight = false;
+        }
+        else
+        {
+            MySpeedX = 0;
         }
     }
 
@@ -308,7 +312,7 @@ public class AventurerMove : MonoBehaviour
 
             AnimatorAdventurer.SetBool("Running", true);
 
-          
+
         }
         else if (IsGround && Mathf.Abs(MySpeedX) == 0 && Speed > 0)
         {
@@ -667,15 +671,16 @@ public class AventurerMove : MonoBehaviour
 
     void WallSlide()
     {
+        WallSlideJump = false;
         if (isWallSlide)
         {
-            rb.velocity = new Vector2(rb.velocity.x, -3);
+            rb.velocity = new Vector2(0, -3);
             AnimatorAdventurer.Play("WallSlide");
-            if (transform.localScale.x < 0)
+            if (AdventurerSprite.flipX)
             {
                 FlipRight = false;
             }
-            else if (transform.localScale.x > 0)
+            else
             {
                 FlipRight = true;
             }
@@ -702,7 +707,15 @@ public class AventurerMove : MonoBehaviour
         else if (isWallSlide)
         {
             WallSlideJump = true;
-            transform.localScale = new Vector3(-transform.localScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
+            if (!AdventurerSprite.flipX)
+            {
+                AdventurerSprite.flipX = true;
+            }
+            else
+            {
+                AdventurerSprite.flipX = false;
+            }
+            //transform.localScale = new Vector3(-transform.localScale.x, DefaultLocalScale.y, DefaultLocalScale.z);
             AnimatorAdventurer.Play("smrlt");
             source.PlayOneShot(jump);
             RunJumpParticle();
