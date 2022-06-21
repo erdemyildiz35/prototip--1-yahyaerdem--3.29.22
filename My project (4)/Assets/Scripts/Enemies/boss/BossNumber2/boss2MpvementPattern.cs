@@ -19,6 +19,7 @@ public class boss2MpvementPattern : MonoBehaviour
     public float HitDamageRange;
     public float Speed;
     public LayerMask PlayerLayer;
+    public GameObject AttackParticle;
 
     Vector3 DefaultLocalScale;
     bool isRight;
@@ -31,13 +32,16 @@ public class boss2MpvementPattern : MonoBehaviour
         Adventurer = FindObjectOfType<AdventurerHealth>();
         AnimatorBoss = GetComponent<Animator>();
         Rb2d = GetComponent<Rigidbody2D>();
+        AttackParticle.SetActive(false);
 
     }
 
   
     void Update()
     {
-        MovePlayer = Vector2.MoveTowards(transform.position, Adventurer.transform.position, Speed * Time.fixedDeltaTime);
+
+        Vector2 target = new Vector2(Adventurer.transform.position.x, Rb2d.position.y);
+        MovePlayer = Vector2.MoveTowards(transform.position, target, Speed * Time.fixedDeltaTime);
 
         if (Adventurer.transform.position.x <= transform.position.x)
         {
@@ -98,7 +102,7 @@ public class boss2MpvementPattern : MonoBehaviour
 
         }
 
-
+        AttackParticle.SetActive(false);
         İsattacking = false;
     }
 
@@ -107,8 +111,9 @@ public class boss2MpvementPattern : MonoBehaviour
     {
 
         İsattacking = true;
+        AttackParticle.SetActive(true);
         yield return new WaitForSeconds(2f);
-
+       
         İsattacking = false;
     }
 
