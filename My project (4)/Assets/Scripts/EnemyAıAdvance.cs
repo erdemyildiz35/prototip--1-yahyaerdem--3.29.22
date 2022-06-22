@@ -90,7 +90,7 @@ public class EnemyAıAdvance : MonoBehaviour
         }
 
 
-        if (Vector2.Distance(transform.position, Target.transform.position) < 3f && !isdead && !isTakenDamage && !IsAttack)
+        if (Vector2.Distance(transform.position, Target.transform.position) < 5f && !isdead && !isTakenDamage && !IsAttack)
         {
             IsAttack = true;
             StartCoroutine(AttackStart());
