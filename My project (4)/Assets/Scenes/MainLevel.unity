@@ -1553,7 +1553,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
+  m_SortingLayerID: -291333185
   m_SortingOrder: 101
   m_TargetDisplay: 0
 --- !u!224 &670640932
@@ -59559,21 +59559,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1252793673584985236, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4154832881751355330, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1010869155}
+    - target: {fileID: 4154832881751355334, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154832883144723066, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
+      propertyPath: m_Size.x
+      value: 4.1790056
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154832883144723066, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.1390945
+      objectReference: {fileID: 0}
     - target: {fileID: 4154832883144723069, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4154832883144723069, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.13
+      value: -2.34
       objectReference: {fileID: 0}
     - target: {fileID: 4154832883144723069, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.48
+      value: 1.56
       objectReference: {fileID: 0}
     - target: {fileID: 4154832883144723069, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59611,6 +59627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: blacksmith
       objectReference: {fileID: 0}
+    - target: {fileID: 4154832883144723070, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
 --- !u!1001 &4614132791524504233
@@ -59630,7 +59650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4614132792115149850, guid: f8b5a8a62ff90634db41b5901c077acb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.05
+      value: -6.17
       objectReference: {fileID: 0}
     - target: {fileID: 4614132792115149850, guid: f8b5a8a62ff90634db41b5901c077acb, type: 3}
       propertyPath: m_LocalPosition.y

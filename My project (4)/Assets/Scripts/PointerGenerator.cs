@@ -12,13 +12,16 @@ public class PointerGenerator : MonoBehaviour
     {
 
         PointerTransform.position = new Vector3(PointerTransform.position.x + 3, PointerTransform.position.y, 0);
-        var Orbs = GameObject.Find("Orbs");
-
-        foreach (Transform child in Orbs.transform)
+        if(GameObject.Find("Orbs") != null)
         {
-            var go = Instantiate(Pointer, PointerTransform.position, Quaternion.identity);
-            go.transform.parent = gameObject.transform;
-            Pointer.GetComponent<Pointer>().Target = child;
-        }
+            var Orbs = GameObject.Find("Orbs");
+
+            foreach (Transform child in Orbs.transform)
+            {
+                var go = Instantiate(Pointer, PointerTransform.position, Quaternion.identity);
+                go.transform.parent = gameObject.transform;
+                Pointer.GetComponent<Pointer>().Target = child;
+            }
+        }  
     }
 }
