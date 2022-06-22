@@ -56660,6 +56660,10 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[133].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 777341633259028920, guid: 7d95c65366677364c882cab06df4a740, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 777341633259028923, guid: 7d95c65366677364c882cab06df4a740, type: 3}
       propertyPath: m_SortingOrder
       value: 100
@@ -59361,6 +59365,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7484591222374829649, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 99650ebb9f8bb6140b1332fa906dfbef, type: 3}
     - target: {fileID: 9079227912830365530, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
       propertyPath: m_Name
       value: Hero
@@ -59569,7 +59577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4154832883144723069, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.13
+      value: 1.93
       objectReference: {fileID: 0}
     - target: {fileID: 4154832883144723069, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_LocalPosition.y

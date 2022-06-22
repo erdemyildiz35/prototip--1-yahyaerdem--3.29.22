@@ -164,6 +164,24 @@ public class AdventurerHealth : MonoBehaviour
         {
             Die();
         }
+        if (collision.gameObject.tag == "Heal")
+        {
+
+            Heal(15);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Exp")
+        {
+            GetComponent<Skills>().GainExp(15);
+
+            Destroy(collision.gameObject, .2f);
+        }
+        if (collision.gameObject.tag == "Gold")
+        {
+            GetComponent<Skills>().Gold += 50;
+            Destroy(collision.gameObject);
+        }
+
     }
 
     IEnumerator DieTime()

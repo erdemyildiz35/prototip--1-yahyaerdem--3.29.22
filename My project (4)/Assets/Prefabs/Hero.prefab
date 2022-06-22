@@ -181,7 +181,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 12.943154
+  m_PointLightOuterRadius: 7.1407285
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -9891,7 +9891,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 5.66
+  m_PointLightOuterRadius: 6.82735
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -10114,6 +10114,9 @@ MonoBehaviour:
   WallLayer:
     serializedVersion: 2
     m_Bits: 32768
+  ChestLayer:
+    serializedVersion: 2
+    m_Bits: 1048576
   FastRunButtonevent: {fileID: 0}
   CrouchButtonEvent: {fileID: 0}
   attack: {fileID: 8300000, guid: 701a9c3354e44474f871c22d7e9c700b, type: 3}
@@ -10261,7 +10264,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0f0eae34ae9d122488a61602ce38dc5f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8debb166322eec948845fe3cf8437b40, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.14
   m_Pitch: 1

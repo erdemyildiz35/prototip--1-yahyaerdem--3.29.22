@@ -23,8 +23,16 @@ public class BigTrapWithEffecktro : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
 
-            BİgTrapEffect.SetActive(true);
+            Invoke("ActiveTrap", 3f);
 
         }
+    }
+
+   
+    void ActiveTrap()
+    {
+
+        BİgTrapEffect.SetActive(true);
+
     }
 }

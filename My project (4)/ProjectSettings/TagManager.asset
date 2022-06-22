@@ -17,6 +17,9 @@ TagManager:
   - Orb
   - Dialog
   - NpcTurn
+  - Heal
+  - Exp
+  - Gold
   layers:
   - Default
   - TransparentFX
@@ -35,10 +38,10 @@ TagManager:
   - Gates
   - Wall
   - NpcTurn
-  - 
-  - 
-  - 
-  - 
+  - Exp
+  - Gold
+  - Heal
+  - chest
   - 
   - 
   - 

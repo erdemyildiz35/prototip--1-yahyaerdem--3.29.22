@@ -69,6 +69,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] Transform LeftPoint;
     [SerializeField] Transform RightPoint;
     Collider2D[] hitEnemies;
+    Collider2D[] ChestCol;
 
     //SwordOrNot
     private bool HandOrSword = false;
@@ -77,6 +78,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] LayerMask EnemyLayer;
     [SerializeField] LayerMask HideLayer;
     [SerializeField] LayerMask WallLayer;
+    [SerializeField] LayerMask ChestLayer;
 
     SaveSystem saveSystem;
     Button Attack1Button, Attack2Button, HandorSwordButton, EventKey, FastRunButton, JumpButton, CrouchButton;
@@ -520,6 +522,7 @@ public class AventurerMove : MonoBehaviour
                     AttackDamage = 20;
                     //saldırı 
                     source.PlayOneShot(attack);
+                    
                 }
                 else
                 {
@@ -590,7 +593,25 @@ public class AventurerMove : MonoBehaviour
             hitEnemies = Physics2D.OverlapCircleAll(HandAttackPoint.position, .5f, EnemyLayer);
         }
 
-        calculatedDamage = AttackDamage + ((AttackDamage * skills.str) / 50) + ((AttackDamage * skills.SwordUpgradeLevel) / 10);
+       ChestCol = Physics2D.OverlapCircleAll(HandAttackPoint.transform.position, 3f, ChestLayer);
+        foreach(Collider2D Chest in ChestCol)
+        {
+
+
+            if (!Chest.GetComponent<Chest>().isChestOppend)
+            {
+
+                Chest.GetComponent<Chest>().OpenChest();
+
+            }
+
+        }
+
+
+
+      calculatedDamage = AttackDamage + ((AttackDamage * skills.str) / 50) + ((AttackDamage * skills.SwordUpgradeLevel) / 10);
+      
+
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -608,6 +629,7 @@ public class AventurerMove : MonoBehaviour
                 }
             }
         }
+
     }
 
     void Dash()
