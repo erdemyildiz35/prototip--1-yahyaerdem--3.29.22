@@ -78,6 +78,7 @@ public class BlackSmith : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D collision)
     {
+        Debug.Log("Girdi");
         if (collision.tag == "Player")
         {
             BlacksmithUpgradeCanvas.enabled = true;
