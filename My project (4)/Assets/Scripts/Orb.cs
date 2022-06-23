@@ -12,7 +12,7 @@ public class Orb : MonoBehaviour
     public float IncreaseControl;
     public GameObject Blood;
     public ButtonEvent Buttonevent;
-    bool IsDestroyed = false,corutineActive=false;
+
     
 
     // Start is called before the first frame update
@@ -36,7 +36,6 @@ public class Orb : MonoBehaviour
                 if(!KeyPress)
                 {
                     KeyPress = true;
-                   if(!corutineActive)
                     StartCoroutine(OrbAnimation());
                 }          
             }
@@ -44,7 +43,6 @@ public class Orb : MonoBehaviour
             {
                 KeyPress = false;
                 StopCoroutine(OrbAnimation());
-                corutineActive = false;
                 gameObject.transform.localScale = TempScale;
                 IncreaseControl = 0;
             }
@@ -54,7 +52,6 @@ public class Orb : MonoBehaviour
 
     IEnumerator OrbAnimation()
     {
-        corutineActive = true;
         while (KeyPress)
         {
            
@@ -73,20 +70,14 @@ public class Orb : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
             if (gameObject.transform.localScale.x >= 4)
             {
-                if (!IsDestroyed)
-                {
-                    orbsControl.DestroyedOrbs++;
-                    IsDestroyed = true;
-                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                orbsControl.DestroyedOrbs++;
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
-                    Blood = Resources.Load<GameObject>("BloodParticle2");
-                    Instantiate(Blood, transform.position, Quaternion.identity);
+                Blood = Resources.Load<GameObject>("BloodParticle2");
+                Instantiate(Blood, transform.position, Quaternion.identity);
 
-                    yield return new WaitForSeconds(1.0f);
-                    gameObject.SetActive(false);
-                }
-             
-              
+                yield return new WaitForSeconds(1.0f);
+                gameObject.SetActive(false);     
             }
         }
     }
