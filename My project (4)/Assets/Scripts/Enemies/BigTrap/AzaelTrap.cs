@@ -5,7 +5,7 @@ using UnityEngine;
 public class AzaelTrap : MonoBehaviour
 {
     [SerializeField] GameObject Azael;
-
+    bool TimePass = true;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -18,8 +18,21 @@ public class AzaelTrap : MonoBehaviour
 
     private void ActiveTrap()
     {
+        if (TimePass)
+        {
+            Instantiate(Azael, transform.position, Quaternion.identity);
+            TimePass = false;
+            Invoke("OpenAgain", 15f);
+        }
+       
+   
+    }
 
-        Instantiate(Azael, transform.position, Quaternion.identity);
+    void OpenAgain()
+    {
+
+        TimePass = true;
 
     }
+
 }

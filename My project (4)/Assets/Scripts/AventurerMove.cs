@@ -590,7 +590,7 @@ public class AventurerMove : MonoBehaviour
                     AttackDamage = 10;
                 }
             }
-            hitEnemies = Physics2D.OverlapCircleAll(HandAttackPoint.position, .5f, EnemyLayer);
+            hitEnemies = Physics2D.OverlapCircleAll(HandAttackPoint.position, 2f, EnemyLayer);
         }
 
        ChestCol = Physics2D.OverlapCircleAll(HandAttackPoint.transform.position, 3f, ChestLayer);
