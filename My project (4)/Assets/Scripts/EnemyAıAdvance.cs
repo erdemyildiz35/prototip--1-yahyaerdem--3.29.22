@@ -199,7 +199,7 @@ public class EnemyAıAdvance : MonoBehaviour
 
     public void Attack()
     {
-        if (Vector2.Distance(transform.position, Target.transform.position) < 2.5f && !enemy.TakingDamage)
+        if (Vector2.Distance(AttackPoint.position, Target.transform.position) < 2f && !enemy.TakingDamage)
         {
             adventurerHealth.TakeDamage(15);
             //Playerhealthtan can yakıcaz

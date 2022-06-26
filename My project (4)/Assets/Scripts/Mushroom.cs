@@ -19,7 +19,7 @@ public class Mushroom : MonoBehaviour
     private bool AbleTorun=true;
 
     [SerializeField] LayerMask GroundLayer;
-
+    [SerializeField] float YDegeri;
     private void Start()
     {
         AdventurerMove = FindObjectOfType<AventurerMove>();
@@ -101,7 +101,7 @@ public class Mushroom : MonoBehaviour
             if (!hit)
             {
 
-                if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance && !AdventurerMove.Hide && Mathf.Abs(transform.position.y - Adventurer.transform.position.y) <= 4)
+                if (distanceToTarget <= AttackDistance && distanceToTarget >= HitDistance && !AdventurerMove.Hide && Mathf.Abs((100-transform.position.y) - (100-Adventurer.transform.position.y)) <= YDegeri)
                 {
                     Vector2 target = new Vector2(Adventurer.transform.position.x, Rb.position.y);
 
@@ -109,7 +109,7 @@ public class Mushroom : MonoBehaviour
                     Rb.MovePosition(MovePos);
                     animator.SetBool("runing", true);
                 }
-                else if (distanceToTarget < HitDistance && Mathf.Abs(transform.position.y - Adventurer.transform.position.y) >= 1)
+                else if (distanceToTarget < HitDistance && Mathf.Abs(transform.position.y - Adventurer.transform.position.y) <= 3)
                 {
                     animator.SetBool("runing", false);
                     Attack();

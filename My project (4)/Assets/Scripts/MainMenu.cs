@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour
     void NewGameEvent()
     {
         saveSystem.NewGame();
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("TimelineArasahne");
     }
 
     void LoadGameEvent()

@@ -17,6 +17,7 @@ public class martialBoxxEnemy : MonoBehaviour
     bool CanRun = true;
     bool CanAttack = true;
     [SerializeField] Transform AttackPoint;
+  [SerializeField]   bool İsAttacking = false;
 
     [SerializeField] int attacCounter = 0;
 
@@ -26,9 +27,10 @@ public class martialBoxxEnemy : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Adventurer = FindObjectOfType<AdventurerHealth>();
         Anime = GetComponent<Animator>();
+        İsAttacking = false;
     }
 
-    void FixedUpdate()
+    private void Update()
     {
         if (Adventurer.transform.position.x - transform.position.x > 0)
         {
@@ -39,13 +41,20 @@ public class martialBoxxEnemy : MonoBehaviour
             FlipLeft();
         }
 
-        if (Vector2.Distance(Adventurer.transform.position, transform.position) < farketmemenzili && Vector2.Distance(Adventurer.transform.position, transform.position) >= SaldırıMenzili && CanRun)
+    }
+    void FixedUpdate()
+    {
+        if (Vector2.Distance(Adventurer.transform.position, transform.position) < farketmemenzili && Vector2.Distance(Adventurer.transform.position, transform.position) >= SaldırıMenzili && CanRun && Mathf.Abs((100 - Adventurer.transform.position.y) - (100 - transform.position.y)) <= 3f)
         {
-            Vector2 target = new Vector2(Adventurer.transform.position.x, Rb.position.y);
+         
+            if (!İsAttacking)
+            {
+                Vector2 target = new Vector2(Adventurer.transform.position.x, Rb.position.y);
+                Vector2 MovePos = Vector2.MoveTowards(Rb.position, target, Speed * Time.fixedDeltaTime);
+                Rb.MovePosition(MovePos);
+                Anime.SetBool("Running", true);
+            }
 
-            Vector2 MovePos = Vector2.MoveTowards(Rb.position, target, Speed * Time.fixedDeltaTime);
-            Rb.MovePosition(MovePos);
-            Anime.SetBool("Running", true);
         }
         else
         {
@@ -77,13 +86,14 @@ public class martialBoxxEnemy : MonoBehaviour
     {
         attacCounter++;
         Anime.Play("attackstandart1");
-
+        İsAttacking = true;
         CanAttack = false;
     }
 
     void SpecialAttacks()
     {
         attacCounter++;
+        İsAttacking = true;
         Anime.Play("SpecialAttack");
         CanAttack = false;
     }
@@ -103,6 +113,7 @@ public class martialBoxxEnemy : MonoBehaviour
         var rand = Random.Range(0.5f, 2.5f);
         yield return new WaitForSeconds(rand);
         CanAttack = true;
+        İsAttacking = false;
     }
 
     public void AllertObserver(string Komut)
@@ -110,16 +121,20 @@ public class martialBoxxEnemy : MonoBehaviour
 
         if (Komut == "AttackEnd")
         {
+            İsAttacking = false;
+            CanAttack = true;
             if ((Vector2.Distance(Adventurer.transform.position, AttackPoint.transform.position) <= SaldırıMenzili))
             {
                 if (attacCounter == 0)
                 {
                     Adventurer.TakeDamage(30);
+                    
                     StartCoroutine(AttackWaitTime());
                 }
                 else
                 {
                     Adventurer.TakeDamage(10);
+                    
                     StartCoroutine(AttackWaitTime());
                 }
             }
@@ -128,12 +143,26 @@ public class martialBoxxEnemy : MonoBehaviour
 
         if (Komut == "Attack1End")
         {
-
+            İsAttacking = false;
+            CanAttack = true;
             if ((Vector2.Distance(Adventurer.transform.position, AttackPoint.transform.position) <= SaldırıMenzili))
             {
                 Adventurer.TakeDamage(7);
+                İsAttacking = false;
                 StartCoroutine(AttackWaitTime());
             }
+
         }
-    }
+
+
+        if (Komut == "TakeDamageEnd")
+        {
+            İsAttacking = false;
+            CanAttack = true;
+
+        }
+                
+         }
+
+
 }

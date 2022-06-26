@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("düşman bulamadı");
+                    skills.GainExp(15);
                 }
                 skills.Gold += 50;
                 skills.CalculateGold();

@@ -163,6 +163,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  YDegeri: 3
 --- !u!114 &554852237
 MonoBehaviour:
   m_ObjectHideFlags: 0
