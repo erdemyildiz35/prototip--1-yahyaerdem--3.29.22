@@ -64,16 +64,9 @@ public class BlackSmith : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Buttonevent.keydown && BlacksmithUpgradeCanvas.enabled && !UpgradeWindowIsOpen)
-        {
-            BlacksmithUpgradeCanvas.enabled = false;
-            UpgradeWindowIsOpen = true;
-            TempSpeed = aventurerMove.Speed;
-            aventurerMove.Speed = 0f;
-            UpgradeCanvas.enabled = true;
-        }
+        
     }
 
     public void OnTriggerStay2D(Collider2D collision)
@@ -89,6 +82,15 @@ public class BlackSmith : MonoBehaviour
         if (collision.tag == "Player")
         {
             BlacksmithUpgradeCanvas.enabled = false;
+        }
+
+        if (Buttonevent.keydown && BlacksmithUpgradeCanvas.enabled && !UpgradeWindowIsOpen)
+        {
+            BlacksmithUpgradeCanvas.enabled = false;
+            UpgradeWindowIsOpen = true;
+            TempSpeed = aventurerMove.Speed;
+            aventurerMove.Speed = 0f;
+            UpgradeCanvas.enabled = true;
         }
     }
 

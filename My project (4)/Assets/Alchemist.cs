@@ -20,11 +20,19 @@ public class Alchemist : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        KeyInput();
+        //KeyInput();
     }
 
-    void KeyInput()
-    { 
+    /*void KeyInput()
+    {
+        if (Buttonevent.keydown && isTrigger)
+        {
+            SceneManager.LoadScene("SkillMenu");
+        }
+    }*/
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
         if (Buttonevent.keydown && isTrigger)
         {
             SceneManager.LoadScene("SkillMenu");

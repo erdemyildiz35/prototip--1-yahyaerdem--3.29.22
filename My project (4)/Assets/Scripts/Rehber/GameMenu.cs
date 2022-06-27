@@ -10,32 +10,24 @@ public class GameMenu : MonoBehaviour
    
     public void Stop()
     {
-
         Time.timeScale=0;
-
         Menu.SetActive(true);
-
     }
 
     public void Contunieo()
     {
         Time.timeScale = 1;
         Menu.SetActive(false);
-
     }
 
     public void Mainmenu()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
-
-
     }
 
     public void quitt()
     {
-
         Application.Quit();
-
     }
 }

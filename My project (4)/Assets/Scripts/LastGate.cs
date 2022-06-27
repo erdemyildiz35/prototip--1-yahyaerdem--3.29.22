@@ -32,7 +32,7 @@ public class LastGate : MonoBehaviour
     // Update is called once per frame
     void Update()
     { 
-        KeyEvent();
+        //KeyEvent();
     }
 
     public void GateActive()
@@ -44,7 +44,16 @@ public class LastGate : MonoBehaviour
         }
     }
 
-    void KeyEvent()
+    /*void KeyEvent()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && isTrigger)
+        {
+            SceneManager.LoadScene("finalStage");
+            //new scene load
+        }
+    }*/
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (Input.GetKeyDown(KeyCode.E) && isTrigger)
         {
@@ -52,6 +61,7 @@ public class LastGate : MonoBehaviour
             //new scene load
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!isTrigger && isGateActive)
