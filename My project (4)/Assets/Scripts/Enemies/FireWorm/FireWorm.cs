@@ -71,7 +71,7 @@ public class FireWorm : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, Hero.transform.position) <= 25f)
         {
-            if (Vector2.Distance(transform.position, Hero.transform.position) <= 15f && Mathf.Abs(transform.position.y - Hero.transform.position.y) >= 4)
+            if (Vector2.Distance(transform.position, Hero.transform.position) <= 15f && Mathf.Abs(transform.position.y - Hero.transform.position.y)   <= 7)
             {
                 if (CanAttack)
                 {
