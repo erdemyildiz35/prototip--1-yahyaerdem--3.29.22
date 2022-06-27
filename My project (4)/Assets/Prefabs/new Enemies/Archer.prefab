@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6001226530621362051}
   - component: {fileID: 6001226530621362076}
   - component: {fileID: 5924385576853360518}
+  - component: {fileID: 1578106507}
   m_Layer: 8
   m_Name: Archer
   m_TagString: Untagged
@@ -179,6 +180,32 @@ MonoBehaviour:
   ExpParticle: {fileID: 459033524906542380, guid: c72858061aca43a478471cd880f1e261, type: 3}
   Hero: {fileID: 0}
   LayerOfThisObject: 
+--- !u!61 &1578106507
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6001226530621362048}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.41}
+  m_EdgeRadius: 0
 --- !u!1001 &6311228850617221251
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9206322342569152680}
   - component: {fileID: 9206322342569152681}
   - component: {fileID: 9206322342569152687}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\xF6l\xFCm"
   m_TagString: Dead
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce08e68563d495f40a5f67d6877c9195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 3.5
 --- !u!1 &9206322343318624805
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9206322343318624804}
   - component: {fileID: 9206322343318624795}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
