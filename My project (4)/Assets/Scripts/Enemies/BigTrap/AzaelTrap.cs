@@ -11,7 +11,7 @@ public class AzaelTrap : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
 
-            Invoke("ActiveTrap", 1f);
+            Invoke("ActiveTrap", 2.5f);
 
         }
     }

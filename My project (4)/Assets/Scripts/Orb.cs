@@ -12,7 +12,7 @@ public class Orb : MonoBehaviour
     public float IncreaseControl;
     public GameObject Blood;
     public ButtonEvent Buttonevent;
-
+    Skills playerSkills;
     
 
     // Start is called before the first frame update
@@ -20,6 +20,7 @@ public class Orb : MonoBehaviour
     {
         Buttonevent = GameObject.Find("EventKey").GetComponent<ButtonEvent>();
         orbsControl = transform.parent.GetComponent<OrbsControl>();
+        playerSkills = FindObjectOfType<Skills>();
         KeyEventCanvas = transform.GetChild(0).gameObject.GetComponent<Canvas>();
         KeyEventCanvas.enabled = false;
         KeyEventCanvas.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
@@ -77,6 +78,8 @@ public class Orb : MonoBehaviour
                 Instantiate(Blood, transform.position, Quaternion.identity);
 
                 yield return new WaitForSeconds(1.0f);
+                playerSkills.GainExp(50);
+                playerSkills.Gold += 100;
                 gameObject.SetActive(false);     
             }
         }

@@ -87,6 +87,16 @@ public class LevelGates : MonoBehaviour
             skills.IceComplete = 1;
             PlayerPrefs.SetFloat("Map3", 1);
         }
+        else if (SceneManager.GetActiveScene().name == "CastleV2")
+        {
+            skills.IceComplete = 1;
+            PlayerPrefs.SetFloat("Castle", 1);
+        }
+        else if (SceneManager.GetActiveScene().name == "map3v2")
+        {
+            skills.IceComplete = 1;
+            PlayerPrefs.SetFloat("Map3", 1);
+        }
     }
 
     IEnumerator GoMainLevel()
