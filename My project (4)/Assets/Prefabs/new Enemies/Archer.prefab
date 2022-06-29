@@ -151,8 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Arrow: {fileID: 1738826446050854760, guid: 88b401648595e3841809396aafe40ebc, type: 3}
   BowPoint: {fileID: 935598168756447044}
-  BowSpeed: 11
-  RangeOfPlayer: 15
+  BowSpeed: 8
+  RangeOfPlayer: 8
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 512
