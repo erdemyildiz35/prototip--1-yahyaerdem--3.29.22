@@ -20,8 +20,10 @@ public class Fliyingeye : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    
+    private void FixedUpdate()
     {
+        Move();
         if (Hero.transform.position.x - transform.position.x > 0)
         {
             FlipRight();
@@ -31,10 +33,6 @@ public class Fliyingeye : MonoBehaviour
             FlipLeft();
         }
 
-    }
-    private void FixedUpdate()
-    {
-        Move();
     }
 
     private void Move()
