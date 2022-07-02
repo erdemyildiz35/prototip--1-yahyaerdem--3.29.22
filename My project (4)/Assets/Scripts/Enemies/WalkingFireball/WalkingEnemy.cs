@@ -11,12 +11,13 @@ public class WalkingEnemy : MonoBehaviour
     [SerializeField] LayerMask GroundLayer;
     [SerializeField] LayerMask PlayerLayer;
     [SerializeField] GameObject BuwBuwpow;
-
+    AventurerMove Adventurer;
+    Vector3 MovePlayer;
     void Start()
     {
         Width = GetComponent<SpriteRenderer>().bounds.extents.x;
         fireBallBody = GetComponent<Rigidbody2D>();
-
+        Adventurer = GetComponent<AventurerMove>();
 
 
     }
@@ -26,11 +27,13 @@ public class WalkingEnemy : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position + (transform.right * Width / 2), Vector2.down, 2f,GroundLayer);
 
+      
         if (Physics2D.OverlapCircle(transform.position, 2f, PlayerLayer))
         {
 
             StartCoroutine(Buwww());
-
+            Vector2 target = new Vector2(Adventurer.transform.position.x, fireBallBody.position.y);
+            MovePlayer = Vector2.MoveTowards(transform.position, target, Speed * Time.fixedDeltaTime);
 
         }
 
@@ -69,11 +72,9 @@ public class WalkingEnemy : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         thissp.color = new Color(255, 0, 0);
         yield return new WaitForSeconds(.5f);
-        thissp.color = new Color(255, 255, 255);
-        yield return new WaitForSeconds(.5f);
-        thissp.color = new Color(255, 0, 0);
-        yield return new WaitForSeconds(.5f);
+        
         //patladığında xp vericek kısım
+
         Instantiate(BuwBuwpow, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
 
