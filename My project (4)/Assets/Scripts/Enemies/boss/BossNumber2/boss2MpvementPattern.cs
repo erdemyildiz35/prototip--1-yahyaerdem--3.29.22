@@ -113,7 +113,7 @@ public class boss2MpvementPattern : MonoBehaviour
         İsattacking = true;
         AttackParticle.SetActive(true);
         yield return new WaitForSeconds(2f);
-       
+        AttackParticle.SetActive(false);
         İsattacking = false;
     }
 

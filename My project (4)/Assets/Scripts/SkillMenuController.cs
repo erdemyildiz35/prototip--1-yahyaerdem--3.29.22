@@ -31,11 +31,18 @@ public class SkillMenuController : MonoBehaviour
         StaPlus = GameObject.Find("Stamina+").GetComponent<Button>();
         StaMinus = GameObject.Find("Stamina-").GetComponent<Button>();
 
-        SaveSystem = GetComponent<SaveSystem>();
+      
     }
 
     private void Start()
     {
+        Invoke("LoadStats", .5f);
+    }
+    void LoadStats()
+    {
+
+        SaveSystem = GetComponent<SaveSystem>();
+
         TempSkills.skillpoints = skills.skillpoints;
         SaveSystem.Load();
 
@@ -54,8 +61,8 @@ public class SkillMenuController : MonoBehaviour
         MainMenu.onClick.AddListener(GoMainMenu);
 
         skillBar();
-    }
 
+    }
     void ContinueGame()
     {
         SceneManager.LoadScene("MainLevel");

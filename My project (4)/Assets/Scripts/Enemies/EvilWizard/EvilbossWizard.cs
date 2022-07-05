@@ -24,7 +24,7 @@ public class EvilbossWizard : MonoBehaviour
     bool BossWallactive = false;
 
     Animator wizardAnimator;
-
+    Vector2 Vectorplus = new Vector2(5f, 0);
 
     void Start()
     {
@@ -90,6 +90,7 @@ public class EvilbossWizard : MonoBehaviour
         else if (stageOfEnemies == 2)
         {
             Instantiate(stage3Enemie, insPoint.position, Quaternion.identity);
+            Instantiate(stage3Enemie, insPoint.position+Vector3.left*2, Quaternion.identity);
             stageOfEnemies = 0;
         }
     }
