@@ -101,6 +101,7 @@ public class LevelGates : MonoBehaviour
 
     IEnumerator GoMainLevel()
     {
+
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene("MainLevel");
     }
@@ -112,6 +113,7 @@ public class LevelGates : MonoBehaviour
         if (!isTrigger && isGateActive)
         {
             isTrigger = true;
+
         }
     }
 

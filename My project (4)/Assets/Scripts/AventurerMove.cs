@@ -640,6 +640,7 @@ public class AventurerMove : MonoBehaviour
             AnimatorAdventurer.Play("smrlt");
             Instantiate(DashParticle, transform.position, Quaternion.identity);
             StartCoroutine(DashIE());
+           // AllertObserver("AttackEnd");
         }
     }
 
