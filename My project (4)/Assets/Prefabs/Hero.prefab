@@ -194,6 +194,80 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &4429058142897617450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7963667497343757190}
+  - component: {fileID: 4966290747252349506}
+  m_Layer: 0
+  m_Name: t
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7963667497343757190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4429058142897617450}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.10639263, y: -0.23522738, z: 0}
+  m_LocalScale: {x: 8.368023, y: 8.368023, z: 8.368023}
+  m_Children: []
+  m_Father: {fileID: 9079227912830365535}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4966290747252349506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4429058142897617450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.676
+  m_Color: {r: 0.248576, g: 0.3962264, b: 0.36475012, a: 1}
+  m_Intensity: 1.28
+  m_LightVolumeOpacity: 0.077
+  m_ApplyToSortingLayers: 00000000bf9ba2ee
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 3
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0.205
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.83
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.7574511, y: 0.0029586584, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+  - {x: -0.7782809, y: 0.026768345, z: 0}
 --- !u!1 &5771894322136972576
 GameObject:
   m_ObjectHideFlags: 0
@@ -9907,6 +9981,7 @@ Transform:
   - {fileID: 6392259614928764609}
   - {fileID: 1465103468396906823}
   - {fileID: 258378633}
+  - {fileID: 7963667497343757190}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10044,6 +10119,9 @@ MonoBehaviour:
   ChestLayer:
     serializedVersion: 2
     m_Bits: 1048576
+  FireballLayer:
+    serializedVersion: 2
+    m_Bits: 0
   FastRunButtonevent: {fileID: 0}
   CrouchButtonEvent: {fileID: 0}
   attack: {fileID: 8300000, guid: 701a9c3354e44474f871c22d7e9c700b, type: 3}
@@ -10167,6 +10245,9 @@ MonoBehaviour:
   IceGate: 0
   CastleGate: 0
   DesertGate: 0
+  bigCastlemap: 0
+  bigIceMap: 0
+  Mainlevel: 0
   EventButton: {fileID: 0}
 --- !u!114 &2183767977010417860
 MonoBehaviour:

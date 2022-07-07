@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4282092923685235271}
   - component: {fileID: 4282092923685235269}
   - component: {fileID: 4282092923685235268}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Saw Trap - Level 1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 4282092924099356238}
   - component: {fileID: 4282092924099356236}
   - component: {fileID: 4282092924099356239}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: DoubleSaw
   m_TagString: Fireball
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 4282092924484207189}
   - component: {fileID: 4282092924484207211}
   - component: {fileID: 4282092924484207210}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Saw Trap - Level 1_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

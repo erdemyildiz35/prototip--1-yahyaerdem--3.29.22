@@ -70,6 +70,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] Transform RightPoint;
     Collider2D[] hitEnemies;
     Collider2D[] ChestCol;
+    Collider2D[] FireBallsCol;
 
     //SwordOrNot
     private bool HandOrSword = false;
@@ -79,6 +80,7 @@ public class AventurerMove : MonoBehaviour
     [SerializeField] LayerMask HideLayer;
     [SerializeField] LayerMask WallLayer;
     [SerializeField] LayerMask ChestLayer;
+    [SerializeField] LayerMask FireballLayer;
 
     SaveSystem saveSystem;
     Button Attack1Button, Attack2Button, HandorSwordButton, EventKey, FastRunButton, JumpButton, CrouchButton;
@@ -607,6 +609,13 @@ public class AventurerMove : MonoBehaviour
 
         }
 
+        FireBallsCol = Physics2D.OverlapCircleAll(HandAttackPoint.transform.position, 4f, FireballLayer);
+        foreach(Collider2D Fireball in FireBallsCol)
+        {
+
+            Destroy(Fireball.gameObject);
+
+        }
 
 
       calculatedDamage = AttackDamage + ((AttackDamage * skills.str) / 50) + ((AttackDamage * skills.SwordUpgradeLevel) / 10);
@@ -834,7 +843,7 @@ public class AventurerMove : MonoBehaviour
     }
 
 
-    private void RunDustPlay()
+    public void RunDustPlay()
     {
         Dust.Play();
     }
@@ -842,6 +851,7 @@ public class AventurerMove : MonoBehaviour
     {
         Jump_Particle.Play();
     }
+   
 
 
     private void OnTriggerStay2D(Collider2D collision)

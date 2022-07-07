@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8829548149259411998}
   - component: {fileID: 8829548149259411970}
   - component: {fileID: 8829548149259411971}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: "\u0131s\u0131kl\u0131Tuzak"
   m_TagString: Fireball
   m_Icon: {fileID: 0}
