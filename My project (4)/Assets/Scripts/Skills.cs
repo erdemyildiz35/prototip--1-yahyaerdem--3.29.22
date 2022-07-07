@@ -25,7 +25,7 @@ public class Skills : MonoBehaviour
 
     //public int currentStageLevel;
 
-    private void Start()
+    private void Awake()
     {
         if (GameObject.Find("GenelCanvas"))
         {

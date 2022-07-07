@@ -86,7 +86,7 @@ public class BlackSmith : MonoBehaviour
 
         if (Buttonevent.keydown && BlacksmithUpgradeCanvas.enabled && !UpgradeWindowIsOpen)
         {
-            BlacksmithUpgradeCanvas.enabled = false;
+            BlacksmithUpgradeCanvas.enabled = true;
             UpgradeWindowIsOpen = true;
             TempSpeed = aventurerMove.Speed;
             aventurerMove.Speed = 0f;
@@ -174,15 +174,15 @@ public class BlackSmith : MonoBehaviour
     {
         if (SwordUpgradePrice > skill.Gold)
         {
-            FailText.text = "Yeterli Altýn Yok";
+            FailText.text = "No Gold No Upgrade";
         }
         else if (ArmorUpgradePrice > skill.Gold)
         {
-            FailText.text = "Yeterli Altýn Yok";
+            FailText.text = "No Gold No Upgrade";
         }
         else
         {
-            FailText.text = "Bir hata oluþtu";
+            FailText.text = "Errrorr";
         }
 
         UpgradeFailCanvas.enabled = true;
