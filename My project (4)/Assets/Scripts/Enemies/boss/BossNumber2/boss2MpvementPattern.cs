@@ -54,7 +54,7 @@ public class boss2MpvementPattern : MonoBehaviour
         }
 
 
-        if (Physics2D.OverlapCircle(transform.position, RangeOfPlayer*2, PlayerLayer)&& Mathf.Abs((100- transform.position.y)-(100-Adventurer.transform.position.y))<=5f && !İsattacking)
+        if (Physics2D.OverlapCircle(transform.position, RangeOfPlayer*2, PlayerLayer)&& Mathf.Abs((100- transform.position.y)-(100-Adventurer.transform.position.y))<=2f && !İsattacking)
         {
             AnimatorBoss.SetBool("Run", true);
             Vector2 target = new Vector2(Adventurer.transform.position.x, Rb2d.position.y);

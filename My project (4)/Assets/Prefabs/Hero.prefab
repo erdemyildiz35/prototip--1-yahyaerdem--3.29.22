@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 3
-  m_BlendStyleIndex: 0
+  m_BlendStyleIndex: 2
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.4928223, g: 0.5, b: 0.48349056, a: 1}
+  m_Intensity: 0.86
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000bf9ba2ee
   m_LightCookieSprite: {fileID: 0}
@@ -10121,7 +10121,7 @@ MonoBehaviour:
     m_Bits: 1048576
   FireballLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   FastRunButtonevent: {fileID: 0}
   CrouchButtonEvent: {fileID: 0}
   attack: {fileID: 8300000, guid: 701a9c3354e44474f871c22d7e9c700b, type: 3}

@@ -87090,30 +87090,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1356653113, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
-      propertyPath: FireballLayer.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
-    - target: {fileID: 2143158140, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
-      propertyPath: m_Color.b
-      value: 0.48349056
-      objectReference: {fileID: 0}
-    - target: {fileID: 2143158140, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
-      propertyPath: m_Color.g
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2143158140, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
-      propertyPath: m_Color.r
-      value: 0.4928223
-      objectReference: {fileID: 0}
-    - target: {fileID: 2143158140, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
-      propertyPath: m_Intensity
-      value: 0.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 2143158140, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
-      propertyPath: m_BlendStyleIndex
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 9079227912830365530, guid: ad5256012c558114b8e0a70f11ea1293, type: 3}
       propertyPath: m_Name
       value: Hero
