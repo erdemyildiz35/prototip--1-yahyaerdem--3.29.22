@@ -6,7 +6,7 @@ public class SaveSystem : MonoBehaviour
 {
     public Skills skill;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (GameObject.Find("Hero"))
         {
