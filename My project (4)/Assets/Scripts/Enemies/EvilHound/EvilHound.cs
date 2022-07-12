@@ -19,7 +19,7 @@ public class EvilHound : MonoBehaviour
     [SerializeField] public float HitDamageRange;
     [SerializeField] public float Speed;
     [SerializeField] public LayerMask PlayerLayer;
-   
+    [SerializeField] public float DashAttackSpeed;
 
     Vector3 DefaultLocalScale;
     bool isRight;
@@ -111,9 +111,25 @@ public class EvilHound : MonoBehaviour
     {
 
         İsattacking = true;
-      
+
+        if (isRight)
+        {
+
+            gameObject.layer = 11;
+            Rb2d.velocity = Vector2.right * -DashAttackSpeed;
+
+        }
+        else
+        {
+            gameObject.layer = 11;
+            Rb2d.velocity = Vector2.right * -DashAttackSpeed;
+
+        }
+        AnimatorBoss.Play("idle");
+
         yield return new WaitForSeconds(2f);
 
+        gameObject.layer = 8;
         İsattacking = false;
     }
 

@@ -74,6 +74,12 @@ public class BlackSmith : MonoBehaviour
         if (collision.tag == "Player")
         {
             BlacksmithUpgradeCanvas.enabled = true;
+
+            if (Buttonevent.keydown)
+            {
+
+                UpgradeCanvas.GetComponent<Canvas>().enabled = true;
+            }
         }
     }
 
@@ -82,6 +88,7 @@ public class BlackSmith : MonoBehaviour
         if (collision.tag == "Player")
         {
             BlacksmithUpgradeCanvas.enabled = false;
+            UpgradeCanvas.GetComponent<Canvas>().enabled = false;
         }
 
         if (Buttonevent.keydown && BlacksmithUpgradeCanvas.enabled && !UpgradeWindowIsOpen)
