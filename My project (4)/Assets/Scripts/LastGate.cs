@@ -10,6 +10,7 @@ public class LastGate : MonoBehaviour
     [SerializeField] Collider2D Collider;
     [SerializeField] Canvas NextUpdate;
     Skills skills;
+    ButtonEvent Buttonevent;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class LastGate : MonoBehaviour
         skills = GameObject.Find("Hero").GetComponent<Skills>();
         NextUpdate = GameObject.Find("NextUpdate").GetComponent<Canvas>();
         Portal = GameObject.Find("LastGate").transform.GetChild(1).gameObject;
+        Buttonevent = GameObject.Find("EventKey").GetComponent<ButtonEvent>();
 
         NextUpdate.enabled = false;
         Portal.SetActive(false);
@@ -31,7 +33,7 @@ public class LastGate : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
+    {
         //KeyEvent();
     }
 
@@ -41,30 +43,19 @@ public class LastGate : MonoBehaviour
         {
             isGateActive = true;
             Portal.SetActive(true);
-        }else if(PlayerPrefs.GetFloat("Map3") ==1&& PlayerPrefs.GetFloat("Castle") == 1&& PlayerPrefs.GetFloat("Desert") == 1)
+        }
+        else if (PlayerPrefs.GetFloat("IceComplete") == 1 && PlayerPrefs.GetFloat("DesertComplete") == 1 && PlayerPrefs.GetFloat("CastleComplete") == 1)
         {
-
-
             isGateActive = true;
             Portal.SetActive(true);
         }
     }
 
-    /*void KeyEvent()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && isTrigger)
-        {
-            SceneManager.LoadScene("finalStage");
-            //new scene load
-        }
-    }*/
-
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Input.GetKeyDown(KeyCode.E) && isTrigger)
+        if (Buttonevent.keydown && isTrigger && isGateActive)
         {
             SceneManager.LoadScene("finalStage");
-            //new scene load
         }
     }
 

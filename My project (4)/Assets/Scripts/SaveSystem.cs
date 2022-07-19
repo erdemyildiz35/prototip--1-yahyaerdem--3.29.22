@@ -22,6 +22,14 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        if(PlayerPrefs.GetInt("Exp") != 0)
+        {
+            Load();
+        }
+    }
+
 
     public void save()
     {
@@ -35,7 +43,7 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.SetInt("Gold", skill.Gold);
         PlayerPrefs.SetInt("SwordUpgradeLevel", skill.SwordUpgradeLevel);
         PlayerPrefs.SetInt("ArmorUpgradeLevel", skill.ArmorUpgradeLevel);
-        PlayerPrefs.SetInt("ÝceComplete", skill.IceComplete);
+        PlayerPrefs.SetInt("IceComplete", skill.IceComplete);
         PlayerPrefs.SetInt("DesertComplete", skill.DesertComplete);
         PlayerPrefs.SetInt("CastleComplete", skill.CastleComplete);
 

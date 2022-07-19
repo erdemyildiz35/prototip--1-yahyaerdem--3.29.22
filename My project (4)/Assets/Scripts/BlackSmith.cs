@@ -16,7 +16,7 @@ public class BlackSmith : MonoBehaviour
     Animator animator;
     SaveSystem saveSystem;
     int SwordUpgradePrice, ArmorUpgradePrice;
-    float TempSpeed;
+    public float TempSpeed;
     bool UpgradeWindowIsOpen;
     public ButtonEvent Buttonevent;
 
@@ -66,19 +66,24 @@ public class BlackSmith : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+
     }
 
     public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            BlacksmithUpgradeCanvas.enabled = true;
 
             if (Buttonevent.keydown)
             {
-
-                UpgradeCanvas.GetComponent<Canvas>().enabled = true;
+                BlacksmithUpgradeCanvas.enabled = true;
+                UpgradeWindowIsOpen = true;
+                if (aventurerMove.Speed > 0)
+                {
+                    TempSpeed = aventurerMove.Speed;
+                }
+                aventurerMove.Speed = 0f;
+                UpgradeCanvas.enabled = true;
             }
         }
     }
@@ -88,16 +93,7 @@ public class BlackSmith : MonoBehaviour
         if (collision.tag == "Player")
         {
             BlacksmithUpgradeCanvas.enabled = false;
-            UpgradeCanvas.GetComponent<Canvas>().enabled = false;
-        }
-
-        if (Buttonevent.keydown && BlacksmithUpgradeCanvas.enabled && !UpgradeWindowIsOpen)
-        {
-            BlacksmithUpgradeCanvas.enabled = true;
-            UpgradeWindowIsOpen = true;
-            TempSpeed = aventurerMove.Speed;
-            aventurerMove.Speed = 0f;
-            UpgradeCanvas.enabled = true;
+            //UpgradeCanvas.GetComponent<Canvas>().enabled = false;
         }
     }
 
