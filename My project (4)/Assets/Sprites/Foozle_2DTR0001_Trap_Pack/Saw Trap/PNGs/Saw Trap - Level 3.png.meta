@@ -78,6 +78,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -568,6 +569,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Saw Trap - Level 3_16: 6752654138754497515
+      Saw Trap - Level 3_12: -2875014131839046961
+      Saw Trap - Level 3_5: 7400664097707740937
+      Saw Trap - Level 3_11: -5800219216385550060
+      Saw Trap - Level 3_10: -5695852752689741252
+      Saw Trap - Level 3_6: -7881203520946098865
+      Saw Trap - Level 3_13: -3911061206967631816
+      Saw Trap - Level 3_8: 7809488008350438597
+      Saw Trap - Level 3_3: -2346269177063455160
+      Saw Trap - Level 3_0: 5658431545870162446
+      Saw Trap - Level 3_15: -8566345986855597371
+      Saw Trap - Level 3_2: -5308119806141847964
+      Saw Trap - Level 3_17: 680761232808187399
+      Saw Trap - Level 3_7: 2179680367501816938
+      Saw Trap - Level 3_9: 6916103621380856472
+      Saw Trap - Level 3_1: 578723141786493769
+      Saw Trap - Level 3_14: -7009729725429739743
+      Saw Trap - Level 3_4: 1298798927745360159
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

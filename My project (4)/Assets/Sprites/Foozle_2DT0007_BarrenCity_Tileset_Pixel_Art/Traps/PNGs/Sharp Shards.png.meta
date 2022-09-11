@@ -156,6 +156,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1192,6 +1193,51 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Sharp Shards_22: -2275632475051727715
+      Sharp Shards_7: -6998698649221867537
+      Sharp Shards_36: -7910626727341492156
+      Sharp Shards_19: 7372145237187917290
+      Sharp Shards_20: 65646251600264380
+      Sharp Shards_23: 2718693481950483370
+      Sharp Shards_40: 6211314888353990079
+      Sharp Shards_26: -1927045424790899430
+      Sharp Shards_39: 6586546026043367152
+      Sharp Shards_18: 4440031777769255906
+      Sharp Shards_24: 1767060081812883107
+      Sharp Shards_9: 7140732499353239903
+      Sharp Shards_32: -5110333793845327793
+      Sharp Shards_21: 5042182216595942037
+      Sharp Shards_2: -6616697530240530761
+      Sharp Shards_1: 8983962347079072684
+      Sharp Shards_15: -6545455063567450028
+      Sharp Shards_13: 226736581591271443
+      Sharp Shards_17: 2584506239977215594
+      Sharp Shards_11: -3716384022555832665
+      Sharp Shards_4: 1629627099466126957
+      Sharp Shards_5: 2078563171858963499
+      Sharp Shards_31: 5535830407686516351
+      Sharp Shards_0: -1231266239332559688
+      Sharp Shards_41: 2487906056476993642
+      Sharp Shards_14: 3282126491836479906
+      Sharp Shards_29: 3997425356379618219
+      Sharp Shards_37: -8192697392967006116
+      Sharp Shards_43: 7737010418235399493
+      Sharp Shards_34: 8782875816460592735
+      Sharp Shards_30: 6084216777282719727
+      Sharp Shards_38: -2390429035645576726
+      Sharp Shards_42: 3701245650168559327
+      Sharp Shards_8: 647850272270285779
+      Sharp Shards_27: -8319084251335394617
+      Sharp Shards_6: -547812048791539945
+      Sharp Shards_35: -3438000963771858182
+      Sharp Shards_12: -6216285713466043294
+      Sharp Shards_16: -8513644193268511292
+      Sharp Shards_10: -170390854988874030
+      Sharp Shards_25: 4513736276112774597
+      Sharp Shards_28: -8381916199094129531
+      Sharp Shards_33: 5647624105364635789
+      Sharp Shards_3: 588202329938255265
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

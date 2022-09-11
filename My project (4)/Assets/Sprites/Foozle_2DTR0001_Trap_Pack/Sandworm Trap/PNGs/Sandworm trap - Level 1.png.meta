@@ -57,6 +57,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -412,6 +413,18 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Sandworm trap - Level 1_8: -1752189746282107514
+      Sandworm trap - Level 1_7: -7656220197374065822
+      Sandworm trap - Level 1_2: -1780602966226861095
+      Sandworm trap - Level 1_10: -8350370511532105002
+      Sandworm trap - Level 1_4: -1459220428375950227
+      Sandworm trap - Level 1_3: -2239156101032443528
+      Sandworm trap - Level 1_5: -8099493035078115459
+      Sandworm trap - Level 1_9: -3211904135425204714
+      Sandworm trap - Level 1_0: 8683212440451763346
+      Sandworm trap - Level 1_1: -3855199981230855275
+      Sandworm trap - Level 1_6: 7877822357941493269
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

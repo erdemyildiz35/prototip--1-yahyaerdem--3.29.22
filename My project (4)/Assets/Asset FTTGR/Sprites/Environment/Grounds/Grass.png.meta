@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -50,9 +51,9 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -148,7 +149,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 79d946fd79a9c4de0800000000000000
-      internalID: -1347532211411968617
+      internalID: 1951189411903740231
       vertices: []
       indices: 
       edges: []
@@ -169,7 +170,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 26b0860faae26e590800000000000000
-      internalID: -7645372005702169758
+      internalID: -6682195311321957372
       vertices: []
       indices: 
       edges: []
@@ -190,7 +191,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: f8a5966019ef3af50800000000000000
-      internalID: 6891631753638271631
+      internalID: 7356492540161657480
       vertices: []
       indices: 
       edges: []
@@ -211,7 +212,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: aef03152e26199600800000000000000
-      internalID: 475435623110610922
+      internalID: 7603999638469995646
       vertices: []
       indices: 
       edges: []
@@ -232,7 +233,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 04717a5b3804b8940800000000000000
-      internalID: 5299400320964040512
+      internalID: -5677096002813759192
       vertices: []
       indices: 
       edges: []
@@ -253,7 +254,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 9eccddfe8ab4f4b90800000000000000
-      internalID: -7255497285719700247
+      internalID: -1347532211411968617
       vertices: []
       indices: 
       edges: []
@@ -268,6 +269,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Grass4: 7603999638469995646
+      Grass1: 1951189411903740231
+      Grass3: 7356492540161657480
+      Grass6: -1347532211411968617
+      Grass5: -5677096002813759192
+      Grass2: -6682195311321957372
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

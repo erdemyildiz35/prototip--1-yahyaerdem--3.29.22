@@ -553,7 +553,7 @@ public class AventurerMove : MonoBehaviour
                 }
             }
 
-            hitEnemies = Physics2D.OverlapCircleAll(SwordAttackPoint.position, .5f, EnemyLayer);
+            hitEnemies = Physics2D.OverlapCircleAll(SwordAttackPoint.position, 1.2f, EnemyLayer);
         }
         else if (!HandOrSword)
         {

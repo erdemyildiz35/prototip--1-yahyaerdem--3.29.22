@@ -69,6 +69,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -78,8 +79,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -484,6 +485,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      IceGolemDeath1: 5951877328776289634
+      IceGolemRun5: -7566096082480968688
+      IceGolemRun1: 6493497875542670268
+      SnowGolemDeath6: 5497613644851806840
+      IceGolemRun3: 5678472365468456989
+      IceGolemIdle3: -8101285897173029012
+      IceGolemDeath2: -6626163262783894581
+      IceGolemDeath4: 7586496228379052409
+      IceGolemIdle2: -9174849932301070810
+      IceGolemDeath3: -6442242602381218977
+      IceGolemDeath5: -5865453221453754034
+      IceGolemRun2: -7624396985072564
+      IceGolemRun4: -6526628683499156564
+      IceGolemIdle4: -8812695564013316242
+      IceGolemIdle1: -3252961087705743626
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

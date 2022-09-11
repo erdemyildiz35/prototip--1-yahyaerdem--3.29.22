@@ -51,6 +51,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -352,6 +353,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Fire Trap - Level 1_1: -6154617364274131190
+      Fire Trap - Level 1_2: 1221848524344335182
+      Fire Trap - Level 1_6: 6077602836076763384
+      Fire Trap - Level 1_0: 5217671297236562399
+      Fire Trap - Level 1_7: -3065166820223066323
+      Fire Trap - Level 1_8: -4688294747569367557
+      Fire Trap - Level 1_4: -7710113710173691326
+      Fire Trap - Level 1_3: 9035281779509367266
+      Fire Trap - Level 1_5: 7897103752328932096
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

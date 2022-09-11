@@ -612,6 +612,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -742,7 +743,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 3fdf17175b5bd5d10800000000000000
-      internalID: 2116047190831005171
+      internalID: 8934727571647504055
       vertices: []
       indices: 
       edges: []
@@ -763,7 +764,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1e34e5ba792be36f0800000000000000
-      internalID: -702928127338331167
+      internalID: -767132290407412569
       vertices: []
       indices: 
       edges: []
@@ -784,7 +785,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e9fb494f3731f8640800000000000000
-      internalID: 5084303893070135198
+      internalID: 257608603958533780
       vertices: []
       indices: 
       edges: []
@@ -1513,6 +1514,44 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      MudGround30: 7389366469856121686
+      MudGround35: 907717672722351726
+      MudGround20: -65825934458788174
+      MudGround17: 5879721906815124989
+      MudGround26: -7628379963358927494
+      MudGround37: 141060775683943746
+      MudGround2: -767132290407412569
+      MudGround5: 4791386450261003010
+      MudGround3: 257608603958533780
+      MudGround32: 1356708223382930306
+      MudGround21: 4961684242252850260
+      MudGround9: 822283757708245676
+      MudGround34: 2921349312013132232
+      MudGround33: 634655889682781178
+      MudGround31: 4895925372660722381
+      MudGround4: 4154122734123186783
+      MudGround36: 1718794231697058533
+      MudGround24: 302385509493396688
+      MudGround19: 5129596363019799686
+      MudGround22: 5104237970117710119
+      MudGround8: -8789516304687292529
+      MudGround6: -1201576769147380490
+      MudGround7: 4171341387788810888
+      MudGround15: -7383042921558980707
+      MudGround12: -5797559726789665714
+      MudGround29: 7607214638821333580
+      MudGround23: -6136936099787256261
+      MudGround16: 205212003727785358
+      MudGround25: 7258319905987641022
+      MudGround27: 6865420901353545195
+      MudGround18: -4482579196407793652
+      MudGround28: -3207695718293636696
+      MudGround13: 987530185810958247
+      MudGround10: -3851271918369364124
+      MudGround14: 2311652744661234061
+      MudGround1: 8934727571647504055
+      MudGround11: -6213413584892894769
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

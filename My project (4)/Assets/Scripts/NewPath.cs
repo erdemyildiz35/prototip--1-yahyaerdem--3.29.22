@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.Experimental.Rendering.Universal;
+
 using UnityEngine.SceneManagement;
 
 public class NewPath : MonoBehaviour
@@ -12,7 +12,7 @@ public class NewPath : MonoBehaviour
     [SerializeField] Transform cameraTransform;
     [SerializeField] CameraFollowPlayer FollowPlayer;
     [SerializeField] TilemapRenderer tileMapRenderer;
-    [SerializeField] Light2D light2D;
+    [SerializeField] UnityEngine.Rendering.Universal.Light2D light2D;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class NewPath : MonoBehaviour
         cameraTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
         FollowPlayer = GameObject.Find("Main Camera").GetComponent<CameraFollowPlayer>();
         tileMapRenderer = gameObject.GetComponent<TilemapRenderer>();
-        light2D = GameObject.Find("Main Camera").transform.GetChild(0).GetComponent<Light2D>();
+        light2D = GameObject.Find("Main Camera").transform.GetChild(0).GetComponent<UnityEngine.Rendering.Universal.Light2D>();
         light2D.enabled = false;
     }
 

@@ -17,7 +17,7 @@ public class WalkingEnemy : MonoBehaviour
     {
         Width = GetComponent<SpriteRenderer>().bounds.extents.x;
         fireBallBody = GetComponent<Rigidbody2D>();
-        Adventurer = GetComponent<AventurerMove>();
+        Adventurer = FindObjectOfType<AventurerMove>();
 
 
     }

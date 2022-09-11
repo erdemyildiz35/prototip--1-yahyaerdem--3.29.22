@@ -135,6 +135,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1036,6 +1037,44 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      GrassGround23: -7591071721869800544
+      GrassGround24: -7702650027716606723
+      GrassGround5: 6134326105665638442
+      GrassGround9: -4322230916794009405
+      GrassGround6: 7092582303236834705
+      GrassGround15: -3231581265014807042
+      GrassGround35: 6230158597735753744
+      GrassGround31: -680242088210058052
+      GrassGround12: 771734740194506779
+      GrassGround2: -5335115962201115848
+      GrassGround11: -2205709031907622699
+      GrassGround20: -8756037020257996030
+      GrassGround3: 174677449549990601
+      GrassGround18: 5962755918459115008
+      GrassGround27: 8586765538184897953
+      GrassGround4: -1359286407109888413
+      GrassGround32: 536428876239378153
+      GrassGround30: 2983742238565700927
+      GrassGround7: -215392406208037642
+      GrassGround33: 6972924296976846159
+      GrassGround8: -2621796465878421070
+      GrassGround16: -266568907868957434
+      GrassGround34: -4703658322871621957
+      GrassGround22: -8850107319253625656
+      GrassGround29: 5699237186100995045
+      GrassGround28: 3555866323057567477
+      GrassGround37: 6590617389021328449
+      GrassGround13: 7587775810358253724
+      GrassGround25: -7670163619321435432
+      GrassGround36: 7191035529939738049
+      GrassGround10: -4678923667756537383
+      GrassGround1: 4449648480419895136
+      GrassGround21: -8757296039032003216
+      GrassGround17: 8395314603240462342
+      GrassGround14: -3753335598418687612
+      GrassGround19: -7662380702448732132
+      GrassGround26: -1158243619938606550
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

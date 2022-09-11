@@ -180,6 +180,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -189,8 +190,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -1225,6 +1226,52 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Rock2: -4500993874483076431
+      Rock3: 3411122762858479303
+      M2Browning: -2804744358768855969
+      Box2: -1046941070198520135
+      RoadSign2: 429415279605046377
+      FireType1_2: -6474815905490174710
+      Tree4: -2753597471096352698
+      RoadSign1: -1454307687701597747
+      Bush2: -9222907771542121340
+      Tree7: -8712274148768584012
+      Torch: 3914693016000628799
+      Tower: -7273182288970780907
+      Tree5: -446867404522521166
+      Rock1: 2713915087196460949
+      FireType2_3: -2994877863233710035
+      FireType1_5: 2558546051751004457
+      Tent: -9150735976156324452
+      Tree1: -4206819594563279181
+      Mushroom2: -5067417587186917036
+      FireType1_4: 8538422899418973946
+      FireType2_2: 2748799819732492174
+      Bush1: 3979068135754789419
+      Column: -6081611462039590206
+      FireType2_4: -7033716677687157895
+      LampPostDirty: -5508807443964245338
+      FireType1_3: 2051757784263316258
+      Tree3: -983121831306131238
+      BranchWinter: -2213567507432036408
+      Fence1: 5833574547336235507
+      Mushroom3: -1139413452182724931
+      Fence2: 6324641151635632663
+      FireType2_1: 3062189330265537062
+      BonfireStones: -1050146069433883852
+      Tree8: -5752234085001537140
+      Barrel2: -545380113026382421
+      LampPostLit: 5089713165793692188
+      FireType2_5: 1648749068166103451
+      Tree2: 566846315969825457
+      Tree6: -7141470251623736366
+      FireType1_1: -8952722625416497748
+      Box1: -3379549609284833125
+      Mushroom1: 5343071225971855845
+      Barrel1: 5575579087702807243
+      Mushroom4: -1607978952677151495
+      LampPost: -368401321789775361
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

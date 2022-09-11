@@ -138,6 +138,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -147,8 +148,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -1036,6 +1037,45 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      HeroIdle3: -6089189685315772502
+      HeroDeath4: -6060876265418842428
+      HeroPunch3: -1149029613571509917
+      HeroSitDownByTheFire1: -2424968931422420723
+      HeroDeath2: -7067365077701195739
+      HeroWalkAwayFromFire1: -1910980653693743081
+      HeroRun8: -3687602496079464652
+      HeroSitDownByTheFire4: 2776209665653643088
+      HeroSitDownByTheFire2: 552900063559834478
+      HeroRun9: -2142791582941521445
+      HeroPunch4: -2795223897453537613
+      HeroIdle4: -314675951565558864
+      HeroRun6: 1635744749237841209
+      HeroDeath1: -9014295782854626241
+      HeroPunch1: 847356742481223136
+      HeroPunch6: -7045202169978999449
+      HeroWalkAwayFromFire2: 2382439291522176088
+      HeroPunch5: 3880623526851715865
+      HeroSitByTheFire1: -5800700536808373965
+      HeroRun1: 9138555137054584332
+      HeroDeath3: -5991450931309886240
+      HeroRun2: 2632276121321243838
+      HeroIdle2: 1917320343087086255
+      HeroDeath6: -354585906375729080
+      HeroSitDownByTheFire3: 2294949204960916495
+      HeroIdle1: -6146700129834819302
+      HeroRun3: 2805043176163793281
+      HeroRun10: 7018385267601350384
+      HeroRun5: 8960899199633546546
+      HeroRun4: 3530003579022248241
+      HeroSitByTheFire2: -3983798310479679007
+      HeroDeath5: -2907588548364164451
+      HeroPunch2: 8078218461702098748
+      HeroFlyUp: 55406406312410805
+      HeroWalkAwayFromFire3: 7797690872389585371
+      HeroOpenedBag: 1154780279644653340
+      HeroFlyDown: -7849989574039795051
+      HeroRun7: 4360131077223874234
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

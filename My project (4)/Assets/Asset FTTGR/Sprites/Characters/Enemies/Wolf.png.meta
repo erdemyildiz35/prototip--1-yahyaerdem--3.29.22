@@ -87,6 +87,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -96,8 +97,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -628,6 +629,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      WolfRun2: -5547194825390550217
+      WolfAttack1: 5184831053750644559
+      WolfDeath3: -7301354884331706780
+      WolfDeath1: -568028469627883041
+      WolfDeath2: -8950900020940200642
+      WolfIdle3: -646909099640243086
+      WolfRun3: 6891357095817125983
+      WolfIdle4: 4894625464057909285
+      WolfDeath5: 7909793306663388568
+      WolfRun4: 2672853027243246175
+      WolfAttack4: -5063944184051285002
+      WolfAttack6: 5053179653577929093
+      WolfAttack5: 1931046830726773370
+      WolfIdle1: -3112195067975180470
+      WolfRun5: -6079965141102547391
+      WolfIdle2: 6257932743403368881
+      WolfDeath4: -2594674251864920846
+      WolfRun1: -458185587419916677
+      WolfRun6: -6983649135101308852
+      WolfAttack2: 4345086733073366625
+      WolfAttack3: 1575559808605154654
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
