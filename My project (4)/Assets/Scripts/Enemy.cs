@@ -156,7 +156,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Weapon")
         {
-            // TakeDamage(20);
+            TakeDamage(20);
         }
         else if (collision.gameObject.tag == "Fireball")
         {

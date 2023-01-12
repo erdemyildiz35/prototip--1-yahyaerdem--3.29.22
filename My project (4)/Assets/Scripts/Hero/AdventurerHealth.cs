@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class AdventurerHealth : MonoBehaviour
 {
-    public int Heart;
+    
     public float Health;
     public float MaxHealth;
     [SerializeField] Slider healthSlider;
@@ -14,7 +14,7 @@ public class AdventurerHealth : MonoBehaviour
     public Color Highh;
     public Vector3 offset;
     Animator AdventurerAnimator;
-    public List<Image> HeartImage;
+   
     int Rand;
     AventurerMove aventurerMove;
     public LayerMask Obstaclelayer;
@@ -35,12 +35,14 @@ public class AdventurerHealth : MonoBehaviour
 
         healthSlider = GameObject.Find("Health").GetComponent<Slider>();
 
+       
+
         MaxHealth += (skills.sta * MaxHealth) / 10;
         Health = MaxHealth;
         healthSlider.maxValue = MaxHealth;
         HealThBarStatus();
         //healthSlider.gameObject.SetActive(false); 
-        Heart = 3;
+        
     }
 
     void HealThBarStatus()
@@ -93,31 +95,16 @@ public class AdventurerHealth : MonoBehaviour
         }
         if (Health <= 0)
         {
-            if (Heart <= 0)
-            {
+           
                 Die();
-            }
-            AdventurerAnimator.Play("GetUp");
-            Health = MaxHealth;
-            healthSlider.value = Health;
-            Heart--;
-            Hearth();
+           
+          
+          
         }
 
     }
 
-    private void Hearth()
-    {
-        for (int i = 0; i < HeartImage.Count; i++)
-        {
-            HeartImage[i].enabled = false;
-        }
-
-        for (int i = 0; i < Heart; i++)
-        {
-            HeartImage[i].enabled = true;
-        }
-    }
+ 
 
     public void Die()
     {

@@ -15,6 +15,7 @@ public class FireWorm : MonoBehaviour
     Vector3 LocalScale;
 
     [SerializeField] float AttackSpeed = 3f;
+    [SerializeField] float AttackMenzili = 5f;
     private bool CanAttack = true;
     Animator animator;
     Rigidbody2D Rb;
@@ -71,7 +72,7 @@ public class FireWorm : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, Hero.transform.position) <= 25f)
         {
-            if (Vector2.Distance(transform.position, Hero.transform.position) <= 15f && Mathf.Abs(transform.position.y - Hero.transform.position.y)   <= 7)
+            if (Vector2.Distance(transform.position, Hero.transform.position) <= AttackMenzili && Mathf.Abs(transform.position.y - Hero.transform.position.y)   <= 7)
             {
                 if (CanAttack)
                 {

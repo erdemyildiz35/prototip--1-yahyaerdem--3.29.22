@@ -43,8 +43,6 @@ public class Castlemanage4r : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             ToTheMainGateCanvas.gameObject.SetActive(false);
-
-
         }
 
     }
@@ -59,16 +57,9 @@ public class Castlemanage4r : MonoBehaviour
                 ToTheMainGateCanvas.gameObject.SetActive(true);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-
-                    SceneManager.LoadScene("MainLevel");
-                   
+                    SceneManager.LoadScene("MainLevel"); 
                 }
-
             }
-           
-            
-
-
         }
 
     }

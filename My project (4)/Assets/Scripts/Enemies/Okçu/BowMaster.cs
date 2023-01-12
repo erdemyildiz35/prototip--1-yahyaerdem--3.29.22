@@ -44,7 +44,7 @@ public class BowMaster : MonoBehaviour
         }
 
 
-        if (Physics2D.OverlapCircle(transform.position, RangeOfPlayer * 2, PlayerLayer) && Mathf.Abs((100 - transform.position.y) - (100 - Aventurer.transform.position.y)) <= 20)
+        if (Physics2D.OverlapCircle(transform.position, RangeOfPlayer * 2, PlayerLayer) && Mathf.Abs((100 - transform.position.y) - (100 - Aventurer.transform.position.y)) <= 5)
         {
 
             if (isRight )

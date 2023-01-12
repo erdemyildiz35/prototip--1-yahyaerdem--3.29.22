@@ -20,6 +20,7 @@ TagManager:
   - Heal
   - Exp
   - Gold
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -42,7 +43,7 @@ TagManager:
   - Gold
   - Heal
   - chest
-  - 
+  - Weapon
   - 
   - 
   - 

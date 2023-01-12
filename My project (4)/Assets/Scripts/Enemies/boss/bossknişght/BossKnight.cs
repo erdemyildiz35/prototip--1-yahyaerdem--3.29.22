@@ -46,7 +46,7 @@ public class BossKnight : MonoBehaviour
 
     private void MovementAndAnimation()
     {
-        if (Vector2.Distance(transform.position, Adventurer.transform.position) < FarketmeMenzili && !(Vector2.Distance(transform.position, Adventurer.transform.position) <AttackMenzili)&& İsOnGround)
+        if (Vector2.Distance(transform.position, Adventurer.transform.position) < FarketmeMenzili && !(Vector2.Distance(transform.position, Adventurer.transform.position) <AttackMenzili)&& İsOnGround && Mathf.Abs((100 - transform.position.y) - (100 - Adventurer.transform.position.y)) <= 5)
         {
             if(Adventurer.transform.position.x > this.transform.position.x)
             {

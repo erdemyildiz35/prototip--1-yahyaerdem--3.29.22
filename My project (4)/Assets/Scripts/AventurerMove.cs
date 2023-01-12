@@ -20,6 +20,12 @@ public class AventurerMove : MonoBehaviour
     public float calculatedDamage;
     public bool canCalculate;
 
+    [Header("Bow&Arrow")]
+    [SerializeField] float BowSpeed;
+   [SerializeField] GameObject Arrow;
+    [SerializeField] GameObject Arrow2;
+
+
 
     [Header("ParticleSistemi")]
     public ParticleSystem Dust;
@@ -259,7 +265,7 @@ public class AventurerMove : MonoBehaviour
 
         if (HidePlace && isCrouch)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .3f);
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .2f);
             Hide = true;
             gameObject.layer = 10;
 
@@ -561,16 +567,35 @@ public class AventurerMove : MonoBehaviour
             {
                 if (IsGround)
                 {
-                    AnimatorAdventurer.Play("Kick");
-                    AttackDamage = 10;
-                    source.PlayOneShot(punch);
+                    if (Stamina >= 40)
+                    {
+                        AnimatorAdventurer.Play("BowJump");
+                        AttackDamage = 10;
+                        source.PlayOneShot(punch);
+
+                    }
+                    else
+                    {
+                        isAttacking = false;
+                        Speed = TempSpeed;
+                    }
+
                     //Saldırı -kick
                 }
                 else if (!IsGround)
                 {
-                    AnimatorAdventurer.Play("DropKick");
-                    AttackDamage = 10;
-                    source.PlayOneShot(punch);
+                    if(Stamina >= 30)
+                    {
+                        AnimatorAdventurer.Play("BowJump");
+                        AttackDamage = 10;
+                        source.PlayOneShot(punch);
+                    }
+                    else
+                    {
+                        isAttacking = false;
+                        Speed = TempSpeed;
+                    }
+
                     //Saldırı -kick
                 }
                 else if (IsGround && AnimatorAdventurer.GetBool("FastRun") == true)
@@ -583,8 +608,17 @@ public class AventurerMove : MonoBehaviour
             {
                 if (AnimatorAdventurer.GetBool("FastRun") == false)
                 {
-                    AnimatorAdventurer.Play("Punch");
-                    AttackDamage = 10;
+                    if (Stamina >= 35)
+                    {
+                        AnimatorAdventurer.Play("Bow");
+                        AttackDamage = 10;
+                    }
+                    else
+                    {
+                        isAttacking = false;
+                        Speed = TempSpeed;
+                    }
+                       
                 }
                 else
                 {
@@ -788,6 +822,21 @@ public class AventurerMove : MonoBehaviour
             Speed = TempSpeed;
         }
 
+        if (message == "BowEnd")
+        {
+            StartCoroutine(AttackWaitTime());
+            Speed = TempSpeed;
+            isAttacking = false;
+            insBow("1");
+        }
+        if (message == "BowEndSuper")
+        {
+            StartCoroutine(AttackWaitTime());
+            Speed = TempSpeed;
+            isAttacking = false;
+            insBow("2");
+        }
+
     }
 
 
@@ -851,8 +900,51 @@ public class AventurerMove : MonoBehaviour
     {
         Jump_Particle.Play();
     }
-   
 
+    public void insBow(string ArrowType)
+    {
+        if (ArrowType == "1")
+        {
+            GameObject Go = Instantiate(Arrow, HandAttackPoint.position, Quaternion.identity);
+
+            if (FlipRight)
+            {
+                Go.GetComponent<SpriteRenderer>().flipX = false;
+                Go.GetComponent<Rigidbody2D>().velocity = new Vector2(BowSpeed, 0);
+
+
+            }
+            else
+            {
+                Go.GetComponent<SpriteRenderer>().flipX = true;
+                Go.GetComponent<Rigidbody2D>().velocity = new Vector2(-BowSpeed, 0);
+            }
+            Stamina -= 30;
+            Destroy(Go, 5f);
+        }
+        else
+        {
+            GameObject Go = Instantiate(Arrow2, HandAttackPoint.position, Quaternion.identity);
+
+            if (FlipRight)
+            {
+                Go.GetComponent<SpriteRenderer>().flipX = false;
+                Go.GetComponent<Rigidbody2D>().velocity = new Vector2(BowSpeed, 0);
+
+
+            }
+            else
+            {
+                Go.GetComponent<SpriteRenderer>().flipX = true;
+                Go.GetComponent<Rigidbody2D>().velocity = new Vector2(-BowSpeed, 0);
+            }
+            Stamina -= 30;
+            Destroy(Go, 5f);
+        }
+      
+
+
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {

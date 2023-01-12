@@ -16,7 +16,7 @@ PlayerSettings:
   productName: 'AdventurerJouney '
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.9921569, g: 0.33333334, b: 0, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -40,9 +40,9 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: ffe07e1b8b72a604383f7f101b6c00c1, type: 3}
-    duration: 2.23
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 207f33eef7ccc534b9910cfe7467b0a3, type: 3}
+  - logo: {fileID: 21300000, guid: 4a4f76ee841db5644b78746d5a0f5e67, type: 3}
+    duration: 2.55
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: cd0a9939afefaf645ae5a7a57c9c4035, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
@@ -136,7 +136,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 22
+  bundleVersion: 24
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -164,9 +164,9 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 22
+  AndroidBundleVersionCode: 24
   AndroidMinSdkVersion: 22
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 33
   AndroidPreferredInstallLocation: 0
   aotOptions: 
   stripEngineCode: 1
@@ -248,10 +248,10 @@ PlayerSettings:
   useCustomBaseGradleTemplate: 0
   useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 3
+  AndroidTargetArchitectures: 15
   AndroidTargetDevices: 1
-  AndroidSplashScreenScale: 0
-  androidSplashScreen: {fileID: 2800000, guid: 9aafb653c9a5b6843978db8c1409c199, type: 3}
+  AndroidSplashScreenScale: 2
+  androidSplashScreen: {fileID: 2800000, guid: 2925907021463124580245a2b34de034, type: 3}
   AndroidKeystoreName: C:/Keystore/adventurerkeystore.keystore
   AndroidKeyaliasName: "erdemy\u0131ld\u0131z"
   AndroidBuildApkPerCpuArchitecture: 0
@@ -276,7 +276,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 6fb5a55d18db4cd4e9c14176946494b3, type: 3}
+      m_Icon: {fileID: 2800000, guid: 0209921c91d1c0745816ea5e23db26ed, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

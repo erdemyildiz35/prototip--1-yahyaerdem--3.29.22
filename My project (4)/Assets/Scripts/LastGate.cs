@@ -44,7 +44,8 @@ public class LastGate : MonoBehaviour
             isGateActive = true;
             Portal.SetActive(true);
         }
-        else if (PlayerPrefs.GetFloat("IceComplete") == 1 && PlayerPrefs.GetFloat("DesertComplete") == 1 && PlayerPrefs.GetFloat("CastleComplete") == 1)
+
+        else if (PlayerPrefs.GetFloat("Desert") == 1 && PlayerPrefs.GetFloat("Castle") == 1 && PlayerPrefs.GetFloat("Map3") == 1)
         {
             isGateActive = true;
             Portal.SetActive(true);
