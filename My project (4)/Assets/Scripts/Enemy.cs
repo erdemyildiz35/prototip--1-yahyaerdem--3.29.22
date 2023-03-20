@@ -156,11 +156,29 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Weapon")
         {
+            if (collision.gameObject.GetComponent<Transform>().position.x > this.gameObject.transform.position.x)
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right*2f,ForceMode2D.Force);
+                Debug.Log("Sağa Attı0");
+            }
+            else
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 2f, ForceMode2D.Force);
+                Debug.Log("sola attı");
+            }
             TakeDamage(20);
         }
         else if (collision.gameObject.tag == "Fireball")
         {
             TakeDamage(20);
+            if (collision.gameObject.GetComponent<Transform>().position.x > this.gameObject.transform.position.x)
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 2f, ForceMode2D.Force);
+            }
+            else
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 2f, ForceMode2D.Force);
+            }
         }
         else if (collision.gameObject.tag == "Lava")
         {

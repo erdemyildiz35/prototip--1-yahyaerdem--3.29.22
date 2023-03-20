@@ -65,7 +65,7 @@ public class SkillMenuController : MonoBehaviour
     }
     void ContinueGame()
     {
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("MainLevelArk");
     }
 
     void GoMainMenu()

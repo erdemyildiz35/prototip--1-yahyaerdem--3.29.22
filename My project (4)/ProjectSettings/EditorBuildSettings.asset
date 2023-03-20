@@ -36,7 +36,13 @@ EditorBuildSettings:
     path: Assets/Scenes/CastleV2.unity
     guid: 34e43cc9301c5994b8274ace27a0a93b
   - enabled: 1
-    path: Assets/Scenes/map3v2.unity
+    path: "Assets/Scenes/New Tasar\u0131m1/MainLevelArk.unity"
+    guid: 71c26ff56211bf644b03c49b3581fdb1
+  - enabled: 1
+    path: "Assets/Scenes/New Tasar\u0131m1/AraLevel.unity"
+    guid: a2a219eb5b7ab6d4c9f09a5ab3c926cc
+  - enabled: 1
+    path: "Assets/Scenes/New Tasar\u0131m1/ark-1/level-5-A1.unity"
     guid: 87e3c0a947c0a594d90ad6e0928b7e29
   - enabled: 1
     path: "Assets/Scenes/New Tasar\u0131m1/ark-1/level-1-A1.unity"
@@ -50,7 +56,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/New Tasar\u0131m1/ark-1/level-4-A1.unity"
     guid: ea97b7774d5f02f43b579e89b8e0c63c
-  - enabled: 1
-    path: "Assets/Scenes/New Tasar\u0131m1/ark-1/level-5-A1.unity"
-    guid: adbdc988bb08517459fc01f14f7768d1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

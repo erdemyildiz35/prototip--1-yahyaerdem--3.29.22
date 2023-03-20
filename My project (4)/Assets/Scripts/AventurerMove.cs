@@ -186,7 +186,6 @@ public class AventurerMove : MonoBehaviour
         //KeyInputs();
         joystickHorizontal();
         Movement();
-        isitOnHidePoints();
         AnimationControl();
         StaSlider.value = Stamina;
 
@@ -254,34 +253,7 @@ public class AventurerMove : MonoBehaviour
     void isitOnHidePoints()
     {
 
-        if (Physics2D.OverlapCircle(transform.position, .5f, HideLayer))
-        {
-            HidePlace = true;
-        }
-        else
-        {
-            HidePlace = false;
-        }
-
-        if (HidePlace && isCrouch)
-        {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .2f);
-            Hide = true;
-            gameObject.layer = 10;
-
-        }
-        else if (!HidePlace)
-        {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 255);
-            Hide = false;
-            gameObject.layer = 9;
-        }
-        else if (!isCrouch)
-        {
-            Hide = false;
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 255);
-            gameObject.layer = 9;
-        }
+       
     }
 
     void Movement()
@@ -565,13 +537,17 @@ public class AventurerMove : MonoBehaviour
         {
             if (key == 0)
             {
+                Invoke("AttackSıfırla", .5f);
+
                 if (IsGround)
                 {
-                    if (Stamina >= 40)
+                    if (Stamina >= 30)
                     {
                         AnimatorAdventurer.Play("BowJump");
                         AttackDamage = 10;
                         source.PlayOneShot(punch);
+                        isAttacking = true;
+                        Invoke("AttackSıfırla", .5f);
 
                     }
                     else
@@ -588,7 +564,9 @@ public class AventurerMove : MonoBehaviour
                     {
                         AnimatorAdventurer.Play("BowJump");
                         AttackDamage = 10;
-                        source.PlayOneShot(punch);
+                        source.PlayOneShot(punch); StartCoroutine(AttackWaitTime());
+                        Invoke("AttackSıfırla", .5f);
+
                     }
                     else
                     {
@@ -608,22 +586,24 @@ public class AventurerMove : MonoBehaviour
             {
                 if (AnimatorAdventurer.GetBool("FastRun") == false)
                 {
-                    if (Stamina >= 35)
+                    if (Stamina > 35)
                     {
                         AnimatorAdventurer.Play("Bow");
                         AttackDamage = 10;
+                        StartCoroutine(AttackWaitTime());
+                        Invoke("AttackSıfırla" ,.5f);
                     }
                     else
                     {
                         isAttacking = false;
-                        Speed = TempSpeed;
+                       Speed = TempSpeed;
                     }
                        
                 }
                 else
                 {
                     AnimatorAdventurer.Play("RunPunch");
-                    AttackDamage = 10;
+                    AttackDamage = 10; StartCoroutine(AttackWaitTime());
                 }
             }
             hitEnemies = Physics2D.OverlapCircleAll(HandAttackPoint.position, 2f, EnemyLayer);
@@ -876,6 +856,7 @@ public class AventurerMove : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
         isAttacking = false;
+        Speed = TempSpeed;
     }
 
     IEnumerator StaCalculateIE()
@@ -963,6 +944,27 @@ public class AventurerMove : MonoBehaviour
             isOnRope = true;
         }
 
+        if (collision.gameObject.tag == "HidePlace")
+        {
+           
+
+            if (isCrouch)
+            {
+                
+                this.gameObject.layer = LayerMask.NameToLayer("Hide");
+              
+                this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -10;
+                Debug.Log(this.gameObject.layer);
+            }
+            else
+            {
+                this.gameObject.layer = 9;
+                
+                this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 20;
+            }
+        }
+     
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -974,6 +976,12 @@ public class AventurerMove : MonoBehaviour
 
         }
 
+    }
+    void AttackSıfırla()
+    {
+        Speed = TempSpeed;
+        isAttacking = false;
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)

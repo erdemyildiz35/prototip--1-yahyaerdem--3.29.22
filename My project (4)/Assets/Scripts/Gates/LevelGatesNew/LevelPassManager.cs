@@ -47,8 +47,20 @@ public class LevelPassManager : MonoBehaviour
 
             if (Buttonevent.keydown)
             {
+               
+                PlayerPrefs.SetInt(GecilenLevel, 1);
                 PlayerPrefs.SetInt(GecilmisLevel, 1);
-                SceneManager.LoadScene("MainLevel");//main menu next level?
+                if (SceneManager.GetActiveScene().name == "MainLevelArk")
+                {
+                    
+                          SceneManager.LoadScene("AraLevel");
+                }
+                else
+                {
+                    SceneManager.LoadScene("MainLevelArk");
+                }
+
+              //main menu next level?
             }
 
         }
