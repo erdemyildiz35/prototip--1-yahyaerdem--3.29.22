@@ -25,7 +25,7 @@ public class FireTrap : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            animator.Play("Fire", -1, 0);
+           
         }
     }
 

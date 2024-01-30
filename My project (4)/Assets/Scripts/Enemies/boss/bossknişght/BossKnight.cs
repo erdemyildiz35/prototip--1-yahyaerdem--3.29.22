@@ -37,7 +37,7 @@ public class BossKnight : MonoBehaviour
 
     private void Update()
     {
-        İsOnGround = Physics2D.Raycast(transform.position , Vector2.down, 2f,GroundLayer);
+        İsOnGround = Physics2D.Raycast(transform.position + new Vector3(1, 0, 0), Vector2.down, 2f, GroundLayer) ;
         Flip();
         MovementAndAnimation();
 
@@ -46,23 +46,33 @@ public class BossKnight : MonoBehaviour
 
     private void MovementAndAnimation()
     {
+
         if (Vector2.Distance(transform.position, Adventurer.transform.position) < FarketmeMenzili && !(Vector2.Distance(transform.position, Adventurer.transform.position) <AttackMenzili)&& İsOnGround && Mathf.Abs((100 - transform.position.y) - (100 - Adventurer.transform.position.y)) <= 5)
         {
-            if(Adventurer.transform.position.x > this.transform.position.x)
+            if (İsOnGround)
             {
+                if (Adventurer.transform.position.x > this.transform.position.x)
+                {
 
-                Rb.velocity=(new Vector3(Speed, 0, 0));
+                    Rb.velocity = (new Vector3(Speed, 0, 0));
 
 
+                }
+                else
+                {
+                    Rb.velocity = (new Vector3(-Speed, 0, 0));
+                }
+                Animator2d.SetBool("Running", true);
             }
             else
             {
-                Rb.velocity = (new Vector3(-Speed, 0, 0));
+                Rb.velocity = (new Vector3(0, 0, 0));
             }
-
-
-            Animator2d.SetBool("Running", true);
         }
+           
+
+
+           
         else if((Vector2.Distance(transform.position, Adventurer.transform.position) < AttackMenzili))
         {
             Rb.velocity = (new Vector3(0, 0, 0));

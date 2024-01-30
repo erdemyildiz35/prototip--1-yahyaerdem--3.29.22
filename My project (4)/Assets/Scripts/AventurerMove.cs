@@ -972,7 +972,7 @@ public class AventurerMove : MonoBehaviour
         {
 
             AnimatorAdventurer.Play("Jump");
-            rb.velocity = new Vector2(rb.velocity.x, JumpForce * 5f);
+            rb.velocity = new Vector2(rb.velocity.x, JumpForce * 3.5f);
 
         }
 
