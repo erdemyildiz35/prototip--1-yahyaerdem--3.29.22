@@ -6,15 +6,15 @@ using TMPro;
 
 public class BlackSmith : MonoBehaviour
 {
-    BoxCollider2D BlackSmithCollider;
-    Canvas UpgradeCanvas, UpgradeFailCanvas, BlacksmithUpgradeCanvas;
-    TextMeshProUGUI GoldText;
-    Text ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText, FailText;
-    AventurerMove aventurerMove;
-    Button ExitButton, SwordUpgradeButton, ArmorUpgradeButton;
-    Skills skill;
-    Animator animator;
-    SaveSystem saveSystem;
+   [SerializeField] BoxCollider2D BlackSmithCollider;
+    [SerializeField] Canvas UpgradeCanvas, UpgradeFailCanvas, BlacksmithUpgradeCanvas;
+    [SerializeField] TextMeshProUGUI GoldText;
+    [SerializeField] Text ArmorUpgradeText, SwordUpgradeText, SwordLevelText, ArmorLevelText, FailText;
+    [SerializeField] AventurerMove aventurerMove;
+    [SerializeField] Button ExitButton, SwordUpgradeButton, ArmorUpgradeButton;
+    [SerializeField] Skills skill;
+    [SerializeField] Animator animator;
+    [SerializeField] SaveSystem saveSystem;
     int SwordUpgradePrice, ArmorUpgradePrice;
     public float TempSpeed;
     bool UpgradeWindowIsOpen;
@@ -60,6 +60,7 @@ public class BlackSmith : MonoBehaviour
 
         saveSystem.Load();
         UpgradePriceChange();
+        TempSpeed = aventurerMove.TempSpeed;
 
     }
 
@@ -93,7 +94,7 @@ public class BlackSmith : MonoBehaviour
         if (collision.tag == "Player")
         {
             BlacksmithUpgradeCanvas.enabled = false;
-            //UpgradeCanvas.GetComponent<Canvas>().enabled = false;
+          UpgradeCanvas.GetComponent<Canvas>().enabled = false;
         }
     }
 

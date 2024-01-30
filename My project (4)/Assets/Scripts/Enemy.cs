@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
                 {
                     skills.GainExp(150);
                     GatesManager Manager = FindObjectOfType<GatesManager>();
-                    Manager.iswizardDestryed = true;
+                    
 
                 }
                 else

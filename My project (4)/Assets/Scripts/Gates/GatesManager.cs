@@ -6,14 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class GatesManager : MonoBehaviour
 {
+    public bool ismainGate;
 
-   
+    public ButtonEvent Buttonevent;
 
-    public bool iswizardDestryed = false;
-   
+    public int Level;
+
+
     void Start()
     {
-        
+        if(SceneManager.GetActiveScene().name== "MainLevelArk")
+        {
+            ismainGate = true;
+        }
+        else
+        {
+            ismainGate = false;
+        }
+        Buttonevent = GameObject.Find("EventKey").GetComponent<ButtonEvent>();
     }
 
  
@@ -26,8 +36,13 @@ public class GatesManager : MonoBehaviour
     public void MainScenePass()
     {
 
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("MainLevelArk");
 
+    }
+
+    public void PassLevelSelection()
+    {
+        SceneManager.LoadScene("AraLevel");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -37,9 +52,19 @@ public class GatesManager : MonoBehaviour
 
           
 
-            if (Input.GetKeyDown(KeyCode.E)&&iswizardDestryed)
+            if (Buttonevent.keydown)
             {
-                MainScenePass();
+                if (!ismainGate)
+                {
+                    MainScenePass();
+                }
+                else
+                {
+                   PlayerPrefs.SetInt("LevelOfGame", Level);
+
+                    PassLevelSelection();
+                }
+                
 
 
             }

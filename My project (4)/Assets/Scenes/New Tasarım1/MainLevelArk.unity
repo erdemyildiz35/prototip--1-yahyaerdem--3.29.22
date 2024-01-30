@@ -25520,31 +25520,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gates
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 361465361, guid: 9d406a0a931465c43ba17e72719fa790, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d406a0a931465c43ba17e72719fa790, type: 3}
---- !u!1 &984759713 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6070021500882456346, guid: 9d406a0a931465c43ba17e72719fa790, type: 3}
-  m_PrefabInstance: {fileID: 984759712}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &984759714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 984759713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58b6b92ce93b81c40968585b0760ac92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GecilenLevel: AraLevel
-  GecilmisLevel: 
-  Buttonevent: {fileID: 0}
-  EventButton: {fileID: 0}
-  EventButtonImage: {fileID: 0}
 --- !u!1001 &1023385775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25884,6 +25861,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1252793673584985236, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154832881751355334, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4154832883144723069, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -25931,6 +25916,10 @@ PrefabInstance:
     - target: {fileID: 4154832883144723070, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
       propertyPath: m_Name
       value: blacksmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154832883144723070, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f6888b2dbc68db4ea149556b4982ba8, type: 3}

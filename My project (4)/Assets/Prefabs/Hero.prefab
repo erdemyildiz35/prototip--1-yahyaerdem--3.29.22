@@ -1,52 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &258378632
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 258378633}
-  - component: {fileID: 258378634}
-  m_Layer: 9
-  m_Name: Pointers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &258378633
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258378632}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9079227912830365535}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &258378634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258378632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71ae0a8edfa87324c8feb68e656c2429, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OrbGO: []
-  Pointer: {fileID: 5770995867403686203, guid: 5bd3443358df0bc42a4b7edca5a91625, type: 3}
-  PointerTransform: {fileID: 9079227912830365535}
 --- !u!1 &584949973
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +108,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9079227912830365535}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4966290747252349506
 MonoBehaviour:
@@ -10073,7 +10026,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9079227912830365535}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4544405024696080192
 MonoBehaviour:
@@ -10203,7 +10156,6 @@ GameObject:
   - component: {fileID: 1356653114}
   - component: {fileID: 1333644317}
   - component: {fileID: 1333644324}
-  - component: {fileID: 7375905531091988015}
   - component: {fileID: 2183767977010417860}
   - component: {fileID: 7484591222374829649}
   m_Layer: 9
@@ -10231,7 +10183,6 @@ Transform:
   - {fileID: 1137287844803250981}
   - {fileID: 6392259614928764609}
   - {fileID: 1465103468396906823}
-  - {fileID: 258378633}
   - {fileID: 7963667497343757190}
   - {fileID: 5031664752174049902}
   m_Father: {fileID: 0}
@@ -10482,25 +10433,6 @@ MonoBehaviour:
   CastleComplete: 0
   DesertComplete: 0
   GenelCanvas: 0
---- !u!114 &7375905531091988015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9079227912830365530}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08253b0756cecfb4b8d3466ac318ee38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IceGate: 0
-  CastleGate: 0
-  DesertGate: 0
-  bigCastlemap: 0
-  bigIceMap: 0
-  Mainlevel: 0
-  EventButton: {fileID: 0}
 --- !u!114 &2183767977010417860
 MonoBehaviour:
   m_ObjectHideFlags: 0

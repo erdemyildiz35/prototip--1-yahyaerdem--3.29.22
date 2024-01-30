@@ -9,10 +9,19 @@ public class levelmanager : MonoBehaviour
     public List<Button> ArkBirButtonlari;
     public List<string> Arkbirİsimleri;
     public GameObject ArkOnePanel;
-
+    public int ArkOneLevelIndexes = 0;
     void Start()
     {
-        ArcChecker();   
+        if (PlayerPrefs.HasKey("LevelOfGame")){
+            ArkOneLevelIndexes = PlayerPrefs.GetInt("LevelOfGame");
+        }
+        else
+        {
+            ArkOneLevelIndexes = 1;
+        }
+       
+        ArcChecker();
+       
     }
 
     // Update is called once per frame
@@ -25,13 +34,13 @@ public class levelmanager : MonoBehaviour
     {
         for (int i = 1; i < ArkBirButtonlari.Count; i++)
         {
-            if (PlayerPrefs.GetInt(Arkbirİsimleri[i]) == 1)
+            if (i < ArkOneLevelIndexes)
             {
-                ArkBirButtonlari[i].interactable = true;
+                ArkBirButtonlari[i].enabled = true;
             }
             else
             {
-                ArkBirButtonlari[i].interactable = false;
+                ArkBirButtonlari[i].enabled = false;
             }
         }
       
